@@ -1,0 +1,96 @@
+\contentsline {chapter}{致谢}{I}{section*.1}%
+\contentsline {chapter}{摘要}{III}{section*.3}%
+\contentsline {chapter}{Abstract}{IV}{section*.5}%
+\contentsline {chapter}{缩略词表}{VI}{section*.7}%
+\contentsline {chapter}{目录}{VII}{section*.9}%
+\contentsline {chapter}{图目录}{XI}{section*.10}%
+\contentsline {chapter}{表目录}{XIV}{section*.11}%
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}绪论}{1}{chapter.0.1}%
+\contentsline {section}{\numberline {1.1}植物基因组测序与组装技术的发展}{1}{section.0.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}植物基因组研究的发展历程}{1}{subsection.0.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}植物基因组测序和组装技术的发展}{3}{subsection.0.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}植物T2T基因组的研究现状与应用}{5}{subsection.0.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}植物泛T2T基因组的研究现状与挑战}{7}{subsection.0.1.1.4}%
+\contentsline {section}{\numberline {1.2}重复序列与植物基因组结构演化}{9}{section.0.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}重复序列的类型与分布}{9}{subsection.0.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}重复序列扩张与对性状的影响}{12}{subsection.0.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}重复序列在植物中的应用与展望}{15}{subsection.0.1.2.3}%
+\contentsline {section}{\numberline {1.3}植物T2T基因组中着丝粒的结构与功能}{15}{section.0.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}着丝粒的基本结构与染色体定位}{15}{subsection.0.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}着丝粒序列的组成与特征}{17}{subsection.0.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}植物T2T基因组揭示着丝粒的演化}{19}{subsection.0.1.3.3}%
+\contentsline {section}{\numberline {1.4}本研究的目的与意义}{21}{section.0.1.4}%
+\contentsline {chapter}{\numberline {第二章\hspace {.3em}}植物T2T基因组资源与工具构建}{24}{chapter.0.2}%
+\contentsline {section}{\numberline {2.1}材料与方法}{24}{section.0.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}T2T基因组的搜集与分类}{24}{subsection.0.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}T2T基因组的质量评估}{24}{subsection.0.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}多组学数据分析}{25}{subsection.0.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}数据库框架}{25}{subsection.0.2.1.4}%
+\contentsline {subsection}{\numberline {2.1.5}数据统计与可视化分析}{26}{subsection.0.2.1.5}%
+\contentsline {section}{\numberline {2.2}植物T2T基因组数据集构建}{26}{section.0.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}植物T2T基因组来源}{26}{subsection.0.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}植物T2T基因组地理分布与分类}{27}{subsection.0.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}植物T2T基因组的物种分类}{30}{subsection.0.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}植物T2T基因组的结构特征与质量评估}{32}{subsection.0.2.2.4}%
+\contentsline {section}{\numberline {2.3}植物T2T基因组分析工具与资源平台}{34}{section.0.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}iSeq高通量数据下载工具}{34}{subsection.0.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}iOmics多组学分析工具}{35}{subsection.0.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}PlanT2T数据库}{36}{subsection.0.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}T2T-Hub在线分析平台}{38}{subsection.0.2.3.4}%
+\contentsline {section}{\numberline {2.4}本章小结}{39}{section.0.2.4}%
+\contentsline {chapter}{\numberline {第三章\hspace {.3em}}植物T2T基因组的结构特征与调控元件演化}{40}{chapter.0.3}%
+\contentsline {section}{\numberline {3.1}材料与方法}{40}{section.0.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}系统发育树的构建}{40}{subsection.0.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}物种WGD时间推断}{40}{subsection.0.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}物种分歧时间估计}{41}{subsection.0.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}基因家族的扩张与收缩}{41}{subsection.0.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}基因功能注释与基因家族分析}{41}{subsection.0.3.1.5}%
+\contentsline {section}{\numberline {3.2}植物T2T基因组的物种与序列演化}{42}{section.0.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}植物T2T基因组的物种演化}{42}{subsection.0.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}植物T2T基因组的序列演化}{45}{subsection.0.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}转录因子与启动子的协同演化}{47}{subsection.0.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}NLR基因家族的演化分析}{50}{subsection.0.3.2.4}%
+\contentsline {section}{\numberline {3.3}植物T2T基因组的比较基因组学分析}{52}{section.0.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}基于116个被子植物的系统发育树估计分歧时间}{52}{subsection.0.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}全基因组复制事件与基因家族演化}{54}{subsection.0.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}基于1354个物种的全基因组复制事件分析}{58}{subsection.0.3.3.3}%
+\contentsline {section}{\numberline {3.4}本章小结}{62}{section.0.3.4}%
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}植物T2T基因组重复序列和着丝粒的演化}{63}{chapter.0.4}%
+\contentsline {section}{\numberline {4.1}材料与方法}{63}{section.0.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}重复序列注释}{63}{subsection.0.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}调控元件注释}{64}{subsection.0.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}非编码RNA注释}{64}{subsection.0.4.1.3}%
+\contentsline {section}{\numberline {4.2}植物T2T基因组中重复序列的演化}{64}{section.0.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}植物基因组重复序列的注释与组成}{65}{subsection.0.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}植物中重复序列的扩张与演化}{66}{subsection.0.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}重复序列与植物性状的关联}{69}{subsection.0.4.2.3}%
+\contentsline {section}{\numberline {4.3}植物T2T基因组中着丝粒的结构与演化}{72}{section.0.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}植物着丝粒区域的识别}{73}{subsection.0.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}着丝粒大小与结构特征}{74}{subsection.0.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}着丝粒重复序列组成与表观基因组学规律}{77}{subsection.0.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}植物着丝粒的演化模式}{79}{subsection.0.4.3.4}%
+\contentsline {section}{\numberline {4.4}本章小结}{82}{section.0.4.4}%
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}T2T基因组组装策略评估及其多组学应用}{84}{chapter.0.5}%
+\contentsline {section}{\numberline {5.1}材料与方法}{84}{section.0.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}基准测试环境与性能指标}{84}{subsection.0.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}基准测试数据集}{84}{subsection.0.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}落地生根植物材料与测序数据}{85}{subsection.0.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}落地生根基因组大小估算与倍性分析}{85}{subsection.0.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}落地生根T2T基因组组装}{85}{subsection.0.5.1.5}%
+\contentsline {section}{\numberline {5.2}T2T基因组组装策略评估}{86}{section.0.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}T2T基因组大小与倍性评估}{86}{subsection.0.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}T2T基因组初步组装策略的系统评估}{88}{subsection.0.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}T2T基因组挂载策略的系统评估}{94}{subsection.0.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}T2T基因组补洞策略的系统评估}{98}{subsection.0.5.2.4}%
+\contentsline {section}{\numberline {5.3}同源六倍体落地生根T2T基因组组装与应用}{100}{section.0.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}落地生根T2T基因组组装}{100}{subsection.0.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}T2T基因组在多组学研究中的应用优势}{102}{subsection.0.5.3.2}%
+\contentsline {section}{\numberline {5.4}本章小结}{104}{section.0.5.4}%
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}总结与展望}{105}{chapter.0.6}%
+\contentsline {section}{\numberline {6.1}全文总结}{105}{section.0.6.1}%
+\contentsline {section}{\numberline {6.2}本文局限与未来展望}{108}{section.0.6.2}%
+\contentsline {chapter}{参考文献}{111}{section*.63}%
+\contentsline {chapter}{附录}{120}{section*.65}%
+\contentsline {section}{\numberline {A}附图}{120}{section.0.7.1}%
+\contentsline {section}{\numberline {B}附表}{126}{section.0.7.2}%
+\contentsline {chapter}{作者简历}{135}{section*.76}%

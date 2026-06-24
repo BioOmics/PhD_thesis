@@ -1,0 +1,64 @@
+\addvspace {10.0pt}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces 植物基因组研究的发展历程概览}}{1}{figure.caption.12}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces 植物基因组测序技术的发展概览}}{3}{figure.caption.13}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces 植物T2T基因组的研究现状与主要应用}}{6}{figure.caption.14}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces 植物泛T2T基因组研究的代表性进展}}{8}{figure.caption.15}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces 图结构泛基因组及其变异解析示意图}}{9}{figure.caption.16}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces 植物重复序列的主要类型与跨物种分布特征}}{10}{figure.caption.17}%
+\contentsline {figure}{\numberline {1.7}{\ignorespaces 植物转座元件的主要转座机制示意图}}{11}{figure.caption.18}%
+\contentsline {figure}{\numberline {1.8}{\ignorespaces 转座元件影响植物基因结构、表达调控与性状形成的主要途径}}{13}{figure.caption.19}%
+\contentsline {figure}{\numberline {1.9}{\ignorespaces 重复序列在植物中的应用与展望}}{14}{figure.caption.20}%
+\contentsline {figure}{\numberline {1.10}{\ignorespaces 植物着丝粒的基本结构与染色体定位模式}}{16}{figure.caption.21}%
+\contentsline {figure}{\numberline {1.11}{\ignorespaces 植物着丝粒序列的组成类型与识别特征}}{18}{figure.caption.22}%
+\contentsline {figure}{\numberline {1.12}{\ignorespaces 植物着丝粒演化的代表性模型}}{20}{figure.caption.23}%
+\contentsline {figure}{\numberline {1.13}{\ignorespaces 本论文的整体研究框架与基本内容}}{23}{figure.caption.24}%
+\addvspace {10.0pt}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces 植物T2T基因组发表期刊分布与数据来源}}{26}{figure.caption.25}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces 植物T2T基因组的地理分布、分类特征及测序策略}}{28}{figure.caption.26}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces 植物T2T基因组在不同系统分类层级上的分布}}{31}{figure.caption.27}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces 植物T2T基因组的结构特征与质量评估}}{33}{figure.caption.28}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces iSeq的功能设计与兼容性}}{35}{figure.caption.29}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces iOmics多组学分析工具的整体框架}}{36}{figure.caption.30}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces PlanT2T数据库构建流程与功能模块}}{37}{figure.caption.31}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces T2T-Hub在线分析平台的流程与系统架构}}{38}{figure.caption.32}%
+\addvspace {10.0pt}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 230个植物T2T基因组序列特征与演化关系}}{43}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 植物T2T基因组中的序列演化}}{46}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces 转录因子与启动子的协同演化}}{49}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces 转录因子与启动子的协同演化模型}}{50}{figure.caption.36}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces NLR基因家族的演化模式}}{51}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 基于116个被子植物的系统发育树及分歧时间估算}}{53}{figure.caption.38}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces 全基因组复制事件与基因家族演化之间的关系}}{55}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces 不同演化时期WGD保留扩张OG的功能比较}}{57}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces 1354个植物基因组的系统发育树}}{59}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces 1058个植物WGD事件的时间分布}}{61}{figure.caption.42}%
+\addvspace {10.0pt}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces 230个植物T2T基因组中重复序列的注释流程与组成特征}}{65}{figure.caption.43}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces 121个植物T2T基因组中重复序列的扩张模式与演化趋势}}{68}{figure.caption.44}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces 植物T2T基因组中重复序列与功能元件的关系}}{70}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces 重复序列插入驱动植物性状变异的典型案例}}{72}{figure.caption.46}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces 植物T2T基因组中着丝粒区域识别流程}}{73}{figure.caption.47}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces 100个植物T2T基因组中着丝粒大小与结构特征}}{75}{figure.caption.48}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces 6个代表性植物着丝粒的重复序列组成与表观基因组学特征}}{78}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces 植物着丝粒在近缘物种中的类型转换与演化模式}}{80}{figure.caption.50}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces 植物着丝粒中TE与TR循环演化模型}}{81}{figure.caption.51}%
+\addvspace {10.0pt}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces T2T基因组大小与倍性评估}}{87}{figure.caption.52}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces 不同组装策略在拟南芥和水稻T2T基因组组装中的性能比较}}{89}{figure.caption.53}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces 不同组装策略在大豆T2T基因组组装中的性能比较}}{91}{figure.caption.54}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces 不同组装策略在棉花和草莓T2T基因组组装中的性能比较}}{93}{figure.caption.55}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces ONT R10与HiFi组装在豌豆中的QV和N50比较}}{94}{figure.caption.56}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces 不同挂载策略在五个植物基因组中的性能比较}}{96}{figure.caption.57}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces 不同挂载策略在五个植物基因组中的Hi-C热图比较}}{97}{figure.caption.58}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces HapHiC在八倍体草莓Hi-C热图重排中的应用}}{98}{figure.caption.59}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces 不同补洞策略在五个植物基因组中的比较}}{99}{figure.caption.60}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces 同源六倍体落地生根T2T基因组组装及其基因组特征}}{101}{figure.caption.61}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces T2T基因组与非T2T基因组在多组学分析中的比较}}{103}{figure.caption.62}%
+\addvspace {10.0pt}
+\contentsline {figure}{\numberline {A.1}{\ignorespaces iSeq的性能评估与比较}}{120}{figure.caption.67}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces PlanT2T数据库中的多组织多时期转录组表达资源}}{121}{figure.caption.68}%
+\contentsline {figure}{\numberline {A.3}{\ignorespaces T2T-Hub生成的交互式基因组与基因页面示例}}{122}{figure.caption.69}%
+\contentsline {figure}{\numberline {A.4}{\ignorespaces T2T-Hub集成的在线分析与可视化工具}}{123}{figure.caption.70}%
+\contentsline {figure}{\numberline {A.5}{\ignorespaces 基因组大小和重复序列含量的关系}}{124}{figure.caption.71}%
+\contentsline {figure}{\numberline {A.6}{\ignorespaces 着丝粒中TR和TE的比例关系}}{124}{figure.caption.72}%
+\contentsline {figure}{\numberline {A.7}{\ignorespaces 落地生根基因组大小与倍性核型分析}}{125}{figure.caption.73}%

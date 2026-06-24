@@ -1,0 +1,655 @@
+\cleardoublepage
+{
+    \chapternonum{附录}
+
+    \appendixsecmajornumbering
+
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+
+    \section{附图}
+
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure25}
+    \caption[iSeq的性能评估与比较]{
+    \textbf{iSeq的性能评估与比较。}
+    \textbf{(A)} iSeq和其他软件在不同数据格式、下载通道以及功能的比较。
+    \textbf{(B)} iSeq在大规模数据获取任务中的执行时间和内存消耗表现。
+    }
+    \label{fig:Figure25}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure28}
+    \caption[PlanT2T数据库中的多组织多时期转录组表达资源]{
+    \textbf{PlanT2T数据库中的多组织多时期转录组表达资源。}
+    展示\textbf{(A)}水稻、\textbf{(B)}拟南芥、\textbf{(C)}玉米和\textbf{(D)}大豆等代表性作物在不同组织和发育阶段的表达数据分布，以及对应的表达模式热图。}
+    \label{fig:Figure28}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure30}
+    \caption[T2T-Hub生成的交互式基因组与基因页面示例]{
+    \textbf{T2T-Hub生成的交互式基因组与基因页面示例。}
+    \textbf{(A)} 分析流程及结果访问入口；
+    \textbf{(B)} 基因组整体信息与分析模块概览；
+    \textbf{(C)} 基因级信息展示表；
+    \textbf{(D)} 基因组质量评估与统计结果；
+    \textbf{(E--F)} 转录本及功能注释信息（GO/KEGG）；
+    \textbf{(G)} 蛋白理化性质分析；
+    \textbf{(H)} 多层级序列展示与相似性检索；
+    \textbf{(I)} 保守结构域组成；
+    \textbf{(J)} 同源基因分布及系统发育关系。}
+    \label{fig:Figure30}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figure31}
+    \caption[T2T-Hub集成的在线分析与可视化工具]{
+    \textbf{T2T-Hub集成的在线分析与可视化工具。}
+    平台集成多种分析模块，包括BLAST检索、ID转换、基序搜索、GO/KEGG富集分析、共线性分析、染色体结构展示（Ideogram）、基因组浏览（JBrowse）、端粒与着丝粒识别等，实现对T2T基因组的多维度在线解析与可视化展示。}
+    \label{fig:Figure31}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure56}
+    \caption[基因组大小和重复序列含量的关系]{
+    \textbf{基因组大小和重复序列含量的关系。}}
+    \label{fig:Figure56}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure55}
+    \caption[着丝粒中TR和TE的比例关系]{
+    \textbf{着丝粒中TR和TE的比例关系。}}
+    \label{fig:Figure55}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure57}
+    \caption[落地生根基因组大小与倍性核型分析]{
+    \textbf{落地生根基因组大小与倍性核型分析。}
+    \textbf{(A)} 基于k-mer频率分析的基因组大小估计。
+    \textbf{(B)} 基于Smudgeplot分析的倍性推断。
+    \textbf{(C)} 基于共聚焦显微镜观察的核型分布。
+    }
+    \label{fig:Figure57}
+\end{figure}
+
+
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+
+\clearpage % 换页符，确保附图和附表出现在不同的页面
+
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+
+    \section{附表}
+
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+
+{
+% \footnotesize % 这里设置全局的字体大小
+\footnotesize
+\renewcommand{\arraystretch}{0.6} % 调整行距，0.8 可以根据需要调整
+\begin{longtable}{cccccc}
+    \caption{230个植物T2T基因组来源信息} \label{tab:genomeInfo} \\
+    \toprule
+    \textbf{物种名} & \textbf{中文名} & \textbf{倍性} & \textbf{来源} & \textbf{国家} & \textbf{PMID} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{6}{c}%
+    {{\bfseries \tablename\ \thetable{} 续表}} \\
+    \hline
+    \textbf{物种名} & \textbf{中文名} & \textbf{倍性} & \textbf{来源} & \textbf{国家} & \textbf{PMID} \\
+    \hline 
+    \endhead
+    % \hline \multicolumn{6}{r}{{继续下一页}} \\
+    \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    \textit{Actinidia chinensis} Donghong & 猕猴桃 & 2x=58 & PD & CN & 36588343 \\
+    \textit{Actinidia chinensis} Hongyang Hap1 & 猕猴桃 & 2x=58 & GitHub & CN & 36778189 \\
+    \textit{Actinidia chinensis} Hongyang Hap2 & 猕猴桃 & 2x=58 & GitHub & CN & 36778189 \\
+    \textit{Actinidia latifolia} Kuoye & 猕猴桃 & 2x=58 & PD & CN & 36588343 \\
+    \textit{Ananas comosus} & 菠萝 & 2x=50 & PD & CN & 39109967 \\
+    \textit{Arabidopsis thaliana} Col-CEN & 拟南芥 & 2x=10 & GitHub & UK & 34762468 \\
+    \textit{Arabidopsis thaliana} Col-PEK & 拟南芥 & 2x=10 & AraShare & CN & 35655433 \\
+    \textit{Arabidopsis thaliana} Col-XJTU & 拟南芥 & 2x=10 & GWH & CN & 34487862 \\
+    \textit{Arachis hypogaea} YZ9102 & 栽培花生 & 4x=40 & Figshare & CN & 39628055 \\
+    \textit{Arachis monticola} & 野生花生 & 4x=48 & GWH & CN & 38436521 \\
+    \textit{Armoracia rusticana} & 山葵 & 4x=32 & Figshare & CN & 37491530 \\
+    \textit{Avena sativa} Marvellous & 普通燕麦 & 6x=42 & PD & CN & 39780493 \\
+    \textit{Beckmannia syzigachne} & 菵草 & 2x=14 & GWH & CN & 39415450 \\
+    \textit{Brassica juncea} PM & 芥菜 & 2x=36 & GWH & CN & 39883846 \\
+    \textit{Brassica napus} Xiang5A & 油菜 & 4x=38 & NCBI & CN & 37841499 \\
+    \textit{Brassica rapa} chiifu & 白菜 & 2x=20 & PD & CN & 36688739 \\
+    \textit{Brassica rapa} chinensis & 小白菜 & 2x=20 & GWH & CN & 38548570 \\
+    \textit{Brassica rapa} purpuraria & 紫菜薹 & 2x=20 & GWH & CN & 38548570 \\
+    \textit{Capsella bursa-pastoris} & 荠菜 & 4x=32 & Figshare & CN & / \\
+    \textit{Capsicum annuum} & 辣椒 & 2x=24 & PD & CN & 38769327 \\
+    \textit{Capsicum annuum} Ac1979 & 辣椒 & 2x=24 & PD & CN & 39875669 \\
+    \textit{Capsicum annuum} PM1533 & 辣椒 & 2x=24 & PD & CN & 39875669 \\
+    \textit{Capsicum annuum} Qiemen & 辣椒 & 2x=24 & PD & CN & 39875669 \\
+    \textit{Capsicum annuum} Zunla-1 & 辣椒 & 2x=24 & PD & CN & 39449200 \\
+    \textit{Capsicum baccatum} CA272 & 下垂辣椒 & 2x=24 & PD & CN & 39875669 \\
+    \textit{Capsicum chinense} PBC932 & 中国辣椒 & 2x=24 & PD & CN & 39875669 \\
+    \textit{Capsicum eximium} CA259 & 紫绿花辣椒 & 2x=30 & PD & CN & 39875669 \\
+    \textit{Capsicum frutescens} CA254 & 灌木辣椒 & 2x=24 & PD & CN & 39875669 \\
+    \textit{Capsicum rhomboideum} & 辣椒 & 2x=26 & PD & CN & 38769327 \\
+    \textit{Capsicum rhomboideum} CA352 & 野生辣椒 & 2x=26 & PD & CN & 39875669 \\
+    \textit{Cenchrus fungigraminus} & 巨菌草 & 4x=28 & GWH & CN & 37271992 \\
+    \textit{Centella asiatica} & 积雪草 & 2x=18 & Figshare & CN & 40236733 \\
+    \textit{Cerasus speciosa} IZO01 & 大岛樱 & 2x=16 & GDR & JP & 39905005 \\
+    \textit{Chaenomeles speciosa} & 木瓜 & 2x=34 & PD & CN & 37927407 \\
+    \textit{Chlamydomonas reinhardtii} & 绿藻 & 2x=34 & NCBI & USA & 36397679 \\
+    \textit{Chlorella pyrenoidosa} DBH & 普通小球藻 & 2x=26 & GWH & CN & 38600443 \\
+    \textit{Chlorella sorokiniana} NS4-2 & 索罗金小球藻 & 2x=24 & GWH & CN & 38600443 \\
+    \textit{Citrullus amarus} PI189225 & 饲用西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus amarus} PI271769 & 饲用西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus amarus} PI296341FR & 饲用西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus amarus} PI482276 & 饲用西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus amarus} RCAT055816 & 饲用西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus colocynthis} PI525081 & 药西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus colocynthis} PI537300 & 药西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus colocynthis} PI632755 & 药西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus colocynthis} PI652554 & 药西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus ecirrhosus} PI673135 & 缺须西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} Allsugar & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} CalhounGray & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} CharlestonGray & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} DaBanHongZiGua & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} G42 & 西瓜 & 2x=22 & PD & CN & 35746868 \\
+    \textit{Citrullus lanatus} HeiShanRen & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} PI254622 & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} PI288522 & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} PI381740 & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} PKR6 & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} SanBaiGua & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} ShiHongNo2 & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus lanatus} Sugarlee & 栽培西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus mucosospermus} PI532732 & 黏籽西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus mucosospermus} PI595203 & 黏籽西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus naudinianus} PI596694F & 罗典西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus naudinianus} PI596694M & 罗典西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrullus rehmii} PI670011 & 热迷西瓜 & 2x=22 & PD & CN & 38977857 \\
+    \textit{Citrus aurantium} ZGSC Hap1 & 酸橙 & 2x=18 & PD & CN & 40045092 \\
+    \textit{Citrus aurantium} ZGSC Hap2 & 酸橙 & 2x=18 & PD & CN & 40045092 \\
+    \textit{Citrus limon} Hap1 & 柠檬 & 2x=18 & GWH & CN & 37035858 \\
+    \textit{Citrus limon} Hap2 & 柠檬 & 2x=18 & GWH & CN & 37035858 \\
+    \textit{Citrus reticulata} Chachi & 柑橘 & 2x=18 & Figshare & CN & 39108584 \\
+    \textit{Citrus sinensis} Valencia Hap1 & 甜橙 & 2x=18 & PD & CN & 40045092 \\
+    \textit{Citrus sinensis} Valencia Hap2 & 甜橙 & 2x=18 & PD & CN & 40045092 \\
+    \textit{Cucumis melo} 821 Hap1 & 甜瓜 & 2x=24 & Figshare & CN & 37885818 \\
+    \textit{Cucumis melo} 821 Hap2 & 甜瓜 & 2x=24 & Figshare & CN & 37885818 \\
+    \textit{Cucumis melo} Kuizilikjiz & 甜瓜 & 2x=24 & GWH & CN & 37915500 \\
+    \textit{Cucumis melo} PI511890 & 甜瓜 & 2x=24 & GWH & CN & 38430487 \\
+    \textit{Cucumis sativus} CLv4 & 黄瓜 & 2x=14 & PD & CN & 38907525 \\
+    \textit{Cucurbita maxima} & 南瓜 & 2x=40 & GWH & CN & 38689498 \\
+    \textit{Daucus carota} DH13M14 & 胡萝卜 & 2x=18 & NCBI & CN & 39374101 \\
+    \textit{Daucus carota} Kurodagosun & 胡萝卜 & 2x=18 & NCBI & CN & 37786729 \\
+    \textit{Dianthus caryophyllus} Hap1 & 康乃馨 & 2x=30 & CNSA & CN & 38225981 \\
+    \textit{Dianthus caryophyllus} Hap2 & 康乃馨 & 2x=30 & CNSA & CN & 38225981 \\
+    \textit{Echinochloa phyllopogon} & 水稗 & 4x=36 & Plant GARDEN & JP & 37943179 \\
+    \textit{Eleocharis dulcis} & 菱角 & 2x=222 & GWH & CN & 39127691 \\
+    \textit{Erianthus rufipilus} & 蔗茅 & 2x=20 & PD & CN & 36997685 \\
+    \textit{Eucalyptus regnans} Hap1 & 桉树 & 2x=22 & Figshare & AU & 39350032 \\
+    \textit{Eucalyptus regnans} Hap2 & 桉树 & 2x=22 & Figshare & AU & 39350032 \\
+    \textit{Fallopia multiflora} AYY & 何首乌 & 2x=22 & Figshare & CN & 39384802 \\
+    \textit{Fallopia multiflora} CYY & 何首乌 & 2x=22 & Figshare & CN & 39384802 \\
+    \textit{Ficus hispida} & 对叶榕 & 2x=28 & GWH & CN & 38269293 \\
+    \textit{Firmiana kwangsiensis} & 广西火桐 & 2x=80 & Figshare & CN & 39695221 \\
+    \textit{Forsythia suspensa} CHAU & 连翘 & 2x=28 & GWH & AU & 39247880 \\
+    \textit{Fragaria iinumae} & 饭沼草莓 & 2x=14 & GDR & CN & 40087556 \\
+    \textit{Fragaria vesca} Hawaii4 & 草莓 & 2x=14 & PD & CN & 37090094 \\
+    \textit{Fragaria x ananassa} Benihoppe & 栽培草莓 & 8x=56 & NCBI & CN & 38269295 \\
+    \textit{Glycine max} Jack & 大豆 & 2x=40 & NCBI & CN & 37968906 \\
+    \textit{Glycine max} Leea3 & 大豆 & 2x=40 & Figshare & AU & 37749941 \\
+    \textit{Glycine max} Wm82 & 大豆 & 2x=40 & GWH & CN & 37634078 \\
+    \textit{Glycine max} Wm82a5 & 大豆 & 2x=40 & Figshare & AU & 37749941 \\
+    \textit{Glycine max} Yundou1 & 大豆 & 2x=40 & GWH & CN & 38605518 \\
+    \textit{Glycine max} ZH13 & 大豆 & 2x=40 & GWH & CN & 37803825 \\
+    \textit{Glycine soja} yesheng71 & 野生大豆 & 2x=40 & GWH & CN & 38605518 \\
+    \textit{Gossypium hirsutum} TM-1 & 陆地棉 & 4x=52 & PD & CN & 40033059 \\
+    \textit{Gossypium hirsutum} ZM113 & 棉花 & 4x=52 & PD & CN & 40097785 \\
+    \textit{Gossypium raimondii} D5-3 & 雷蒙德氏棉 & 2x=26 & GWH & CN & 39147922 \\
+    \textit{Gynostemma pentaphyllum} & 绞股蓝 & 2x=22 & GWH & CN & 38689496 \\
+    \textit{Hygroryza aristata} Hap1 & 水禾 & 2x=24 & GWH & CN & 40148752 \\
+    \textit{Hygroryza aristata} Hap2 & 水禾 & 2x=24 & GWH & CN & 40148752 \\
+    \textit{Ipomoea batatas} Xiaoshu & 甘薯 & 2x=30 & GWH & CN & 39620264 \\
+    \textit{Jasminum sambac} & 茉莉花 & 2x=26 & GWH & CN & 36433929 \\
+    \textit{Juglans sigillata} & 深纹核桃 & 2x=32 & GWH & CN & / \\
+    \textit{Lactuca sativa} PKU06 & 生菜 & 2x=18 & Figshare & CN & 38937972 \\
+    \textit{Ligustrum lucidum} & 女贞 & 2x=46 & PD & CN & 39985810 \\
+    \textit{Malus domestica} Fuji Hap1 & 苹果 & 2x=34 & Figshare & CN & 39572540 \\
+    \textit{Malus domestica} Fuji Hap2 & 苹果 & 2x=34 & Figshare & CN & 39572540 \\
+    \textit{Malus domestica} Hap1 & 苹果 & 2x=34 & Zenodo & CN & 38743633 \\
+    \textit{Malus domestica} Hap2 & 苹果 & 2x=34 & Zenodo & CN & 38743633 \\
+    \textit{Malus niedzwetzkyana} & 尼德兹苹果 & 2x=34 & Figshare & CN & 39910089 \\
+    \textit{Mangifera indica} & 芒果 & 2x=40 & GWH & AU & 38462715 \\
+    \textit{Manihot esculenta} Hap1 & 木薯 & 2x=36 & GWH & CN & 38023477 \\
+    \textit{Manihot esculenta} Hap2 & 木薯 & 2x=36 & GWH & CN & 38023477 \\
+    \textit{Momordica charantia} & 苦瓜 & 2x=22 & NCBI & CN & 36643758 \\
+    \textit{Morus notabilis} & 川桑 & 2x=12 & PD & CN & 37786730 \\
+    \textit{Musa acuminata} Baxijiao Hap1 & 香蕉 & 3x=33 & Figshare & CN & 37701454 \\
+    \textit{Musa acuminata} Baxijiao Hap2 & 香蕉 & 3x=33 & Figshare & CN & 37701454 \\
+    \textit{Musa acuminata} Baxijiao Hap3 & 香蕉 & 3x=33 & Figshare & CN & 37701454 \\
+    \textit{Musa acuminata} DH-Pahang & 香蕉 & 2x=22 & PD & FR & 34493830 \\
+    \textit{Musa acuminata} malaccensis Hap1 & 香蕉 & 2x=22 & Figshare & CN & 37716992 \\
+    \textit{Musa acuminata} malaccensis Hap2 & 香蕉 & 2x=22 & Figshare & CN & 37716992 \\
+    \textit{Myrica rubra} Zaojia & 杨梅 & 2x=16 & PD & CN & 38495030 \\
+    \textit{Nicotiana benthamiana} & 本氏烟草 & 4x=19 & Zenodo & CN & 39543324 \\
+    \textit{Nicotiana sylvestris} & 林烟草 & 2x=24 & Figshare & CN & 40140587 \\
+    \textit{Nicotiana tomentosiformis} & 拟茸毛烟草 & 2x=24 & Figshare & CN & 40140587 \\
+    \textit{Oldenlandia diffusa} & 白花蛇舌草 & 2x=32 & Figshare & CN & 38600880 \\
+    \textit{Olea europaea} Leccino & 橄榄 & 2x=46 & GWH & CN & 39108575 \\
+    \textit{Oryza rufipogon} Y476 & 野生水稻 & 2x=24 & Figshare & CN & 38811581 \\
+    \textit{Oryza sativa} 9311 & 籼稻 & 2x=24 & GWH & CN & 35126409 \\
+    \textit{Oryza sativa} HuaZhan & 籼稻 & 2x=24 & GitHub & CN & 35748695 \\
+    \textit{Oryza sativa} J4155S & 籼稻 & 2x=24 & GitHub & CN & 35748695 \\
+    \textit{Oryza sativa} LK638S & 籼稻 & 2x=24 & GitHub & CN & 35748695 \\
+    \textit{Oryza sativa} MH63KL1 & 籼稻 & 2x=24 & GWH & CN & 34171481 \\
+    \textit{Oryza sativa} MH63RS3 & 籼稻 & 2x=24 & GWH & CN & 34171480 \\
+    \textit{Oryza sativa} NIP & 粳稻 & 2x=24 & GWH & CN & 37553831 \\
+    \textit{Oryza sativa} XL628S & 籼稻 & 2x=24 & GitHub & CN & 35748695 \\
+    \textit{Oryza sativa} ZS97RS3 & 籼稻 & 2x=24 & GWH & CN & 34171480 \\
+    \textit{Panax ginseng} & 人参 & 4x=48 & Figshare & CN & 38883331 \\
+    \textit{Panicum miliaceum} AJ8 & 糜子 & 4x=36 & Figshare & CN & 38906866 \\
+    \textit{Persea americana} Mill & 牛油果 & 2x=24 & ScienceDB & CN & 38966866 \\
+    \textit{Peucedanum praeruptorum} & 前胡 & 2x=22 & Figshare & DK & 38837945 \\
+    \textit{Phaseolus vulgaris} PJY4 & 红芸豆 & 2x=22 & GWH & CN & 40064438 \\
+    \textit{Phragmites australis} & 芦苇 & 2x=50 & Figshare & CN & 39154094 \\
+    \textit{Phragmites australis} Cuiplus & 芦苇 & 2x=50 & Figshare & CN & 39825185 \\
+    \textit{Physcomitrium patens} & 小立碗藓 & 2x=52 & Figshare & CN & 38278953 \\
+    \textit{Populus tremula x Populus alba} 717 Hap1 & 白杨 & 2x=38 & Phytozome & USA & 37675609 \\
+    \textit{Populus tremula x Populus alba} 717 Hap2 & 白杨 & 2x=38 & Phytozome & USA & 37675609 \\
+    \textit{Populus tremula x Populus alba} 84K Hap1 & 白杨 & 2x=38 & GWH & CN & 38412470 \\
+    \textit{Populus tremula x Populus alba} 84K Hap2 & 白杨 & 2x=38 & GWH & CN & 38412470 \\
+    \textit{Prunus persica} ZSH & 桃 & 2x=16 & PD & CN & 39306859 \\
+    \textit{Pyrus bretschneideri} DS & 亚洲梨 & 2x=34 & Figshare & CN & 39461942 \\
+    \textit{Pyrus communis} KFL & 欧洲梨 & 2x=34 & Figshare & CN & 39461942 \\
+    \textit{Pyrus pyrifolia} Hongxiangsu Hap1 & 梨 & 2x=34 & PD & CN & 38859586 \\
+    \textit{Pyrus pyrifolia} Hongxiangsu Hap2 & 梨 & 2x=34 & PD & CN & 38859586 \\
+    \textit{Pyrus pyrifolia} Yuluxiang Hap1 & 梨 & 2x=34 & PD & CN & 38859586 \\
+    \textit{Pyrus pyrifolia} Yuluxiang Hap2 & 梨 & 2x=34 & PD & CN & 38859586 \\
+    \textit{Pyrus pyrifolia} YunhongNO1 & 梨 & 2x=34 & PD & CN & 38023478 \\
+    \textit{Quercus variabilis} Hap1 & 栓皮栎 & 2x=24 & GWH & CN & 38023918 \\
+    \textit{Quercus variabilis} Hap2 & 栓皮栎 & 2x=24 & GWH & CN & 38023918 \\
+    \textit{Rhododendron liliiflorum} & 百合花杜鹃 & 2x=26 & PD & CN & 40236772 \\
+    \textit{Rhododendron molle} & 杜鹃花 & 2x=26 & GWH & CN & 36643737 \\
+    \textit{Rhododendron vialii} Hap1 & 红马银花 & 2x=26 & GWH & CN & 37438373 \\
+    \textit{Rhododendron vialii} Hap2 & 红马银花 & 2x=26 & GWH & CN & 37438373 \\
+    \textit{Rhodomyrtus tomentosa} LFSTJN1 & 桃金娘 & 2x=22 & NCBI & CN & 36938565 \\
+    \textit{Rosa hybrida} Samantha & 现代月季 & 4x=28 & Figshare & CN & 39394508 \\
+    \textit{Rosa rugosa} & 玫瑰 & 2x=14 & GWH & CN & / \\
+    \textit{Scutellaria baicalensis} & 黄芩 & 2x=18 & GWH & CN & 38156283 \\
+    \textit{Sesbania cannabina} & 田菁 & 4x=24 & Figshare & CN & 37897613 \\
+    \textit{Setaria italica} Yugu1 & 谷子 & 2x=18 & PD & CN & 38155573 \\
+    \textit{Solanum commersonii} Hap1 & 野生马铃薯 & 2x=24 & GWH & CN & 38807365 \\
+    \textit{Solanum commersonii} Hap2 & 野生马铃薯 & 2x=24 & GWH & CN & 38807365 \\
+    \textit{Solanum lycopersicum} M82 & 番茄 & 2x=24 & GWH & CN & 38897428 \\
+    \textit{Solanum lycopersicum} Micro-Tom & 番茄 & 2x=24 & GWH & CN & 38897428 \\
+    \textit{Solanum melongena} NO211 & 茄子 & 2x=24 & GWH & CN & 39608550 \\
+    \textit{Solanum tuberosum} & 马铃薯 & 2x=24 & PD & CN & 36528795 \\
+    \textit{Sorghum bicolor} 654 & 高粱 & 2x=20 & GWH & CN & 40108243 \\
+    \textit{Sorghum bicolor} BTx623 & 高粱 & 2x=20 & Figshare & CN & 38882488 \\
+    \textit{Sorghum bicolor} CHBZ & 高粱 & 2x=20 & Figshare & CN & 39095379 \\
+    \textit{Sorghum bicolor} E048 & 高粱 & 2x=20 & PD & CN & 40055894 \\
+    \textit{Sorghum bicolor} Hongyingzi & 高粱 & 2x=20 & PD & CN & 38689492 \\
+    \textit{Sorghum bicolor} Huandiaonuo & 高粱 & 2x=20 & PD & CN & 38689492 \\
+    \textit{Sorghum bicolor} Ji2055 & 高粱 & 2x=20 & Figshare & CN & 38882488 \\
+    \textit{Syntrichia caninervis} & 齿肋赤藓 & 2x=26 & Figshare & CN & 39844515 \\
+    \textit{Thalia dealbata} & 再力花 & 2x=16 & NCBI & CN & 37384358 \\
+    \textit{Triticum aestivum} CS-IAAS & 中国春小麦 & 6x=42 & GWH & CN & 40195562 \\
+    \textit{Typha latifolia} & 香蒲 & 2x=26 & GWH & CN & / \\
+    \textit{Uncaria rhynchophylla} & 钩藤 & 2x=44 & GWH & CN & 39511975 \\
+    \textit{Vaccinium duclouxii} & 蓝莓 & 2x=24 & GWH & CN & 38023474 \\
+    \textit{Vigna radiata} Weilv-9 & 绿豆 & 2x=22 & GWH & CN & 40061812 \\
+    \textit{Vigna unguiculata} Fengchan6 & 豇豆 & 2x=22 & GWH & CN & 37558431 \\
+    \textit{Vitis davidii} Hap1 & 刺葡萄 & 2x=38 & Zenodo & CN & 39944989 \\
+    \textit{Vitis davidii} Hap2 & 刺葡萄 & 2x=38 & Zenodo & CN & 39944989 \\
+    \textit{Vitis labrusca x Vitis vinifera} SM Hap1 & 阳光玫瑰葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis labrusca x Vitis vinifera} SM Hap2 & 阳光玫瑰葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis retordii} WG Hap1 & 绵毛葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis retordii} WG Hap2 & 绵毛葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} BM Hap1 & 无核紫葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} BM Hap2 & 无核紫葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} BMNG Hap1 & 白木纳格葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} BMNG Hap2 & 白木纳格葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} Chardonnay Hap1 & 霞多丽葡萄 & 2x=38 & Zenodo & CN & 40011682 \\
+    \textit{Vitis vinifera} Chardonnay Hap2 & 霞多丽葡萄 & 2x=38 & Zenodo & CN & 40011682 \\
+    \textit{Vitis vinifera} HMNG Hap1 & 红木纳格葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} HMNG Hap2 & 红木纳格葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} MF Hap1 & 美人指葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} MF Hap2 & 美人指葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} MH Hap1 & 汉堡麝香葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} MH Hap2 & 汉堡麝香葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} PN Hap1 & 黑皮诺葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} PN Hap2 & 黑皮诺葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} PN40024 & 黑皮诺葡萄 & 2x=38 & Zenodo & CN & 37213686 \\
+    \textit{Vitis vinifera} Thompson & 汤普森葡萄 & 2x=38 & CNGB & CN & 38288254 \\
+    \textit{Vitis vinifera} TS Hap1 & 汤普森无核葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} TS Hap2 & 汤普森无核葡萄 & 2x=38 & Figshare & CN & 39496880 \\
+    \textit{Vitis vinifera} Yan73 Hap1 & 烟73葡萄 & 2x=38 & Zenodo & CN & 38046853 \\
+    \textit{Vitis vinifera} Yan73 Hap2 & 烟73葡萄 & 2x=38 & Zenodo & CN & 38046853 \\
+    \textit{Zea mays} Mo17 & 玉米 & 2x=20 & PD & CN & 37322109 \\
+    \textit{Ziziphus jujuba} Dongzao & 冬枣 & 2x=24 & GWH & CN & 37482683 \\
+    \textit{Ziziphus jujuba} Junzao & 骏枣 & 2x=24 & Figshare & CN & 38725458 \\
+    \textit{Ziziphus jujuba} Suanzao & 酸枣 & 2x=24 & Figshare & CN & 38725458 \\
+    \textit{Ziziphus mauritiana} MISI & 栽培印度枣 & 4x=48 & Figshare & CN & 39325737 \\
+    \textit{Ziziphus mauritiana} XSYS & 野生印度枣 & 4x=48 & Figshare & CN & 39325737 \\
+    \bottomrule
+\end{longtable}
+}
+
+\clearpage % 换页符，确保附图和附表出现在不同的页面
+
+\begin{table}[htbp]
+    \centering
+    \caption{地质年代中英文对照表}
+    % \footnotesize  % Reduce font size by one level
+    \small  % Reduce font size by one level
+    \label{tab:geologicalAges}
+    % \begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+    \begin{tabularx}{\linewidth}{l*{3}{>{\centering\arraybackslash}X}}
+        \toprule
+        \textbf{地质时期} & \textbf{英文名} & \textbf{缩写名} & \textbf{时间范围（Mya）} \\
+        \midrule
+        \textbf{新生代} & Cenozoic & Kz & 66--至今 \\
+        \quad 第四纪 & Quaternary & Q & 2.6--至今 \\
+        \quad 新近纪 & Neogene & N & 23--2.6 \\
+        \quad 古近纪 & Paleogene & E & 66--23 \\
+        \textbf{中生代} & Mesozoic & Mz & 252--66 \\
+        \quad 白垩纪 & Cretaceous & K & 145--66 \\
+        \quad 侏罗纪 & Jurassic & J & 201--145 \\
+        \quad 三叠纪 & Triassic & T & 252--201 \\
+        \textbf{古生代} & Palaeozoic & PZ & 541--252 \\
+        \quad 二叠纪 & Permian & P & 299--252 \\
+        \quad 石炭纪 & Carboniferous & C & 359--299 \\
+        \quad 泥盆纪 & Devonian & D & 419--359 \\
+        \quad 志留纪 & Silurian & S & 444--419 \\
+        \quad 奥陶纪 & Ordovician & O & 485--444 \\
+        \quad 寒武纪 & Cambrian & \(\in\) & 541--485 \\
+        \textbf{元古代} & Proterozoic & - & 2500--541 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{T2T基因组组装基准测试数据集列表}
+    % \footnotesize  % Reduce font size by one level
+    \small  % Reduce font size by one level
+    \label{tab:benchmarkDatasets}
+    % \begin{tabularx}{\linewidth}{l>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+    \begin{tabularx}{\linewidth}{l*{5}{>{\centering\arraybackslash}X}}
+        \toprule
+        \textbf{物种名} & \textbf{ONT} & \textbf{HiFi} & \textbf{HiC} & \textbf{Illumina} \\
+        \midrule
+        \textbf{Cotton} & SRR3105217[2-6] & SRR3105217[3-6] & SRR8259678 & SRR1768485 \\
+        \textbf{Rice} & SRR25203456 & SRR25241090 & SRR25241089 & SRR25203457 \\
+        \textbf{Soybean} & CRR947535 & CRR94753[3|4] & CRR947539 & CRR947519 \\
+        \textbf{Strawberry} & SRR24738174 & CRR101522[5-7] & SRR24738175 & CRR1015223 \\
+        \textbf{Arabidopsis} & CRR302667 & CRR302668 & CRR302669 & CRR302670 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\clearpage % 换页符，确保附图和附表出现在不同的页面
+
+{
+\small
+\renewcommand{\arraystretch}{0.7}
+\begin{longtable}{cccccc}
+    \caption{39个动物T2T基因组来源信息} \label{tab:animalInfo} \\
+    \toprule
+    \textbf{物种名} & \textbf{中文名} & \textbf{来源} & \textbf{倍性} & \textbf{国家} & \textbf{PMID} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{6}{c}%
+    {{\bfseries \tablename\ \thetable{} 续表}} \\
+    \hline
+    \textbf{物种名} & \textbf{中文名} & \textbf{来源} & \textbf{倍性} & \textbf{国家} & \textbf{PMID} \\
+    \hline 
+    \endhead
+    % \hline \multicolumn{6}{r}{{继续下一页}} \\
+    \endfoot
+    % \hline
+    \endlastfoot
+    \textit{Acanthopagrus schlegelii} & 黑鲷 & Figshare & 2x=48 & CN & 40016269 \\
+    \textit{Amynthas aspergillum} & 蚯蚓 & Figshare & 2x=86 & CN & 40456754 \\
+    \textit{Anser cygnoides} & 太湖鹅 & NCBI & 2x=82 & CN & 38972874 \\
+    \textit{Bombyx mori} KA & 家蚕 & ENA & 2x=58 & CN & 40133370 \\
+    \textit{Bombyx mori} L & 家蚕 & ENA & 2x=58 & CN & 40133370 \\
+    \textit{Bombyx mori} M & 家蚕 & ENA & 2x=58 & CN & 40133370 \\
+    \textit{Bos taurus} Mongolia & 蒙古牛 & NCBI & 2x=62 & CN & 39693631 \\
+    \textit{Choerodon schoenleinii} & 邵氏猪齿鱼 & Figshare & 2x=48 & CN & 40164629 \\
+    \textit{Clarias gariepinus} & 非洲鲶鱼 & NCBI & 2x=58 & DE & 39375414 \\
+    \textit{Coilia nasus} & 刀鲚 & Figshare & 2x=48 & CN & 37280262 \\
+    \textit{Electrophorus electricus} & 电鳗 & GigaDB & 2x=52 & CN & 40167991 \\
+    \textit{Euchiloglanis kishinouyei} & 黄石爬鮡 & Figshare & 2x=54 & CN & 40335534 \\
+    \textit{Gallus gallus} Huxu & 胡须鸡 & GitHub & 2x=80 & CN & 36780517 \\
+    \textit{Gorilla gorilla} & 西部大猩猩 & NCBI & 2x=52 & USA & 40205052 \\
+    \textit{Homo sapiens} CHM13 & 智人 & NCBI & 2x=48 & USA & 35357919 \\
+    \textit{Homo sapiens} Han1 & 汉族人 & GitHub & 2x=48 & CN & 36630290 \\
+    \textit{Homo sapiens} Yao & 汉族人 & GWH & 2x=48 & CN & 37595788 \\
+    \textit{Kryptopterus vitreolus} & 玻璃猫鱼 & Figshare & 2x=64 & CN & 40122884 \\
+    \textit{Lateolabrax maculatus} & 中华鲈鱼 & NCBI & 2x=50 & CN & 38326339 \\
+    \textit{Macaca fascicularis} MFA8 & 食蟹猕猴 & NCBI & 2x=44 & CN & 40011769 \\
+    \textit{Mus musculus} & 小鼠 & GitHub & 2x=40 & CN & 39636971 \\
+    \textit{Neogale vison} & 美洲水鼬 & NCBI & 2x=32 & CN & 36526733 \\
+    \textit{Neophocaena asiaeorientalis} EFP & 东亚江豚 & Figshare & 2x=48 & CN & 39283687 \\
+    \textit{Neophocaena asiaeorientalis} YFP & 长江江豚 & Figshare & 2x=46 & CN & 39283687 \\
+    \textit{Neosalanx taihuensis} & 太湖银鱼 & Figshare & 2x=56 & CN & 37925542 \\
+    \textit{Ostfriesisches milchschaf} & 东佛里生羊 & NCBI & 2x=54 & CN & 38992134 \\
+    \textit{Ovis aries} & 绵羊 & NCBI & 2x=56 & CN & 39779954 \\
+    \textit{Pan paniscus} & 倭黑猩猩 & NCBI & 2x=52 & USA & 40205052 \\
+    \textit{Pan troglodytes} & 黑猩猩 & NCBI & 2x=52 & USA & 40205052 \\
+    \textit{Pongo abelii} & 苏门达腊猩猩 & NCBI & 2x=52 & USA & 40205052 \\
+    \textit{Pongo pygmaeus} & 婆罗洲猩猩 & NCBI & 2x=52 & USA & 40205052 \\
+    \textit{Pristella maxillaris} & X射线鱼 & Figshare & 2x=52 & CN & 40128533 \\
+    \textit{Protosalanx chinensis} & 亚洲冰鱼 & Figshare & 2x=56 & CN & 39775841 \\
+    \textit{Rhinogobio nasutus} & 大鼻吻鮈 & NCBI & 2x=50 & CA & 40113806 \\
+    \textit{Sus scrofa} JH & 金华猪 & GigaDB & 2x=40 & CN & 40372724 \\
+    \textit{Sus scrofa} Min & 闽猪 & GWH & 2x=38 & CN & 40236780 \\
+    \textit{Sus scrofa} RC & 荣昌猪 & GWH & 2x=38 & CN & 40236780 \\
+    \textit{Symphalangus syndactylus} & 合趾猿 & NCBI & 2x=54 & USA & 40205052 \\
+    \textit{Triplophysa yaopeizhii} & 高原鳅 & NCBI & 2x=50 & CN & 40210914 \\
+    \bottomrule
+\end{longtable}
+}
+
+\clearpage % 换页符，确保附图和附表出现在不同的页面
+
+{
+\small
+\renewcommand{\arraystretch}{0.7}
+\begin{longtable}{m{6cm} m{5cm}}
+    \caption{CENH3 ChIP-seq测序编号信息} \label{tab:CENH3} \\
+    \toprule
+    \textbf{物种名} & \textbf{测序编号} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{2}{c}%
+    {{\bfseries \tablename\ \thetable{} 续表}} \\
+    \hline
+    \textbf{物种名} & \textbf{测序编号} \\
+    \hline 
+    \endhead
+    % \hline \multicolumn{2}{|r|}{{继续下一页}} \\ \hline
+    \endfoot
+    % \hline
+    \endlastfoot
+    \textit{Arabidopsis thaliana} Col-CEN & ERR9976401, ERR9976402 \\
+    \textit{Brassica rapa} chinensis & CRR1010082, CRR1010083 \\
+    \textit{Capsicum annuum} & SRR26384678, SRR26384679 \\
+    \textit{Chlorella sorokiniana} NS4-2 & CRR934434, CRR934435 \\
+    \textit{Citrullus lanatus} G42 & SRR14018016, SRR26555620 \\
+    \textit{Citrus aurantium} ZGSC Hap1 & SRR10917986, SRR10917987 \\
+    \textit{Citrus limon} Hap1 & SRR10917986, SRR10917987 \\
+    \textit{Citrus sinensis} Valencia Hap1 & SRR10917986, SRR10917987 \\
+    \textit{Cucumis sativus} CLv4 & SRR26992529, SRR26992530 \\
+    \textit{Glycine max} ZH13 & CRR638210, CRR638243 \\
+    \textit{Gossypium hirsutum} TM-1 & SRR30899530, SRR30899531 \\
+    \textit{Gossypium raimondii} D5-3 & ERR1449076, ERR1449077 \\
+    \textit{Momordica charantia} & CRR1911049, CRR1911050 \\
+    \textit{Morus notabilis} & CRR778719, CRR778720 \\
+    \textit{Nicotiana benthamiana} & CRR1013166, CRR1013167 \\
+    \textit{Oryza australiensis} & DRR848186, DRR848187 \\
+    \textit{Oryza rufipogon} Y476 & CRR1228721, CRR1228723 \\
+    \textit{Oryza sativa} NIP & SRR25203305, SRR25203307 \\
+    \textit{Physcomitrium patens} & CRR780324, CRR780332 \\
+    \textit{Pisum sativum} CEN6 & ERR9981080, ERR9981081 \\
+    \textit{Solanum commersonii} Hap1 & CRR1072652, CRR1072653 \\
+    \textit{Triticum aestivum} CS-IAAS & SRR9089557, SRR9089558 \\
+    \textit{Vitis vinifera} Chardonnay Hap1 & SRR26464669, SRR28415791 \\
+    \textit{Zea mays} Mo17 & SRR21509776, SRR21509778 \\
+    \bottomrule
+\end{longtable}
+}
+
+{
+\small
+\renewcommand{\arraystretch}{0.7}
+\begin{longtable}{m{6cm} m{5cm}}
+    \caption{BS-seq测序编号信息} \label{tab:BSseq} \\
+    \toprule
+    \textbf{物种名} & \textbf{测序编号} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{2}{c}%
+    {{\bfseries \tablename\ \thetable{} -- 续上一页}} \\
+    \hline
+    \textbf{物种名} & \textbf{测序编号} \\
+    \hline 
+    \endhead
+    \hline \multicolumn{2}{|r|}{{继续下一页}} \\ \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    \textit{Chlorella sorokiniana} NS4-2 & SRR042626 \\
+    \textit{Citrullus lanatus} G42 & SRR14018016 \\
+    \textit{Cucumis melo} 821 Hap1 & SRR22956459 \\
+    \textit{Gossypium hirsutum} TM-1 & SRR5885852 \\
+    \textit{Morus notabilis} & CRR443593 \\
+    \textit{Oryza rufipogon} Y476 & CRR1228723 \\
+    \textit{Oryza sativa} NIP & SRR17019572 \\
+    \textit{Physcomitrium patens} & SRR24465493 \\
+    \bottomrule
+\end{longtable}
+}
+
+
+
+
+
+\clearpage % 换页符，确保附图和附表出现在不同的页面
+
+{
+\small
+\renewcommand{\arraystretch}{0.7}
+\begin{longtable}{ccccc}
+    \caption{多组学测序数据编号信息} \label{tab:multiomics} \\
+    \toprule
+    \textbf{Species} & \textbf{ATAC-seq} & \textbf{BS-seq} & \textbf{ChIP-seq} & \textbf{RNA-seq} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{5}{c}%
+    {{\bfseries \tablename\ \thetable{} -- 续上一页}} \\
+    \hline
+    \textbf{物种名} & \textbf{ATAC-seq} & \textbf{BS-seq} & \textbf{ChIP-seq} & \textbf{RNA-seq} \\
+    \hline 
+    \endhead
+    \hline \multicolumn{5}{|r|}{{继续下一页}} \\ \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    \textit{Zea mays} & 
+    \makecell[l]{SRX15339558 \\ SRX17241084 \\ SRX21046141 \\ SRX22810787 \\ SRX23755213} & 
+    \makecell[l]{SRX14989265 \\ SRX15683161 \\ SRX15902594 \\ SRX18926244 \\ SRX9605645} & 
+    \makecell[l]{SRX17592214 \\ SRX27033757 \\ SRX27038369 \\ SRX7543096 \\ SRX8020897} & 
+    \makecell[l]{SRX20588935 \\ SRX4038531 \\ SRX8135034 \\ SRX8915469 \\ SRX9008755} \\
+    \hline 
+    \textit{Oryza sativa} & 
+    \makecell[l]{SRX11449331 \\ SRX19561649 \\ SRX19561725 \\ SRX23204223 \\ SRX7652841} & 
+    \makecell[l]{SRX13209629 \\ SRX16359025 \\ SRX19350780 \\ SRX24172871 \\ SRX3422435} & 
+    \makecell[l]{SRX11080736 \\ SRX11084765 \\ SRX11365641 \\ SRX13136486 \\ SRX14741732} & 
+    \makecell[l]{SRX12729484 \\ SRX14324933 \\ SRX15944302 \\ SRX20611591 \\ SRX23791938} \\
+    \hline 
+    \textit{Glycine max} & 
+    \makecell[l]{CRX329127 \\ CRX631732 \\ CRX856626 \\ CRX916765 \\ CRX987760} & 
+    \makecell[l]{SRR5493985 \\ SRX12144092 \\ SRX22519742 \\ SRX26256596 \\ SRX8986056} & 
+    \makecell[l]{SRX18238684 \\ SRX20249462 \\ SRX23838672 \\ SRX26215048 \\ SRX27944786} & 
+    \makecell[l]{SRX20775713 \\ SRX24017349 \\ SRX24270639 \\ SRX24427807 \\ SRX25940401} \\
+    \hline 
+    \textit{Arabidopsis thaliana} & 
+    \makecell[l]{SRX16638210 \\ SRX18279924 \\ SRX21812643 \\ SRX22906050 \\ SRX23113707} & 
+    \makecell[l]{SRX11568159 \\ SRX27032819 \\ SRX7101160 \\ SRX7374930 \\ SRX9857076} & 
+    \makecell[l]{SRX10340434 \\ SRX12416338 \\ SRX19986991 \\ SRX20331715 \\ SRX2523224} & 
+    \makecell[l]{SRX27208244 \\ SRX27369635 \\ SRX27724542 \\ SRX27735740 \\ SRX27767543} \\
+    \bottomrule
+\end{longtable}
+}
+
+\clearpage % 换页符，确保附图和附表出现在不同的页面
+
+{
+\small
+\renewcommand{\arraystretch}{0.7}
+\begin{longtable}{m{6cm} m{4.5cm} m{4.5cm}}
+    \caption{落地生根T2T基因组指标统计} \label{tab:kalanchoe_assembly} \\
+    \toprule
+    \textbf{Genome feature} & \textbf{单倍体（monoploid）} & \textbf{六倍体（hexaploid）} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{3}{c}%
+    {{\bfseries \tablename\ \thetable{} -- Continued from previous page}} \\
+    \hline
+    \textbf{Genome feature} & \textbf{单倍体（monoploid）} & \textbf{六倍体（hexaploid）} \\
+    \hline 
+    \endhead
+    \hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    \textbf{Total assembly size (bp)} & 221,458,968 & 1,305,632,038 \\
+    \textbf{Number of chromosome} & 17 & 102 \\
+    \textbf{Average sequence length (bp)} & 13,016,081 & 12,800,314 \\
+    \textbf{Longest sequence (bp)} & 21,520,529 & 22,040,081 \\
+    \textbf{N50 length (bp)} & 13,309,033 & 12,494,940 \\
+    \textbf{N50 sequence count} & 8 & 42 \\
+    \textbf{GC content (\%)} & 36.68 & 36.75 \\
+    \textbf{Complete BUSCOs of genome (\%)} & 94.4 & 97.6 \\
+    \textbf{Percentage of repeat sequences (\%)} & 43.26 & 42.95 \\
+    \textbf{Gap count} & 0 & 0 \\
+    \textbf{Telomere count} & 34 & 208 \\
+    \textbf{Centromere count} & 17 & 102 \\
+    \textbf{Gene count} & 26,455 & 152,510 \\
+    \bottomrule
+\end{longtable}
+}
+
+    % End of appendix
+    \removeappendixsecmajornumbering
+}

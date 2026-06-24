@@ -1,0 +1,1494 @@
+\chapter{绪论}
+
+\section{植物基因组测序与组装技术的发展} 
+\subsection{植物基因组研究的发展历程}
+植物基因组研究的发展与测序技术和组装方法的进步密切相关。自21世纪初以来，随着高通量测序技术的快速发展，植物基因组学经历了从少数模式植物参考基因组解析，到大规模物种测序，再到高质量染色体级乃至端粒到端粒（telomere-to-telomere, T2T）组装不断涌现的发展过程（\blueref{fig:Figure43}{}）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure43}
+    \caption[植物基因组研究的发展历程概览]{
+    \textbf{植物基因组研究的发展历程概览。}
+    上部展示2000--2023年植物\textit{de novo}组装的基因组数量、组装连续性（contig N50）及染色体水平组装比例的变化趋势。下部展示植物基因组研究发展过程中的若干代表性里程碑物种，左侧绿色框代表非T2T基因组，黄色框表示泛基因组，右侧蓝色框表示T2T基因组。图片修改自Xie等人\cite{xie2024technology}。
+    }
+    \label{fig:Figure43}
+\end{figure}
+
+2000年，拟南芥（\textit{Arabidopsis thaliana}）基因组的发表，标志着植物基因组学时代的正式开启\cite{arabidopsis2000analysis}。作为第一个完成测序的植物基因组，拟南芥基因组规模小、生命周期短、遗传操作便利，因此迅速成为植物功能基因组学研究的核心模式材料（\blueref{fig:Figure43}{}）。2002年，水稻（\textit{Oryza sativa}）基因组发布\cite{goff2002draft}，这是第一个完成测序的主要粮食作物基因组，不仅推动了禾本科植物比较基因组学的发展，也为作物分子育种和粮食安全研究奠定了重要基础（\blueref{fig:Figure43}{}）。随后，葡萄（\textit{Vitis vinifera}）基因组于2007年发表\cite{french2007grapevine}，作为较早完成测序的木本果树基因组之一，它为理解木本植物与草本植物在基因组演化和生活史适应上的差异提供了重要参照（\blueref{fig:Figure43}{}）。
+
+随着测序技术不断进步，植物基因组研究开始由模式植物和中小基因组向大基因组、高重复和高复杂度物种拓展。2014年，火炬松（\textit{Pinus taeda}）基因组的发表是这一阶段的重要标志\cite{neale2014decoding}。作为当时已解析的最大、最复杂植物基因组之一，火炬松基因组的完成表明，22 Gbp（gigabase pairs）的超大植物基因组虽然在重复序列含量、组装复杂性和计算资源消耗上都极具挑战，但已逐渐进入可解析范围（\blueref{fig:Figure43}{}）。此后，越来越多大基因组和多倍体植物被纳入测序研究范围，植物基因组学的研究对象明显扩展。
+
+从整体趋势来看，植物基因组数量和质量在近十余年均呈快速上升趋势（\blueref{fig:Figure43}{}）。尤其是2018年以后，随着PacBio HiFi、Oxford Nanopore Technologies（ONT）超长读长以及高通量染色质构象捕获（high-throughput chromosome conformation capture，Hi-C）等技术的成熟，植物基因组组装质量显著提高，contig N50也明显增加（\blueref{fig:Figure43}{}）。与此同时，植物基因组研究的目标也在发生变化。早期研究通常聚焦于单一代表物种的参考基因组组装，而近年来大量同一物种不同材料的高质量组装陆续发表，推动了泛基因组研究快速发展，比如2020年发布的小麦泛基因组就是重要代表性成果之一（\blueref{fig:Figure43}{}）\cite{walkowiak2020multiple}。泛基因组的提出，使研究者能够从种内尺度系统认识基因存在和缺失变异、结构变异及其与性状形成之间的关系，极大拓展了植物基因组学的研究深度与广度。
+
+在泛基因组快速发展的同时，T2T基因组的出现进一步推动植物基因组学进入新的阶段。相较于传统染色体水平组装，T2T基因组能够完整覆盖端粒、着丝粒以及大片段重复区等长期缺失区域，从而在结构完整性上更接近真实染色体。近年来，香蕉（\textit{Musa acuminata}）和玉米（\textit{Zea mays}）等重要植物的T2T基因组相继发表（\blueref{fig:Figure43}{}）\cite{chen2023complete, belser2021telomere}，表明植物基因组研究正在由“高质量染色体级组装”进一步迈向“完整基因组组装”。这一变化不仅提高了复杂区域的可解析性，也为研究着丝粒演化、重复序列扩张、染色质调控以及复杂结构变异提供了全新的参考框架。
+
+\subsection{植物基因组测序和组装技术的发展}
+
+植物基因组测序技术的发展大致经历了第一代、第二代和第三代测序三个阶段（\blueref{fig:Figure44}{}）。不同阶段技术在读长、准确率、通量和成本上持续改进，直接推动了植物基因组研究从早期模式物种的草图组装，逐步迈向复杂基因组的高质量染色体级乃至T2T组装。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure44}
+    \caption[植物基因组测序技术的发展概览]{
+    \textbf{植物基因组测序技术的发展概览。}
+    \textbf{(A)} 不同测序平台支持下植物基因组组装连续性及染色体水平组装比例的变化趋势。
+    \textbf{(B)} 第一代、第二代和第三代测序技术的基本原理与主要特征示意图。图片修改自Xie等人和Shendure等人\cite{xie2024technology, shendure2017dna}。
+    }
+    \label{fig:Figure44}
+\end{figure}
+
+在植物基因组研究早期，Sanger测序是主要技术路线。该技术单次读长通常可达300--1000 bp，单碱基准确率高（99.99\%），但通量低、成本高，因此更适合小规模测序和精细验证\cite{lo2019application}。2000年拟南芥基因组和2002年水稻基因组的发布，基本都建立在第一代测序技术的基础之上，标志着植物基因组学研究的起点（\blueref{fig:Figure44}{A-B}）。不过，由于Sanger测序难以支撑大规模、低成本的全基因组测序，其在植物基因组研究中的主导地位很快被第二代测序技术所取代\cite{shendure2008next}。
+
+第二代测序（next-generation sequencing, NGS）以Illumina等平台为代表，其核心优势在于超高通量、较高准确率和显著下降的测序成本\cite{shendure2008next}。与Sanger相比，NGS单次读长通常缩短至数百碱基，但可在一次运行中产生海量数据\cite{shendure2008next}，因此极大推动了植物基因组研究的规模化发展。特别是在2007年以后，随着NGS平台的逐渐普及，植物基因组发表数量显著增加（\blueref{fig:Figure44}{A}）。这一阶段，不仅大量中小型植物基因组得以快速组装，复杂作物基因组和泛基因组也逐渐展开。与此同时，NGS时代催生了大量基于短读长的组装算法，如ABySS\cite{simpson2009abyss}、ALLPATHS\cite{butler2008allpaths}和SOAPdenovo\cite{xie2014soapdenovo}等，使植物基因组可以被基本组装。但受限于短读长本身，NGS在高重复区、着丝粒和大片段结构变异区域的解析能力有限，组装结果往往存在大量断裂，难以获得完整的染色体结构。
+
+第三代测序（third-generation sequencing, TGS）的发展改变了这一局面。以PacBio HiFi和ONT为代表的长读长测序平台，能够直接生成远长于NGS的单分子序列读段，从而显著提升复杂重复区和大结构变异区域的可解析性\cite{weirather2017comprehensive, lang2020comparison}。早期PacBio CLR（85–92\%）和ONT（61.6–71.5\%）读段虽然长度较长，但准确率相对较低\cite{warburton2023long, laver2015assessing}；随着PacBio CCS/HiFi技术的发展，长读长测序的单碱基准确率已提升至接近99.9\%\cite{weirather2017comprehensive}，而ONT则在持续保持超长读长优势的同时，也逐步提高了测序精度\cite{van2023genomics}。当前，PacBio读长可超过200 kb，ONT超长读段甚至可达到Mb级别\cite{van2023genomics}，这使得跨越长串联重复、大片段长末端重复序列（long terminal repeat，LTR）区域以及端粒和着丝粒邻近区成为可能（\blueref{fig:Figure44}{B}）。
+
+从植物基因组组装质量的发展趋势可以更直观地看到测序技术进步带来的影响。2015年以前植物基因组组装主要依赖Sanger和NGS平台，contig N50整体较低，多数停留在非染色体水平（\blueref{fig:Figure44}{A}）。2018年以后，随着第三代测序尤其是HiFi和超长ONT数据的广泛应用，植物基因组组装连续性显著提升，contig N50快速上升，染色体水平组装比例同步增加（\blueref{fig:Figure44}{A}）。到2021--2023年，HiFi和超长ONT已成为高质量植物基因组组装的核心数据来源，大量植物基因组的contig N50进入Mb级甚至更高水平，同时泛基因组项目和高质量参考基因组项目也在快速增长（\blueref{fig:Figure44}{A}）。
+
+测序技术进步也带动了组装算法的快速更新。短读长时代主要依赖德布鲁因图（De Bruijn graph）框架，而长读长时代则发展出Canu\cite{koren2017canu}、Mecat2\cite{xiao2017mecat}、Necat\cite{chen2021efficient}、NextDenovo\cite{hu2024nextdenovo}、Wtdbg2\cite{ruan2020fast}等面向长读长的组装工具。特别是针对HiFi数据开发的Hifiasm\cite{cheng2021haplotype}和Verkko\cite{rautiainen2023telomere}，已能够高效完成高连续性contig组装，并支持单倍型解析；进一步结合超长ONT和Hi-C数据后，植物基因组组装已可逐步逼近端粒到端粒水平。可以说，当前植物T2T基因组的出现，并不是单一测序平台突破的结果，而是高精度长读长、超长读长、染色体构象捕获技术以及相应组装算法协同发展的结果。
+
+\subsection{植物T2T基因组的研究现状与应用}
+
+T2T基因组是指将每条染色体从一端端粒连续组装至另一端端粒，并尽可能消除所有组装缺口（gaps）的完整基因组。相较于传统染色体水平组装，T2T基因组不仅提高了组装连续性，更重要的是补全了着丝粒、端粒、核仁组织区以及大片段串联重复和高相似重复区等长期缺失的复杂区域\cite{mehrotra2014repetitive, navratilova2022prospects}。目前，植物T2T基因组研究总体仍处于快速发展但尚未全面普及的阶段。一方面，近年来PacBio HiFi、ONT超长读长以及Hi-C、光学图谱等长程辅助技术的成熟，使植物复杂基因组获得近完整乃至完整组装成为可能（\blueref{fig:Figure45}{}，左上）；另一方面，由于植物基因组普遍存在重复序列丰富、多倍化广泛、杂合度高等特点，真正意义上的T2T组装仍然具有较高技术门槛。尤其是在异源多倍体及高度杂合物种中，同源染色体区分、大片段重复跨越以及端粒和着丝粒区域的正确解析仍是当前植物T2T组装面临的核心挑战\cite{andrews2010natural}。
+
+不过，从近期发表的技术体系来看，植物T2T基因组的构建已逐渐形成较为清晰的流程框架，即以HiFi或ONT等长读长测序为核心，结合Hi-C或光学图谱进行染色体级挂载（\blueref{fig:Figure45}{}，左上），再通过单倍型分相、人工校正和实验验证提升组装正确性（\blueref{fig:Figure45}{}，左下）。与传统短读长时代相比，当前植物T2T组装的关键不再只是获得足够数据量，而是如何在读长、准确率、长距离信息和算法性能之间实现有效平衡。特别是HiFi数据在碱基精度上的优势\cite{weirather2017comprehensive}、ONT超长读长在跨越复杂重复区上的优势\cite{lang2020comparison}，以及Hi-C在染色体排序和多倍体同源染色体区分中的作用\cite{oddes2018three}，已经成为当前植物T2T基因组构建的主要技术支柱。
+
+从研究现状来看，植物中已有若干代表性T2T或近T2T组装工作相继发表，覆盖了模式植物与重要作物。例如，拟南芥\cite{naish2021genetic}、水稻\cite{shang2023complete}、香蕉\cite{belser2021telomere}、西瓜\cite{deng2022telomere}和玉米\cite{chen2023complete}等物种的高质量完整组装，显著推动了人们对着丝粒、端粒、核糖体DNA簇和复杂重复区结构的认识。特别是在玉米等大基因组作物中，T2T组装不仅解析了完整的核仁组织区和超长微卫星区段，也揭示了非转座型重复扩增对基因组扩张的贡献\cite{chen2023complete}。因此，植物T2T基因组的科学价值已经从单纯“提高组装完整度”扩展到“重新认识复杂基因组结构与功能”的新局面。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure45}
+    \caption[植物T2T基因组的研究现状与主要应用]{
+    \textbf{植物T2T基因组的研究现状与主要应用。}
+    左侧展示植物T2T基因组构建的关键流程，包括样品测序、组装与分相以及完整基因组获得；右侧概括T2T基因组在从头驯化、演化基因组学、关联分析、单倍型育种、基因编辑、表观基因组学和T2T泛基因组等方向的主要应用。图片修改自Garg等人\cite{garg2024unlocking}。
+    }
+    \label{fig:Figure45}
+\end{figure}
+
+从应用层面看，植物T2T基因组的价值主要体现在以下几个方面（\blueref{fig:Figure45}{}，右）：（1）T2T基因组为重复序列、着丝粒和端粒等复杂区域的精确研究提供了完整序列背景，使得此前依赖片段化参考而难以开展的结构演化研究成为可能\cite{zhou2022centromeres}；（2）T2T基因组为泛基因组构建提供了更高质量的参考框架，有助于降低单一参考偏差，更全面地识别种内存在和缺失变异、拷贝数变异和大尺度结构变异\cite{schreiber2024plant}；（3）T2T基因组提升了复杂性状定位与候选基因挖掘的分辨率，尤其适用于QTL克隆、关联分析和野生种优异位点的发掘\cite{yu2022aegilops}；（4）完整的单倍型和重复区信息有助于优化CRISPR/Cas等基因编辑靶点设计，降低脱靶风险，并为多倍体作物中多等位位点的同步编辑提供参考\cite{gao2021genome}；（5）T2T基因组还能提升ATAC-seq、ChIP-seq、DNA甲基化和三维基因组等多组学数据在复杂区域中的解析能力，从而更完整地揭示染色质状态与基因调控网络\cite{lu2019prevalence, bennetzen2000many}。
+
+总体而言，植物T2T基因组研究正处于由“少数代表物种突破”向“多物种系统扩展”和“多组学深度应用”并进的阶段。未来，随着高精度长读长测序进一步普及、分相与挂载算法持续改进以及实验验证手段不断完善，T2T基因组将不仅成为植物比较基因组学的重要基础，也将深刻推动复杂性状解析、作物设计育种和新作物驯化等研究方向的发展。正是在这一背景下，系统整合植物T2T基因组资源，并从跨物种尺度解析其结构特征、演化规律及应用潜力，具有明确的科学意义和现实价值。
+
+\subsection{植物泛T2T基因组的研究现状与挑战}
+
+随着高质量染色体级乃至T2T基因组的不断积累，植物基因组学研究正在由“单一参考基因组”逐步转向“多参考基因组联合表征”的泛基因组阶段。传统单一参考基因组虽然为基因定位、功能注释和分子育种提供了重要基础，但其本质上只能代表某一材料的基因组状态，难以充分覆盖种内乃至近缘野生种中广泛存在的基因存在和缺失变异、结构变异以及复杂重复区差异。在这一背景下，以多个高质量组装为基础构建的泛基因组，正日益成为解析植物遗传多样性、降低参考偏倚并支撑精细功能研究的重要框架\cite{schreiber2024plant}。而T2T基因组由于能够完整覆盖端粒、着丝粒及大片段重复区，为泛基因组研究进一步提供了更完整、更接近真实染色体结构的参考单元，因此“泛T2T基因组（Pan-T2T genome）”正在成为植物比较基因组学发展的新方向（“Pan”源自希腊语，意为整体）。
+
+从目前研究进展来看，一些重要作物及其近缘种中已经出现了具有代表性的泛T2T基因组研究。例如，在西瓜属中，27个T2T基因组已被用于揭示果实性状和野生资源中的结构变异基础\cite{zhang2024telomere}（\blueref{fig:Figure46}{A}）；在葡萄属中，72个高质量基因组为栽培种与野生种的系统比较和性状演化提供了更完整的框架\cite{liu2024grapevine, guo2025super}（\blueref{fig:Figure46}{B}）；茄属、辣椒属和芸薹属中也分别积累了20、11和11个相关T2T组装，用于解析果实性状、转座元件（transposable element, TE）动态以及亚基因组分化等问题\cite{shi2026tomato, zhang2025transposon, ma2026gapless}（\blueref{fig:Figure46}{C--E}）。此外，水稻属和拟南芥属中分别已有67和68个T2T或近T2T水平的组装资源，为种群遗传、驯化历史和复杂结构变异研究提供了重要支撑\cite{xie2025genetic, wlodzimierz2023cycles}（\blueref{fig:Figure46}{F}）。高粱属和棉花属中也有33和28个高质量组装的积累，也为多倍体作物中亚基因组演化和种内多样性分析奠定了基础\cite{morris2026sorghum, Zhang2026pangenome}。总体而言，当前泛T2T基因组研究已经从少数模式物种和重要作物出发，逐步扩展到属级甚至更广尺度的比较分析阶段。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figure46}
+    \caption[植物泛T2T基因组研究的代表性进展]{
+    \textbf{植物泛T2T基因组研究的代表性进展。}
+    \textbf{(A)} 西瓜属\cite{zhang2024telomere}。 
+    \textbf{(B)} 葡萄属\cite{liu2024grapevine, guo2025super}。 
+    \textbf{(C)} 茄属\cite{shi2026tomato}。 
+    \textbf{(D)} 辣椒属\cite{zhang2025transposon}。 
+    \textbf{(E)} 芸薹属\cite{ma2026gapless}。 
+    \textbf{(F)} 水稻属\cite{xie2025genetic}。
+    }
+    \label{fig:Figure46}
+\end{figure}
+
+不过，植物泛T2T基因组的发展仍面临若干关键挑战。首先，虽然T2T组装补全了端粒、着丝粒和大片段重复区，但这些区域本身序列高度重复、结构复杂，在多材料之间往往难以实现稳定比对、统一坐标映射和标准化注释转移。其次，在统一框架下准确识别从单核苷酸多态性（single nucleotide polymorphism，SNP）、小片段插入缺失（indels）到大尺度结构变异（structural variation，SV）的全类型遗传差异仍然困难（\blueref{fig:Figure47}{}）。第三，在多倍体和高杂合植物中，同源染色体区分、单倍型折叠以及亚基因组错配等问题，会进一步影响图结构构建和变异识别的准确性。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure47}
+    \caption[图结构泛基因组及其变异解析示意图]{
+    \textbf{图结构泛基因组及其变异解析示意图。}
+    \textbf{(A)} 多个基因组序列整合形成的图结构泛基因组。 
+    \textbf{(B)} 图结构中可表示的遗传变异类型，包括SNP、indels以及重复、易位和倒位等结构变异。
+     \textbf{(C)} 短读长数据比对到图结构后的变异识别示意。图片修改自Schreiber等人\cite{schreiber2024plant}。
+    }
+    \label{fig:Figure47}
+\end{figure}
+
+最后，当前更大的瓶颈并不只是变异检测本身，而是如何将这些丰富的变异信息进一步与优良等位基因挖掘、野生种有利变异导入和复杂农艺性状定位有效衔接。因而，未来植物泛T2T基因组研究的重点，应从资源积累进一步转向图结构表示、全类型变异检测、功能解析与育种利用等环节的系统贯通。
+
+
+\section{重复序列与植物基因组结构演化}
+
+\subsection{重复序列的类型与分布}
+
+重复序列，尤其是转座元件（TE），是植物基因组中最重要的非编码组成部分之一，在许多植物中可占据基因组的50\%以上，甚至在部分大基因组作物中超过80\% \cite{wicker2018impact, wang2021comparative}。Barbara McClintock在20世纪40年代于玉米中首次发现转座元件，并提出“跳跃基因”概念，这一发现奠定了植物重复序列研究的基础\cite{mcclintock1951chromosome}。随着T2T基因组的出现，端粒、着丝粒及其他高重复区域得以被完整组装，使植物重复序列的系统鉴定、分类和跨物种比较进入了新的阶段。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure48}
+    \caption[植物重复序列的主要类型与跨物种分布特征]{
+    \textbf{植物重复序列的主要类型与跨物种分布特征。}
+    \textbf{(A)} 植物转座元件的主要分类、代表超家族及其典型结构。 
+    \textbf{(B)} 不同植物谱系中基因组大小、TE总比例及主要TE类型组成的比较，显示植物重复序列在不同类群间具有显著差异。图片修改自Tao等人\cite{tao2025harnessing}。
+    }
+    \label{fig:Figure48}
+\end{figure}
+
+按照转座机制，植物TE通常分为I类反转录转座子和II类DNA转座子两大类\cite{finnegan1989eukaryotic, wicker2007unified}。I类元件通过RNA中间体以“复制—粘贴”方式转座（\blueref{fig:Figure49}{A}），主要包括LTR和非LTR两种类型。其中，LTR反转录转座子是植物基因组中最丰富的TE类型，主要由Copia和Gypsy两个超家族构成，二者都编码GAG和聚合酶相关结构域，但在RT和INT的排列顺序上存在差异（\blueref{fig:Figure48}{A}）。非LTR反转录转座子则主要包括LINE和SINE，前者以L1和RTE为代表，后者通常较短且不编码蛋白 \cite{wright1996multiple, kramerov2011origin}。II类DNA转座子则通过DNA中间体转座（\blueref{fig:Figure49}{B}），主要包括具有末端反向重复序列的TIR类元件，如hAT\cite{carter2013active}、Mutator\cite{slotkin2005heritable}、Tc1/Mariner\cite{jarvik1998characterization}、PIF/Harbinger\cite{berthelier2023long}和CACTA\cite{gierl1996spm}等，以及通过滚环复制方式转座的Helitron\cite{kapitonov2001rolling}（\blueref{fig:Figure49}{C}）。此外，许多植物基因组中还广泛存在缺乏自主转座能力的非自主元件，如TRIM\cite{gao2016landscape}、LARD\cite{kalendar2004large}和MITE\cite{castanera2021amplification, castanera2023transposons}等，它们虽然结构较短，但在拷贝数和局部分布上往往十分丰富。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure49}
+    \caption[植物转座元件的主要转座机制示意图]{
+    \textbf{植物转座元件的主要转座机制示意图。}
+    \textbf{(A)} I类反转录转座子的“复制—粘贴”转座过程，通过RNA中间体、逆转录及整合实现插入。
+    \textbf{(B)} II类TIR型DNA转座子的“剪切—粘贴”转座过程，在转座酶作用下从原位切除并整合到新的基因组位置。
+    \textbf{(C)} Helitron通过滚环复制介导的转座过程，其特征为单链切口、链置换与复制解析。图片修改自Lisch\cite{lisch2013important}。
+    }
+    \label{fig:Figure49}
+\end{figure}
+
+从跨物种分布来看，植物TE的组成具有显著差异，且与基因组大小密切相关（\blueref{fig:Figure48}{B}）。总体上，早期分化植物和小基因组物种中的TE比例相对较低，而被子植物尤其是大基因组作物中TE比例显著升高。例如，绿藻（\textit{Chlamydomonas reinhardtii}）的TE比例较低，而小麦、大麦和玉米等大基因组被子植物中，TE含量可超过80\%\cite{wicker2018impact}。在多数植物基因组中，I类反转录转座子的核苷酸贡献普遍高于II类DNA转座子，其中LTR反转录转座子通常是最主要的组成部分；不过，不同物种间优势类型并不相同。例如，香蕉和胡萝卜中Copia型LTR比例较高，而小麦、玉米、向日葵和棉花中则以Gypsy型LTR占优势\cite{huang2025deciphering}。此外，虽然II类DNA转座子在许多植物中的总长度贡献较低，但在水稻、短柄草和猕猴桃等物种中，其拷贝数和局部富集程度仍较为显著（\blueref{fig:Figure48}{B}），这主要与MITE等小型DNA转座子的大量扩增有关\cite{international2005map}。
+
+总体而言，植物重复序列的类型组成和丰度分布都具有明显的谱系特异性。T2T基因组的积累表明，不同类型TE的差异化扩增及清除，可能是驱动植物基因组结构创新和演化分化的重要力量\cite{fedoroff2012transposable, modzelewski2022mammalian}。因此，从T2T尺度比较不同植物中重复序列的组成和分布，不仅有助于理解植物基因组大小变异的来源，也可以为后续解析重复序列与着丝粒形成、基因调控及性状演化之间的关系提供基础。
+
+\subsection{重复序列扩张与对性状的影响}
+
+如果没有变异，进化就无法持续进行。在植物中，TE是基因组中最活跃、变化幅度最大的组成部分之一，也是驱动植物基因组结构重塑和性状演化的重要来源\cite{yao2001parthenocarpic}。TE的扩张与收缩不仅会改变基因组大小和整体结构，还能够通过插入、重排、转导、表观沉默和功能驯化等多种方式影响基因表达与功能，从而参与复杂性状形成、环境适应以及驯化演化过程\cite{lisch2013important}（\blueref{fig:Figure50}{}）。
+
+首先，TE最直接的作用方式是插入诱变。当TE插入外显子区域时，往往会打断开放阅读框或引起移码突变，直接导致基因失活\cite{bhattacharyya1990wrinkled}。如果插入发生在增强子、抑制子或启动子附近，则可能改变原有调控元件的空间组织，从而造成基因表达增强、减弱甚至反转（\blueref{fig:Figure50}{A}）。此外，TE插入基因内部尤其是内含子区域时，还可能改变剪接模式，影响转录本结构和蛋白产物组成\cite{varagona1992alternative, young2021recurrent}。因此，TE插入并不只是简单地“破坏基因”，也可能通过调节表达量和转录结构产生更细微但持续的表型效应。
+
+其次，反转录转座和转导作用能够为基因带来新的遗传信息。比如，TE在转座过程中可以携带新的启动子、增强子、外显子或剪接位点，从而改变邻近基因的转录起始、剪接方式甚至蛋白编码结构（\blueref{fig:Figure50}{B--E}）。这种作用可被视为一种“模块化创新”，即TE将自身或邻近序列中的调控和编码元件重新组合到新的基因环境中，形成新的表达模式或新的功能变体\cite{yao2001parthenocarpic}。在长期演化过程中，这种机制可能促成新基因或新调控网络的形成。
+
+第三，TE常常通过表观遗传途径影响基因表达。由于植物基因组普遍通过DNA甲基化等机制抑制TE活性，插入到基因附近的TE一旦被甲基化沉默，其沉默信号可能向邻近基因扩散，进而抑制基因转录\cite{mao2015transposable, kinoshita2007control, kornienko2024population}。这种效应在启动子和近端调控区尤其明显，因此TE不仅是序列层面的变异来源，也常常是表观遗传调控变化的触发因素（\blueref{fig:Figure50}{F}）。在T2T基因组背景下，这类位于重复区和复杂区域边界的插入事件能够被更完整地识别，从而更准确地评估其对基因表达的影响。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure50}
+    \caption[转座元件影响植物基因结构、表达调控与性状形成的主要途径]{
+    \textbf{转座元件影响植物基因结构、表达调控与性状形成的主要途径。}
+    \textbf{(A)} 插入诱变：TE插入外显子、增强子或抑制子区域，可导致基因失活或表达改变。 
+    \textbf{(B)} 逆转录转座：TE通过逆转录和重新整合，可引入新的启动子、增强子或外显子，并导致内含子缺失。 
+    \textbf{(C)} 新遗传信息的引入：TE可提供新的增强子、抑制子、剪接位点或转录起始位点，从而改变基因表达和转录结构。 
+    \textbf{(D)} 转导复制：TE在转座过程中可携带邻近基因片段，形成新的基因组合或杂合蛋白。 
+    \textbf{(E)} 转座酶适应性再利用：转座酶蛋白或其结合位点可被宿主基因组驯化并参与新的调控功能。 
+    \textbf{(F)} 表观遗传调控：TE插入及其甲基化沉默可通过反义转录抑制或沉默扩散影响邻近基因表达。 
+    \textbf{(G)} 序列重排：TE切除或重组可介导局部基因组重排。 
+    \textbf{(H)} 若干与植物性状形成相关的经典实例，说明TE可通过插入和重排影响果实形态及颜色等农艺性状。
+    图片修改自Lisch\cite{lisch2013important}和Tao等人\cite{tao2025harnessing}。
+    }
+    \label{fig:Figure50}
+\end{figure}
+
+第四，TE还能够介导基因组重排和基因片段复制。由于不同TE拷贝之间存在较高序列相似性，它们可为非等位重组提供底物，导致缺失、重复、倒位和易位等结构变异；同时，一些TE还能在转座过程中挟带邻近基因片段发生转导，形成嵌合基因或新的蛋白结构域组合（\blueref{fig:Figure50}{G}）。更进一步，部分转座酶蛋白或其结合位点还会在演化过程中被宿主驯化或再利用，参与新的调控功能\cite{yao2001parthenocarpic}。这些过程共同说明，TE不仅是“基因组寄生者”，也是植物基因组创新的重要来源。
+
+这些机制在植物中已有许多经典实例。\blueref{fig:Figure50}{H}所示的几个案例表明，TE插入及其后续重排能够直接塑造重要农艺性状。例如，豌豆 \textit{Rugosus} 位点中的TE变异与果实形态变化相关\cite{bhattacharyya1990wrinkled}；葡萄中 \textit{VvmybA1} 位点附近的TE插入和重排可影响花青素合成，从而决定果皮颜色\cite{kobayashi2004retrotransposon}；柑橘中 \textit{Ruby} 位点附近的TE相关重排则与血橙花青素积累密切相关\cite{butelli2012retrotransposons}。这些实例说明，TE通过改变调控结构、诱导基因表达变化或触发局部基因组重排，能够在较短演化时间尺度上产生可被选择利用的表型差异。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figure51}
+    \caption[重复序列在植物中的应用与展望]{
+    \textbf{重复序列在植物中的应用与展望。}
+    图中从演化、机制、技术和应用四个层面概括了转座元件在植物中的研究方向与发展前景，包括TE扩增与结构变异、表观遗传调控、功能网络、基因组工程、作物育种和生物强化等。图片引自Tao等人\cite{tao2025harnessing}。
+    }
+    \label{fig:Figure51}
+\end{figure}
+
+总体而言，TE扩张对植物性状的影响具有双重性：一方面，其大量积累和随机插入可能破坏基因功能、增加基因组负担；另一方面，TE又为基因组提供了持续的变异来源和可重组模块，从而推动新调控关系、新基因结构和新表型的产生。正因为如此，TE不仅是植物基因组扩张的重要驱动力，也是连接基因组结构变化与性状演化之间的重要桥梁。而随着T2T基因组的积累，我们将能够更全面地识别TE在复杂区域中的插入事件，更准确地评估其对基因表达和性状形成的影响，从而为理解植物基因组演化和性状创新提供更深入的视角。
+
+\subsection{重复序列在植物中的应用与展望}
+
+在全球人口增长和气候变化背景下，农业生产对高产、优质、抗逆和营养强化作物种质的需求日益增加。转座元件不仅是植物基因组演化的重要驱动力，也正在成为性状改良和作物设计育种的重要资源（\blueref{fig:Figure51}{}）。随着T2T基因组和泛基因组的发展，TE变异、TE相关单倍型及其功能效应能够在基因组、群体和泛基因组尺度上被更系统地识别，这为挖掘有利变异和培育优良性状提供了新的基础。
+
+目前，围绕TE的研究主要集中在四个方面：（1）从演化角度解析TE扩增、结构变异及其对植物基因组创新的贡献；（1）从机制层面揭示TE转座、表观遗传沉默和调控网络重塑过程；（3）发展基于TE的功能组学和基因组工程技术；（4）将TE相关知识应用于作物育种、生物强化和植物合成生物学（\blueref{fig:Figure51}{}）。特别是对TE转座机制、TE相关效应蛋白及其表观遗传调控的深入理解，正在推动新的功能基因组学和基因编辑技术的发展。未来，随着T2T基因组、多组学和人工智能方法的进一步结合，TE将在基础植物科学、作物遗传改良和植物合成生物学中展现出更广阔的应用前景。
+
+\section{植物T2T基因组中着丝粒的结构与功能}
+
+\subsection{着丝粒的基本结构与染色体定位}
+
+着丝粒（centromere）是真核染色体上负责组装动粒并介导纺锤体微管附着的关键功能区域（\blueref{fig:Figure52}{A}），其核心作用是在有丝分裂和减数分裂过程中保证染色体的准确分离\cite{naish2024structure, barra2018dark}。尽管着丝粒在细胞功能上高度保守，但其DNA序列组成、物理长度和在染色体上的分布方式却表现出显著多样性，这种“功能保守而序列快速演化”的现象通常被称为着丝粒悖论\cite{henikoff2001centromere}。随着植物T2T基因组的不断积累，长期难以解析的着丝粒区域得以被完整组装，使植物着丝粒的结构组成与空间定位能够在基因组尺度上被系统刻画。
+
+从功能结构上看，植物着丝粒并不是单一DNA序列，而是由着丝粒特异组蛋白H3（centromere-specific histone H3，CENH3）占据的染色质区域及其上方组装的动粒复合体共同构成（\blueref{fig:Figure52}{B}）。其中，CENH3是决定着丝粒身份的关键表观遗传标记\cite{talbert2002centromeric}，在其基础上进一步招募CENP-C\cite{dawe1999maize}、KNL2\cite{lermontova2013arabidopsis}、MIS12\cite{ravi2011meiosis}、NDC80\cite{du2007maize}、SPC24\cite{shin2018mun}等内外动粒蛋白，从而形成连接染色体与纺锤体微管的蛋白质复合结构。与动物和酵母类似\cite{altemose2022complete, malik2009major}，植物动粒的核心组分总体保守，但植物着丝粒的DNA底物则更加多样，既可以是大型卫星重复序列阵列，也可以主要由着丝粒偏好性反转录转座子组成，甚至在不同物种中表现出沿整条染色体分散分布的特殊形式（\blueref{fig:Figure52}{C}）\cite{melters2013comparative, naish2021genetic, wlodzimierz2023cycles}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure52}
+    \caption[植物着丝粒的基本结构与染色体定位模式]{
+    \textbf{植物着丝粒的基本结构与染色体定位模式。}
+    \textbf{(A)} 植物T2T基因组中着丝粒的位置示意图，
+    \textbf{(B)} 植物动粒的核心结构示意图，显示CENH3及其招募的内外动粒相关蛋白共同介导纺锤体微管附着。
+    \textbf{(C)} 不同植物中着丝粒在染色体上的分布模式示意，包括卫星重复主导的单着丝粒、反转录转座子主导的单着丝粒、全着丝粒以及多重散漫着丝粒。蓝色区域表示CENH3占据序列。图片修改自Bousios等人\cite{bousios2025centrophilic}。
+    }
+    \label{fig:Figure52}
+\end{figure}
+
+从染色体定位来看，植物着丝粒主要可分为单着丝粒（monocentric）、全着丝粒（holocentric）和多重散漫着丝粒（polycentric 或 meta-polycentric）等类型（\blueref{fig:Figure52}{C}）。单着丝粒是最常见的类型，其特点是在每条染色体上只有一个主要着丝粒区域，通常对应中期染色体上的主缢痕。例如，拟南芥3号染色体着丝粒主要由CEN178卫星重复构成，代表典型的卫星型单着丝粒\cite{naish2021genetic, wlodzimierz2023cycles}；而单粒小麦（\textit{Triticum monococcum}）2A染色体则主要由Cereba和Quinta等着丝粒偏好性反转录转座子组成，代表反转录转座子主导的单着丝粒\cite{ahmed2023einkorn}。与此不同，全着丝粒物种的CENH3占据位点沿整条染色体分布，如毛刺子莞（\textit{Rhynchospora pubera}）\cite{marques2015holocentromeres}和白丝草（\textit{Chionographis japonica}）\cite{hofstatter2022repeat}，其动粒附着位点并不局限于单一主缢痕，而是分散成多个功能区域。另一些植物如豌豆（\textit{Pisum sativum}），则表现出多个被CENH3占据的离散卫星阵列，形成所谓多重散漫着丝粒结构\cite{macas2023assembly}，这可能反映了单着丝粒与全着丝粒之间的过渡状态。
+
+值得注意的是，不同类型着丝粒在序列组成上虽然差异很大，但其功能核心都依赖于CENH3占据的染色质区域，而不是某一种绝对保守的DNA序列。这说明植物着丝粒身份在很大程度上由表观遗传机制决定，而DNA序列则提供了可被不同谱系反复重塑的结构底物。也正因为如此，着丝粒成为植物基因组中演化最快、结构最复杂的区域之一。
+
+\subsection{着丝粒序列的组成与特征}
+
+在明确着丝粒的功能结构和染色体定位模式之后，一个更核心的问题是：植物着丝粒究竟由什么样的DNA序列构成。长期以来，由于着丝粒区域富含高相似重复序列、难以被传统基因组组装完整解析，其序列组成一直认识有限。T2T基因组的出现，使得大量完整着丝粒序列首次能够被系统比较\cite{naish2021genetic, rabanal2022pushing, nurk2022complete}，从而表明植物着丝粒并不存在统一的“保守序列模板”，而是由不同类型的卫星重复和转座元件以不同比例共同构成\cite{ahmed2023einkorn, nagaki2005structure, naish2021genetic, sharma2014evolution, wlodzimierz2023cycles}，其核心共同点在于能够被CENH3占据并组装成功能性动粒染色质\cite{macas2023assembly, neumann2015centromeres}。
+
+从识别策略上看，植物着丝粒的界定通常依赖于实验信号与序列特征的联合证据（\blueref{fig:Figure53}{A}）。其中，荧光原位杂交（Fluorescence In Situ Hybridization, FISH）可以提供着丝粒在染色体上的细胞学定位，CENH3 ChIP-seq能够直接指示功能性着丝粒染色质的占据区域，而在缺乏实验数据时，则需要结合重复序列富集、转座元件偏好性以及近缘物种着丝粒同源序列信息进行人工校正和综合判断。不过，值得一提的是目前所确定的着丝粒边界依旧存在一定程度的模糊性，尤其是在那些由多个重复单元组成、且不同单元之间序列相似度较低的区域，如西瓜等\cite{deng2022telomere}。
+
+从序列组成来看，植物着丝粒大体可以概括为两种主要类型，即串联重复主导的TR-rich centromere和转座元件主导的TE-rich centromere\cite{bousios2025centrophilic}。前者通常由长串联排列的卫星重复阵列构成，并由CENH3核小体占据，是经典植物着丝粒最常见的结构形式（\blueref{fig:Figure53}{B}）。例如拟南芥中的CEN178\cite{wlodzimierz2023cycles}、玉米中的CentC\cite{chen2023complete}以及豌豆中的FabTR家族\cite{macas2023assembly}都属于这一类型。其基本特征是在染色体局部形成大规模卫星重复阵列，并在其上建立特异性的着丝粒染色质。后者则主要由着丝粒偏好性反转录转座子构成（\blueref{fig:Figure53}{C}），尤其是Ty3/Gypsy超家族成员，在部分植物中甚至可成为着丝粒的主要组成\cite{llorens2009network, malik1999modular, neumann2019systematic}。例如禾本科中的CRM家族\cite{chen2023complete}、甘蔗和小麦中的相关Ty3/Gypsy元件\cite{cheng2003centromeric}，以及十字花科\cite{zhou2024complexity}、禾本科\cite{xie2025genetic}、莎草科\cite{marques2015holocentromeres}等类群中富集的若干着丝粒偏好性TE家族，都说明TE在植物着丝粒形成和扩张中具有重要作用（\blueref{fig:Figure53}{C}）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figure53}
+    \caption[植物着丝粒序列的组成类型与识别特征]{
+    \textbf{植物着丝粒序列的组成类型与识别特征。}
+    \textbf{(A)} 植物着丝粒识别通常结合FISH、CENH3 ChIP-seq及人工校正等多种证据。 
+    \textbf{(B)} 串联重复主导型（TR-rich）着丝粒示意，CENH3核小体主要占据卫星重复阵列。 
+    \textbf{(C)} 转座元件主导型（TE-rich）着丝粒示意，显示Ty1/Copia和Ty3/Gypsy超家族中多个家族与植物着丝粒富集相关，不同植物谱系中着丝粒转座元件的组成和密度存在明显差异。图片修改自Bousios等人\cite{bousios2025centrophilic}。
+    }
+    \label{fig:Figure53}
+\end{figure}
+
+
+值得注意的是，不同植物类群中参与着丝粒构建的TE家族并不相同。Ty3/Gypsy超家族中的CRM、Galadriel、Reina、Tekay、Tat、Retand和ATHILA等家族在不同谱系中都曾被发现与着丝粒区域富集相关\cite{bousios2025centrophilic}，而Ty1/Copia超家族中的Ale、Angela、Bianca、Ivana、Tork、TAR和SIRE等家族在某些植物中也表现出一定的着丝粒偏好性（\blueref{fig:Figure53}{C}）\cite{bousios2025centrophilic}。这说明着丝粒并非由单一重复类型长期稳定维持，而是在不同植物谱系中可以由不同来源的重复单元反复参与构建。换言之，植物着丝粒的序列基础具有明显的谱系特异性，而非绝对的跨物种保守性。
+
+从整体特征上看，植物着丝粒序列通常具有以下几个共同点：（1）重复性极高，无论是卫星重复还是反转录转座子，都会在局部形成大规模重复阵列\cite{bousios2025centrophilic}；（2）序列更新速度快，即便近缘物种之间，主要着丝粒重复家族也可能发生显著替换\cite{huang2026evolutionary}；（3）功能区与组成区并不完全等同，即并非所有重复阵列都一定被CENH3占据，真正的功能性着丝粒通常只是其中的一部分\cite{xie2025genetic}；（4）着丝粒中的TE和TR在许多物种中共同存在，存在潜在的竞争关系\cite{wlodzimierz2023cycles}。这些特征共同说明，植物着丝粒不是单一类型序列的简单堆积，而是由不同重复序列在长期演化中动态组合而成的复杂区域。
+
+\subsection{植物T2T基因组揭示着丝粒的演化}
+
+长期以来，植物着丝粒被视为基因组中演化最快但最难解析的区域之一\cite{bousios2025centrophilic}。其主要原因在于着丝粒通常富含高相似度卫星重复和转座元件，传统短读长组装难以恢复其完整结构，因此关于着丝粒如何形成、扩张、退化和迁移的认识，多数停留在局部片段分析和间接推断层面。T2T基因组的出现，使完整着丝粒序列能够在不同物种、不同单倍型乃至不同近缘谱系之间被直接比较，从而显著推动了植物着丝粒演化模型的建立和验证（\blueref{fig:Figure54}{}）。
+
+目前，植物中已经提出了若干具有代表性的着丝粒演化模型。首先是在拟南芥中的KARMA模型（\blueref{fig:Figure54}{A}）\cite{wlodzimierz2023cycles}。该模型基于着丝粒区域卫星重复与\textit{ATHILA}逆转录转座子之间的动态关系提出。研究发现，在不同拟南芥着丝粒单倍型中，高水平和低水平的\textit{ATHILA}插入状态对应着不同的着丝粒结构背景，说明\textit{ATHILA}的扩增、整合和清除与卫星阵列的更新密切相关。该模型认为，亲着丝粒\textit{ATHILA}元件能够优先整合到着丝粒区域，随后一方面通过内部重组形成soloLTR，另一方面卫星阵列在着丝粒内部发生持续同源重组和局部均质化，从而推动重复单元扩张、\textit{ATHILA}清除以及着丝粒阵列重塑。这一过程被概括为“着丝粒相关重组机”（KARMA）机制，其核心思想是：着丝粒并不是被动积累重复序列的区域，而是在转座元件侵入和卫星重复均质化的共同驱动下持续更新的动态结构。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure54}
+    \caption[植物着丝粒演化的代表性模型]{
+    \textbf{植物着丝粒演化的代表性模型。}
+    \textbf{(A)} 拟南芥中基于\textit{ATHILA}逆转录转座子整合、soloLTR形成及卫星阵列均质化提出的KARMA模型\cite{wlodzimierz2023cycles}。 
+    \textbf{(B)} 水稻中LTR反转录转座子入侵触发卫星阵列退化和着丝粒重新定位的演化模型\cite{xie2025genetic}。 
+    \textbf{(C)} 基于多个被子植物比较分析总结的着丝粒一般演化框架，概括了卫星扩张、TE整合、序列更新、核型重排和多倍化共同驱动着丝粒结构多样化的过程\cite{huang2026evolutionary}。
+    }
+    \label{fig:Figure54}
+\end{figure}
+
+第二类代表性模型来自水稻的逆转录转座子诱导着丝粒演化模型（\blueref{fig:Figure54}{B}）\cite{xie2025genetic}。与拟南芥更强调卫星重复与\textit{ATHILA}互作不同，该模型突出LTR反转录转座子入侵在着丝粒重塑中的触发作用。水稻着丝粒中卫星重复阵列常呈现局部均质化形成的多层结构，而LTR元件插入后会打断原有卫星阵列的连续性，促使其逐渐退化。随着原始卫星阵列功能减弱，CENH3占据区域可能发生偏移，进而导致着丝粒重新定位（centromere repositioning）。因此，该模型强调，着丝粒演化并不只是卫星重复的扩增与更新，也可能是由LTR入侵触发的“阵列退化—功能转移”过程，说明转座元件不仅参与着丝粒组成，也可能直接改变其功能中心的位置。
+
+在更广的比较尺度上，基于17个被子植物的着丝粒比较分析，进一步提出了植物着丝粒演化的一般模型（\blueref{fig:Figure54}{C}）\cite{huang2026evolutionary}。该模型表明，着丝粒演化可概括为“卫星扩张—TE整合—跨物种分化—序列更新—结构复杂化”的连续过程。在种内尺度上，卫星重复往往首先扩张形成局部主导阵列，随后TE逐步整合进入阵列内部；在种间尺度上，短时间内仍可能保留一定比例的保守卫星，但随着演化距离增加，原有卫星会逐步分化为不同变体，最终发生完全替换。与此同时，染色体重排和多倍化事件会进一步打破原有着丝粒结构，促使简单着丝粒向更复杂的多组分着丝粒转变，并形成不同的CENH3占据模式。换言之，着丝粒不仅在序列层面持续更新，在功能定位和结构复杂度上也可能同步演化。
+
+综合这些模型可以看出，植物着丝粒演化并不存在单一固定路径，而更可能由若干共性过程反复驱动。总体而言，T2T基因组使植物着丝粒演化研究首次能够在完整序列背景下同时整合卫星重复、转座元件和CENH3占据三个层面的信息。无论是拟南芥中的KARMA模型、水稻中的LTR诱导模型，还是跨物种综合得到的一般演化框架，都表明植物着丝粒本质上是由卫星重复、转座元件和表观遗传占据共同塑造的动态功能区域。这也为后续进一步解析着丝粒形成机制、着丝粒重新定位以及复杂核型演化提供了新的比较基因组学基础。
+
+\section{本研究的目的与意义}
+
+近年来，随着PacBio HiFi、ONT超长读长及Hi-C等技术的发展，T2T基因组逐渐成为植物基因组学研究的新前沿。与传统参考基因组相比，T2T基因组能够完整覆盖端粒、着丝粒和大片段重复区等长期缺失的复杂区域，为系统认识植物基因组结构组织、重复序列扩张、着丝粒形成与演化以及复杂区域中调控信号的真实分布提供了新的契机。然而，当前植物T2T基因组研究仍面临若干突出问题。
+
+首先，现有植物T2T基因组资源虽然增长迅速，但整体上仍较为分散，不同研究之间在组装质量、注释深度和数据标准上存在差异，缺乏统一整合与系统比较。其次，已有研究大多聚焦于单一物种或少数模式材料，对植物T2T基因组在跨物种尺度上的结构特征、演化规律及共性机制缺乏系统总结，尤其是重复序列和着丝粒序列的动态演化等。再次，尽管T2T基因组在理论上具有更高完整性，但面向复杂植物基因组，尤其是多倍体植物的调查、组装、挂载和补洞策略仍缺乏系统基准测试（benchmark）。最后，植物T2T基因组相关工具和平台仍不完善，数据获取、标准化分析和资源共享尚未有机的结合在一起。
+
+基于上述背景，本论文主要包括以下研究内容（\blueref{fig:Figure0}{}）：\textbf{（1）}系统收集230个植物T2T基因组，并对缺失编码基因注释的基因组进行从头注释与质量评估，构建统一的植物T2T基因组基础资源集，并开发iSeq、iOmics等分析工具，构建PlanT2T数据库与T2T-Hub在线分析平台（\textbf{第二章}）；\textbf{（2）}从整体序列和基因层面分析植物基因组大小、GC含量（Guanine-cytosine content）、启动子与转录因子（Transcription factor, TF）协同进化以及NLR（Nucleotide-binding Leucine-rich repeat，核苷酸结合和富含亮氨酸重复序列受体）免疫基因家族的演化特征，揭示植物T2T基因组在序列组成和调控上的演化规律。并分析阐释全基因组加倍事件（whole-genome duplication, WGD）与基因家族扩张及环境变化之间的关系，同时在更大规模非T2T基因组中验证相关结论（\textbf{第三章}）；\textbf{（3）}对230个植物T2T基因组开展\textit{de novo}重复序列注释，系统分析重复序列组成、扩张模式及其与调控元件和性状变异之间的联系。并对植物着丝粒区域的序列组成、表观特征和演化模式进行系统比较，构建植物着丝粒识别与比较分析框架，并提出着丝粒TE-TR循环演化模型（\textbf{第四章}）；\textbf{（4）}对植物T2T基因组调查（survey）、初步组装（assembly）、挂载（scaffolding）和补洞（gap filling）策略进行系统benchmark，筛选复杂植物基因组T2T组装的优选流程，并以同源六倍体落地生根为案例完成其T2T基因组组装，同时比较T2T与非T2T参考基因组在ATAC-seq、RNA-seq和BS-seq中的表现，评估T2T基因组在多组学研究中的优势（\textbf{第五章}）。
+
+本论文的意义主要体现在以下五个方面：（1）从资源层面，本论文系统整合了当前植物T2T基因组数据，为植物T2T基因组的统一分析和持续积累提供了基础；（2）从平台建设层面，本论文开发的工具、数据库和在线平台，有助于提升植物T2T基因组数据的获取效率、分析规范性与共享便利性；（3）从科学问题层面，本论文在跨物种尺度上系统揭示了植物T2T基因组在序列组成、WGD、重复序列和着丝粒等方面的结构特征及演化规律，拓展了对植物复杂基因组演化机制的认识；（4）从方法学层面，本论文建立了适用于复杂植物基因组的T2T组装技术路线，并验证了其在多倍体植物中的可行性，为后续更多复杂植物T2T基因组的构建提供了实践依据；（5）从应用层面，本论文证明了T2T参考基因组在转录组学和表观基因组学中的优势，为复杂区域功能解析和多组学整合研究提供了更高分辨率的参考基础。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure0}
+    \caption[本论文的整体研究框架与基本内容]{
+    \textbf{本论文的整体研究框架与基本内容。}
+    }
+    \label{fig:Figure0}
+\end{figure}
+
+\chapter{植物T2T基因组资源与工具构建}
+
+
+\section{材料与方法}
+
+\subsection{T2T基因组的搜集与分类}
+
+本论文共搜集230个T2T基因组（\blueref{tab:genomeInfo}{}），来源包括个人数据库（71个）、Figshare（63个）、GWH（60个）、Zenodo（10个）、NCBI（9个）、GitHub（7个）、Phytozome（2个）、GDR（2个）、CNSA（2个）、ScienceDB（1个）、Plant GARDEN（1个）、CNGB（1个）和AraShare（1个）。基于物种名称，利用TaxonKit v0.20.0 工具对每个物种的界、门、纲、目、科、属、种分类信息进行标准化注释\cite{shen2021taxonkit}。其中，被子植物的系统分类参考自Angiosperm Phylogeny Group IV（APG IV）体系\cite{angiosperm2016update}。在地理来源信息整理方面，本论文以对应文献中最后通讯作者第一单位所属地区作为该基因组贡献单位的地理来源依据，并通过Google Maps获取其地理坐标，用于后续的空间分布统计与可视化分析。
+
+
+\subsection{T2T基因组的质量评估}
+
+基因组基础指标如N50，基因组大小，gap数量等均使用assembly-stats（\url{https://github.com/sanger-pathogens/assembly-stats}）工具统计。BUSCO v5.8.0 用来评估基因组完整性\cite{manni2021busco}，绿藻门物种使用 chlorophyta（odb10） 数据集，被子植物基因组使用 embryophyta（odb10） 数据集，并以 Complete 结果作为完整性评价指标。Merqury 用来评估组装质量值（quality value，QV）\cite{rhie2020merqury}，所用数据包括二代 Illumina 测序数据和三代 HiFi 测序数据。采用 LTR\_retriever v3.0.5 的 LAI 功能评估基因组中 LTR 反转座子的组装连续性\cite{ou2018assessing}。对于多倍体基因组，先将同源染色体拆分后分别进行评估后取均值。LAI (LTR assembly index) 的计算公式如下：
+\[
+\mathrm{LAI} = \mathrm{raw\ LAI} + 2.8138 \times (94 - \mathrm{whole\ genome\ LTR\ identity})
+\]
+
+其中，raw LAI 的计算公式为：
+\[
+\mathrm{Raw\ LAI} = \left(\frac{\mathrm{Intact\ LTR\ element\ length}}{\mathrm{Total\ LTR\ sequence\ length}}\right)\times 100
+\]
+
+\subsection{多组学数据分析}
+
+iOmics多组学数据分析包括 BS-seq、RNA-seq、ATAC-seq 和 ChIP-seq。所有分析均优先基于 FASTQ 测序数据开展，首先使用 fastp v1.3.2 对原始 reads 进行质控\cite{chen2018fastp}。随后，根据不同数据类型选择相应比对策略：BS-seq 数据采用 bwa-meth 比对至参考基因组（\url{https://github.com/brentp/bwa-meth}），参考基因组索引由 \texttt{bwameth.py index-mem2} 构建；RNA-seq 数据采用 STAR v2.7.11b 进行比对，并基于注释文件和参考基因组分别构建 STAR 与 RSEM v1.3.3 索引\cite{dobin2013star, li2011rsem}；ATAC-seq 和 ChIP-seq 数据采用 BWA v0.7.19 进行比对\cite{jung2022bwa}，并添加 read group 信息。比对结果均经 sambamba v1.0.1 和 samtools v1.23.1 处理\cite{tarasov2015sambamba, li2009sequence}，包括过滤低质量比对、排序、去除 PCR 重复及建立索引。其中，BS-seq 数据按 \texttt{mapping\_quality 30} 进行过滤，ATAC-seq 和 ChIP-seq 数据保留成对比对且满足质量阈值的 reads。
+
+对于 BS-seq 数据，用 MethylDackel v0.6.1（\url{https://github.com/dpryan79/MethylDackel}）提取胞嘧啶甲基化水平，输出 CpG、CHG 和 CHH 三种上下文的甲基化信息，并进一步生成胞嘧啶水平的甲基化报告（cytosine-level methylation report）。对于 RNA-seq 数据，采用 RSEM 进行基因和转录本表达定量；在建库前，先对注释文件中的重叠 exon 进行处理，并将 GFF/GFF3 文件转换为 GTF 格式用于后续分析。ATAC-seq 数据使用 MACS3 进行开放染色质区域识别\cite{zhang2008model}，按照双端模式运行（\texttt{-f BAMPE}），参数包括 \texttt{--nomodel --shift -100 --extsize 200 -q 0.01}。ChIP-seq 数据结合对应的 input 对照样本，使用 MACS3 按双端模式进行富集峰识别，参数包括 \texttt{-f BAMPE -B -q 0.01}。此外，RNA-seq、ATAC-seq 和 ChIP-seq 的比对结果均利用 deepTools v3.5.6 的 \texttt{bamCoverage} 转换为 BigWig 文件\cite{ramirez2014deeptools}，用于后续可视化分析。
+
+\subsection{数据库框架}
+PlanT2T数据库和T2T-Hub分析平台采用模块化前后端分离的架构设计，前端基于Vue.js（\url{https://vuejs.org/}）框架实现用户界面，后端使用Flask框架（\url{https://flask.org.cn/}）提供REST API接口用于任务提交、监控和结果检索，Nginx（\url{https://nginx.org/}）作为反向代理服务器。异步任务执行通过Celery（\url{https://github.com/celery/}）实现，使用Redis（\url{https://redis.io/}）作为消息中间件和状态后端，以确保任务调度的稳定性和资源控制的执行效率。基因组数据、注释信息和元数据存储在MySQL数据库中（\url{https://www.mysql.com/}），服务器部署在CentOS 7操作系统（\url{https://www.centos.org/}）上以保证长期稳定运行。
+
+\subsection{数据统计与可视化分析}
+所有数据统计与可视化分析均在 R v4.3.2 中完成。相关性分析采用 Pearson 相关检验，并在图中标注相关系数 \(r\) 及其显著性 \(P\) 值。
+
+\section{植物T2T基因组数据集构建}
+
+\subsection{植物T2T基因组来源}
+
+为系统解析植物T2T基因组的结构特征及其演化规律，本论文首先对已公开发表的植物T2T基因组资源进行了系统收集与整理。通过综合检索公开数据库、文献报道以及相关研究团队发布的数据资源，共构建了一个包含230个植物T2T基因组的综合数据集，并对其数据来源、数据库分布以及相关文献信息进行了系统统计（\textcolor{blue}{\autoref{fig:Figure1}}，\blueref{tab:genomeInfo}{}）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure1}
+    \caption[植物T2T基因组发表期刊分布与数据来源]
+    {
+    \textbf{植物T2T基因组发表期刊分布与数据来源。}
+    \textbf{(A)} 植物T2T基因组相关研究成果的发表期刊分布统计，内部饼图显示了对应期刊的5年影响因子分布情况。
+    \textbf{(B)} 植物T2T基因组数据来源的数据库分布统计，内部饼图显示了对应数据库所属国家或地区的分布情况。
+    }
+    \label{fig:Figure1}
+\end{figure}
+
+在相关研究成果的发表情况方面，收集到的植物T2T基因组研究主要发表在植物科学、基因组学以及数据资源类期刊上，其中以\textit{Nature Genetics}、\textit{Horticulture Research}、\textit{Plant Communications}、\textit{Molecular Plant}等期刊发表数量较多（\textcolor{blue}{\autoref{fig:Figure1}A}）。整体来看，植物T2T基因组研究已在多个主流植物科学与基因组学期刊中得到广泛报道。进一步统计期刊影响因子发现，在对应的研究论文中，影响因子≥10的期刊共130篇，占57\%，而影响因子<10的期刊为100篇，占43\%，说明相当比例的研究成果发表于高影响力学术期刊，反映出该领域在当前基因组学研究中的重要学术价值。
+
+在数据来源方面，这些T2T基因组来自多个国际公共数据库及研究团队发布的数据平台（\textcolor{blue}{\autoref{fig:Figure1}B}）。其中，来自研究团队个人数据库（personal database，PD）的数据量最多，共71个基因组，占全部数据的30.87\%。其中，通过和作者联系获得的基因组共15个，从头注释了8个。其次为开放数据共享平台Figshare（63个）和Genome Warehouse（GWH，60个），二者合计贡献了超过一半的公开数据。此外，部分数据来源于Zenodo（10个）、NCBI（9个）以及GitHub（7个）等常用数据平台，而Phytozome、GDR、CNSA、ScienceDB、Plant GARDEN、CNGB、AraShare等专业数据库也提供了少量T2T基因组资源。整体来看，当前植物T2T基因组数据呈现出多平台分布且开放共享程度较高的特点。
+
+进一步根据数据库所属国家或地区对数据来源进行统计分析发现，中国相关数据库（如GWH、CNSA等）共提供65个基因组（28.26\%），英国数据库（主要为Figshare）贡献63个基因组（27.39\%），美国数据库贡献20个基因组（8.70\%），瑞士数据库贡献10个基因组（4.3\%），日本数据库贡献1个基因组（0.43\%）（\textcolor{blue}{\autoref{fig:Figure1}B}）。此外，来自研究团队自建数据库的数据占30.87\%。这些结果表明，植物T2T基因组数据的产生和共享呈现出明显的国际合作与多区域分布特征，同时研究团队自建数据库在数据发布和共享过程中也发挥了重要作用。
+
+综上，本论文系统整合了来自全球多个数据库与研究团队发布的植物T2T基因组数据，构建了一个包含230个高质量植物T2T基因组的综合资源数据集。该数据集在数据来源、数据库分布及文献来源方面均具有良好的代表性，为后续开展基因组结构特征解析、比较基因组学分析以及植物基因组演化研究奠定了重要的数据基础。
+
+\subsection{植物T2T基因组地理分布与分类}
+
+在构建230个植物T2T相关基因组数据集的基础上，本论文进一步对其地理来源、倍性组成以及基因组完整度类型进行了系统统计与分类分析（\textcolor{blue}{\autoref{fig:Figure2}}）。
+
+从地理分布来看，当前公开的植物T2T相关基因组主要来源于亚洲地区，尤其以中国为主。统计结果显示，在230个基因组中，来自中国的研究机构或研究团队的数据共计216个，占全部数据的93.91\%。此外，澳大利亚贡献6个基因组（2.61\%），美国3个（1.30\%），日本2个（0.87\%），丹麦、法国和英国各1个（0.43\%）。整体而言，植物T2T基因组的研究和发布呈现出明显的区域集中趋势，其中中国在该领域的基因组测序和组装研究中占据主导地位（\textcolor{blue}{\autoref{fig:Figure2}A}）。进一步对中国境内的研究机构进行空间分布统计发现，相关研究单位主要集中在东部和南部科研资源较为密集的地区，反映出高通量测序平台和基因组研究中心在区域分布上的聚集特征。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure2}
+    \caption[植物T2T基因组的地理分布、分类特征及测序策略]
+    {
+    \textbf{植物T2T基因组的地理分布、分类特征及测序策略。}
+    \textbf{(A)} 全球植物T2T相关基因组的地理分布。地图中不同点表示基因组研究机构的地理位置。内部饼图分别展示了基因组来源国家分布、物种倍性组成以及不同基因组完整度类型的比例。
+    \textbf{(B)} 植物T2T相关基因组数据集的构建及质量分类统计。左侧表格展示了不同基因组类型的判定标准。右侧柱状图展示了随时间积累的植物T2T相关基因组数量。
+    \textbf{(C)} 植物T2T基因组的测序策略组成。环形图展示了不同基因组类型所采用的测序技术组合。
+    }
+    \label{fig:Figure2}
+\end{figure}
+
+
+在基因组倍性组成方面（\textcolor{blue}{\autoref{fig:Figure2}A}），所收集的植物T2T相关基因组以二倍体物种为主。在230个基因组中，二倍体基因组共211个，占91.74\%；四倍体基因组16个，占6.96\%；六倍体基因组2个，占0.87\%；八倍体基因组1个，占0.43\%。这一结果表明，目前T2T级别或接近T2T级别的基因组组装仍然主要集中在基因组结构相对简单的二倍体物种，而高倍体植物由于其复杂的同源染色体结构和重复序列组成，在实现完整T2T组装方面仍然面临较大技术挑战。
+
+而在我们的研究过程中发现，所谓的T2T基因组有不同的质量差距。因此，为了进一步评估不同植物基因组装配的完整度，本论文根据染色体水平组装情况、端粒和着丝粒识别情况、组装间隙（gaps）数量以及基因组质量指标（BUSCO、QV和LAI）等标准，将基因组划分为四种类型：T2T、Near T2T、Gap free和Gap less（\textcolor{blue}{\autoref{fig:Figure2}B}）。其中，T2T基因组要求在染色体水平上完整组装，并能够识别所有端粒和着丝粒（端粒基序CCCTAAA的重复次数必须大于20），同时填补所有组装间隙，并达到和其以往同物种基因组相比较最高的BUSCO完整度、QV值和LAI指标；Near T2T基因组同样需要在染色体水平上识别全部端粒和着丝粒，但允许存在少量未填补的组装间隙；Gap free基因组则要求填补所有组装间隙，但不一定能够完整识别端粒结构；而Gap less基因组仅要求达到染色体水平组装，并尽可能减少组装间隙，但在端粒识别或间隙填补方面可能仍存在一定缺失。其中，值得一提的是对于间隙的数量我们做了进一步的要求，即间隙的数量应小于等于染色体数目（$n$）的两倍且小于50。
+
+% （\textcolor{blue}{\autoref{equ:Gaps}}）。
+
+% \begin{equation}
+%     \label{equ:Gaps}
+%     \text{Gaps} \leq \min(2n, 50)
+% \end{equation}
+
+基于上述分类标准，对230个植物基因组进行统计分析发现，Gap free类型基因组数量最多，共98个，占42.6\%；其次为T2T基因组66个，占28.7\%；Gap less基因组44个，占19.1\%；而Near T2T基因组为22个，占9.6\%。这些结果表明，虽然近年来T2T基因组数量增长迅速，但仍有相当一部分基因组处于接近T2T或高质量参考基因组阶段，说明实现完全端粒到端粒级别的组装仍具有一定技术门槛。此外，对植物T2T相关基因组随时间的增长趋势也进行了统计分析（\blueref{fig:Figure2}B）。结果表明，自2021年以来，植物T2T及近T2T级别基因组数量呈现快速增长趋势（\textcolor{blue}{\autoref{fig:Figure2}B}）。早期仅有少量基因组达到接近T2T水平，而随着长读长测序技术的发展以及组装算法的持续改进，高质量植物基因组数量在近几年显著增加。特别是在2023年至2026年期间，T2T相关基因组发布数量增长最为迅速，表明该领域正处于快速发展阶段。
+
+随着长读长测序技术的发展，植物T2T基因组的测序策略也呈现出明显的技术组合趋势。本论文对230个基因组的测序策略进行了统计分析（\textcolor{blue}{\autoref{fig:Figure2}C}）。结果表明，多平台联合测序已成为主流策略，其中以PacBio HiFi + ONT + Hi-C的组合最为常见，占约50\%。此外，HiFi + Hi-C以及HiFi + ONT等组合策略也被广泛采用。少数研究还结合Illumina短读长数据用于错误校正或辅助组装。总体而言，长读长测序技术（HiFi或ONT）与Hi-C染色体构象捕获技术的结合，已成为实现植物T2T基因组组装的核心技术路线。当然，随着ONT测序技术，尤其是R10.4芯片的不断优化\cite{sereika2022oxford}和普及以及hifiasm (ONT)算法\cite{cheng2026efficient}等的开发，未来可能会有更多基因组采用ONT为主的测序策略来实现T2T级别的组装。
+
+综上所述，对230个植物T2T相关基因组的地理来源、倍性组成、基因组完整度类型及测序策略的系统分析表明，当前植物T2T基因组研究在地理分布上具有明显集中趋势，在物种层面以二倍体为主，同时测序技术的发展和多平台数据整合显著推动了高质量T2T基因组的产生。这些结果为后续开展植物基因组结构特征解析与比较基因组学研究提供了重要基础。
+
+\subsection{植物T2T基因组的物种分类}
+
+为了系统评估当前植物T2T相关基因组在植物系统发育中的分布情况，本论文对230个植物基因组在不同系统分类层级上的组成进行了统计分析，包括门（Phylum）、纲（Class）、目（Order）以及APG IV系统分类单元等多个层级（\textcolor{blue}{\autoref{fig:Figure3}}）。
+
+在门水平上，绝大多数基因组来源于链型植物门（Streptophyta），共227个物种，占全部数据的绝对多数，而绿藻门（Chlorophyta）仅包含3个物种（\textcolor{blue}{\autoref{fig:Figure3}A}）。这一结果表明，目前获得高质量T2T基因组的研究对象主要集中在陆地植物，而绿藻等早期分化的植物类群仍然相对较少。
+
+在纲水平上，230个基因组主要集中在被子植物纲（Magnoliopsida），共225个物种，占全部数据的主体（\textcolor{blue}{\autoref{fig:Figure3}B}）。此外，还包括绿藻纲（Chlorophyceae）1个物种、苔藓纲（Bryopsida）2个物种以及小球藻纲（Trebouxiophyceae）2个物种。这一分布进一步说明当前T2T基因组研究主要集中在被子植物，而其他植物类群的高质量基因组资源仍然相对有限。
+
+根据APG IV分类系统对被子植物进行进一步划分\cite{angiosperm2016update}，可以将这些物种归类为多个主要进化分支（\textcolor{blue}{\autoref{fig:Figure3}C}）。其中，核心蔷薇类（Core rosids）包含物种数量最多，共111个；其次为菊类群（Asterids）43个物种和单子叶植物（Monocots）40个物种。此外，基部蔷薇类（Basal rosids）包含26个物种，而石竹目类群（Caryophyllales）包含4个物种。除被子植物外，还包括绿藻类（Chlorophyte algae）3个物种、苔藓类（Mosses）2个物种以及木兰类（Magnoliidae）1个物种（本论文于被子植物外）。总体来看，植物T2T基因组在被子植物主要进化分支中均有分布，但在核心蔷薇类和菊类中最为丰富。
+
+在目水平上，植物T2T基因组的分布呈现出明显的不均衡特征（\textcolor{blue}{\autoref{fig:Figure3}D}）。其中，葫芦目（Cucurbitales）物种数量最多，共36个，其次为禾本目（Poales）33个、蔷薇目（Rosales）27个、葡萄目（Vitales）26个以及茄目（Solanales）21个。此外，豆目（Fabales）包含13个物种，十字花目（Brassicales）和杜鹃花目（Ericales）分别包含10个和9个物种，而樟目（Laurales）、毛茛类相关目以及部分藻类和苔藓类目仅包含少量物种。这种分布格局反映出当前T2T基因组研究在不同植物类群之间仍存在明显差异，其中粮食作物，经济作物和模式植物所在的目通常具有更高的研究密度。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure3}
+    \caption[植物T2T基因组在不同系统分类层级上的分布]
+    {
+    \textbf{植物T2T基因组在不同系统分类层级上的分布。}
+    \textbf{(A)} 门水平上的物种分布，包括链型植物门（Streptophyta）和绿藻门（Chlorophyta）。
+    \textbf{(B)} 纲水平上的物种分布，主要包括被子植物纲（Magnoliopsida）、苔藓纲（Bryopsida）、绿藻纲（Chlorophyceae）和小球藻纲（Trebouxiophyceae）。
+    \textbf{(C)} 基于APG IV分类系统的主要被子植物分支分布，包括核心蔷薇类（Core rosids）、菊类（Asterids）、单子叶植物（Monocots）、基部蔷薇类（Basal rosids）以及石竹类（Caryophyllales）等。
+    \textbf{(D)} 目水平上的物种组成及其数量分布。
+    \textbf{(E)} 科水平上的基因组数量统计，不同颜色表示不同基因组类型（Gap free、Gap less、Near T2T 和 T2T），并展示了部分代表性物种及其T2T基因组发布年份。
+    }
+    \label{fig:Figure3}
+\end{figure}
+
+进一步在科水平上对基因组数量进行统计发现，一些重要作物科在T2T基因组研究中占据显著比例（\textcolor{blue}{\autoref{fig:Figure3}E}）。其中，葫芦科（Cucurbitaceae）包含最多的基因组，其主要原因是西瓜的T2T泛基因组数量较多\cite{zhang2024telomere}。其次为禾本科（Poaceae）、葡萄科（Vitaceae）、茄科（Solanaceae）、蔷薇科（Rosaceae）、豆科（Fabaceae）以及十字花科（Brassicaceae）等。多个代表性作物物种已经完成T2T级别基因组组装，例如拟南芥\cite{naish2021genetic}、大豆\cite{wang2023telomere}、草莓\cite{zhou2023telomere}、水稻\cite{shang2023complete}、葡萄\cite{guo2025super}、西瓜\cite{deng2022telomere}和辣椒\cite{zhang2025gap}等。这些高质量基因组资源为植物基因组结构解析、基因功能研究以及作物遗传改良提供了重要基础。
+
+总体而言，当前植物T2T基因组资源在系统发育分布上具有明显的偏向性，大多数集中在被子植物特别是核心蔷薇类和重要农作物类群，而早期分化植物、裸子植物及部分非模式类群仍有较大的研究空间。
+
+\subsection{植物T2T基因组的结构特征与质量评估}
+
+为了系统评估植物T2T相关基因组的结构特征及组装质量，本论文对230个基因组在基因组大小、GC含量、染色体数目、基因数量、转录因子数量、NLR基因数量、编码区比例以及重复序列比例等多个指标进行了综合统计分析（\textcolor{blue}{\autoref{fig:Figure4}}）。
+
+总体来看，不同植物类群之间在基因组结构特征上存在显著差异（\textcolor{blue}{\autoref{fig:Figure4}A}）。植物基因组大小变化范围较大，从53Mb（绿藻，\textit{Chlorella pyrenoidosa} DBH）到超过14.5 Gb（小麦，$Triticum\ aestivum$ CS-IAAS）不等，显示出植物基因组在进化过程中发生了显著的扩张与收缩，或者全基因组的多倍化。但是从密度图的分布来看，大多数物种的T2T基因组大小在500Mb左右，暗示植物基因组在未发生大规模扩张或收缩的情况下，基因组大小相对稳定。与此相对应，染色体数量在不同物种之间也表现出明显差异，但大多数物种集中在10–20条染色体之间，比较夸张的是二倍体的菱角（\textit{Eleocharis dulcis})，其染色体数量高达111条，显示出极端的染色体数目特征，而造成这一现象的原因是其在进化过程中进行了多次染色体断裂和全基因组复制事件\cite{chen2024telomereto}。
+
+GC含量整体分布相对稳定，大多数被子植物基因组的GC含量集中在35\%至45\%之间，表明植物基因组碱基组成具有一定保守性，而像衣藻目（Chlamydomonadales）中的物种GC含量可以达到60\%以上，显示出极端的碱基组成特征。基因数量在不同物种之间差异明显，大多数基因组包含约20,000至50,000个基因，但部分物种的基因数量可超过100,000个，而这与基因组倍性密切相关，常见的如六倍体燕麦（\textit{Avena sativa}）14万和四倍体油菜（\textit{Brassica napus}）12万个基因等高倍体物种，这些物种的基因数量显著增加。
+
+在功能基因家族方面，转录因子和NLR抗病基因在不同物种之间呈现出明显的数量差异（\textcolor{blue}{\autoref{fig:Figure4}A}）。大多数植物基因组包含约1,000至3,000个转录因子，而NLR基因数量通常在几百到数千之间，不同植物类群之间差异较大，值得注意的是葫芦目（Cucurbitales），如西瓜（\textit{Citrullus lanatus}）和南瓜（\textit{Cucurbita moschata}）等物种的NLR基因数量相对较少，可能与其特定的免疫策略或进化历史相关，如植物NLR基因的“生态适应性演化”假说\cite{li2025convergent}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure4}
+    \caption[植物T2T基因组的结构特征与质量评估]
+    {
+    \textbf{植物T2T基因组的结构特征与质量评估。}
+    \textbf{(A)} 不同植物物种基因组结构特征的总体分布，包括基因组大小、GC含量、染色体数量、基因数量、转录因子（TF）数量、NLR基因数量、编码序列比例（\% CDS）以及重复序列比例（\% total repeats）。不同颜色表示不同系统分类类群，不同点形表示不同倍性水平，右侧密度图展示各指标的总体分布情况。
+    \textbf{(B)} 不同数据库来源基因组组装连续性的比较，以scaffold N50作为评价指标，对Phytozome数据库与本论文构建的PlanT2T数据库进行比较，显著性以星号表示（****\textit{P} < 0.0001）。
+    \textbf{(C)} 不同基因组类型（Gap free、Gap less、Near T2T 和 T2T）的BUSCO完整度比较。
+    \textbf{(D)} 不同基因组类型的QV值分布，用于评估基因组组装的碱基准确性。
+    \textbf{(E)} 不同基因组类型的LAI值比较，用于评估LTR重复序列组装质量。
+    \textbf{(F)} 不同倍性植物中T2T染色体比例的分布情况。
+    }
+    \label{fig:Figure4}
+\end{figure}
+
+编码序列（Coding sequence, CDS）在基因组中的比例通常较低，多数物种的编码区域占基因组比例在2\%至10\%之间（\textcolor{blue}{\autoref{fig:Figure4}A}），但像模式物种拟南芥（\textit{Arabidopsis thaliana}）的编码区比例可以达到20\%，而一些高度被重复序列入侵的物种，如辣椒（\textit{Capsicum annuum}）的编码区比例则较低，约为1\%。相比之下，重复序列在植物基因组中占据主要比例，大多数物种的重复序列含量在40\%至90\%之间，反映出转座元件在植物基因组扩张中的重要作用。
+
+为了进一步评估基因组组装连续性，本论文对不同数据库来源的基因组组装质量进行了比较（\textcolor{blue}{\autoref{fig:Figure4}B}）。结果表明，本论文构建的PlanT2T数据库中的基因组在scaffold N50指标上显著高于Phytozome数据库中的基因组（\textit{P} < 0.0001）。这一结果表明，本论文整合的植物T2T基因组数据整体具有非常高的组装连续性。此外，本论文还比较了不同基因组类型之间的完整度差异（\textcolor{blue}{\autoref{fig:Figure4}C}）。结果显示，Gap free、Gap less、Near T2T和T2T四种基因组类型在BUSCO完整度上整体均保持较高水平，大多数基因组的BUSCO值均高于98\%。其中T2T基因组整体表现出更稳定的完整度分布，说明高质量T2T基因组在核心基因完整性方面具有较好的表现。在基因组碱基准确性方面，本论文进一步统计了不同类型基因组的QV值（\textcolor{blue}{\autoref{fig:Figure4}D}）。总体来看，不同基因组类型的QV值均处于较高水平，说明当前植物T2T基因组组装具有较高的碱基准确度。此外，通过 LAI 指标对基因组重复序列组装质量进行了评估（\textcolor{blue}{\autoref{fig:Figure4}E}）。结果显示，大多数植物基因组的LAI值介于15至25之间，表明其组装质量已达到参考级或接近金标准水平\cite{ou2018assessing}。
+
+最后，本论文还分析了不同倍性植物中T2T染色体所占比例（\textcolor{blue}{\autoref{fig:Figure4}F}），即染色体两端都能识别端粒结构且没有间隙的染色体占总染色体数目的比例。结果显示，大多数二倍体物种中T2T染色体比例相对较高，而四倍体、六倍体和八倍体物种的T2T比例相对较低。这一结果说明基因组倍性复杂性仍然是实现完整T2T组装的重要技术挑战。
+
+总体而言，植物T2T基因组在结构特征上呈现出明显的多样性，同时在组装连续性、完整度以及碱基准确性方面整体达到较高水平，为后续的比较基因组学研究和基因组进化分析提供了可靠的数据基础。
+
+\section{植物T2T基因组分析工具与资源平台}
+
+\subsection{iSeq高通量数据下载工具}
+
+在植物T2T基因组的系统解析过程中，往往需要调用大量公开的测序数据和样本元信息，用于基因组组装验证、表观组学分析及跨物种比较。然而，不同数据库之间 accession 体系复杂、下载入口分散、文件格式不统一，给大规模数据获取带来了较高成本。为解决这一问题，本论文开发了高通量数据下载工具iSeq（\url{https://github.com/BioOmics/iSeq}），用于在命令行环境下快速、稳定地检索和下载公共NGS数据及其元信息（\blueref{fig:Figure24}{A}）。
+
+iSeq采用 Bash 脚本实现，支持从 GSA、SRA、ENA 和 DDBJ 等主流数据库同时获取元信息与测序数据，兼容 Project、Study、Sample、Experiment 和 Run 等25种 accession 格式（\blueref{fig:Figure24}{B}）。工具能够自动识别输入类型，优先选择可用的数据源与下载通道，并支持 Aspera 高速传输、AXEL 并行下载、多线程处理、断点续传、FASTQ 合并以及 MD5 完整性校验等功能，从而显著简化了公共测序数据的批量获取流程。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure24}
+    \caption[iSeq的功能设计与兼容性]{
+    \textbf{iSeq的功能设计与兼容性。}
+    \textbf{(A)} iSeq的工作流程。
+    \textbf{(B)} iSeq可接受的数据库与accession类型。
+    }
+    \label{fig:Figure24}
+\end{figure}
+
+在功能设计上，iSeq不仅支持 FASTQ、gzip 压缩 FASTQ、SRA 和 BAM 等多种数据格式，还可在缺乏直接下载压缩 FASTQ 的情况下，自动完成 SRA 到 FASTQ 的转换及后续压缩。对于同一 Experiment、Sample 或 Study 下的多个测序运行，iSeq还能够自动合并文件并保持双端测序 reads 的顺序一致性，便于后续标准化分析。
+
+性能测试结果表明，iSeq在大规模数据获取任务中具有较高的稳定性（\blueref{fig:Figure25}{B}）。相较于现有同类工具，iSeq在执行时间、内存消耗和可扩展性方面表现更优，尤其适合处理大批量、多来源的公共测序数据。在不同下载通道中，Aspera 在 INSDC 相关数据库中速度最快，AXEL 在部分云端或FTP场景下也表现出较高效率。总体而言，iSeq为本论文中大规模植物T2T基因组相关多组学数据的获取提供了稳定支撑，也为后续公共NGS数据的高效复用提供了实用工具。
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=1\textwidth]{Figure25}
+%     \caption[iSeq的性能评估与比较]{
+%     \textbf{iSeq的性能评估与比较。}
+%     \textbf{(A)} iSeq和其他软件在不同数据格式、下载通道以及功能的比较。
+%     \textbf{(B)} iSeq在大规模数据获取任务中的执行时间和内存消耗表现。
+%     }
+%     \label{fig:Figure25}
+% \end{figure}
+
+\subsection{iOmics多组学分析工具}
+
+为了进一步发挥高质量参考基因组的价值，还需要依赖统一、稳定的多组学分析流程，尤其是在本论文中，大量公开测序数据需要被重新比对和标准化处理，以支撑对染色质开放性、蛋白结合、基因表达和DNA甲基化等多维信息的综合解析。为此，本论文开发了 iOmics 多组学分析工具套件（\url{https://github.com/BioOmics/iOmics}），旨在为T2T基因组提供标准化、模块化的功能基因组学数据分析流程（\blueref{fig:Figure26}{}）。
+
+iOmics以统一输入、统一预处理和分支分析为核心设计，支持从SRA归档文件、FASTQ原始测序文件以及BAM/SAM比对文件等多种输入格式直接启动分析（\blueref{fig:Figure26}{}）。在流程上，首先通过 fastp v1.3.2 对原始测序数据进行统一质控，并生成标准化HTML报告；随后进入比对枢纽模块，根据数据类型分别调用 BWA 进行DNA类数据比对、STAR v2.7.11b 进行RNA-seq比对，以及 bwa-meth 进行BS-seq比对，并统一通过 sambamba v1.0.1 完成排序和去重复处理。这样的设计保证了不同组学数据在进入下游分析前具有一致的数据质量控制和格式规范。
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure26}
+    \caption[iOmics多组学分析工具的整体框架]{
+    \textbf{iOmics多组学分析工具的整体框架。}
+    \textbf{输入层}：支持SRA归档文件、FASTQ原始测序文件以及BAM/SAM比对文件作为输入。
+    \textbf{核心处理层}：首先统一预处理，使用fastp进行数据质控并生成HTML报告；其次进行比对，根据数据类型分别调用BWA（DNA）、STAR（RNA）和bwa-meth（BS-seq）进行比对，并通过sambamba完成排序与去重复；最后为分支分析模块，分别支持ATAC-seq/DNase-seq开放染色质分析、ChIP-seq/CENH3蛋白结合位点分析、RNA-seq表达定量以及BS-seq甲基化分析。
+    \textbf{输出层}：统一生成BAM比对文件、peak文件、表达矩阵、甲基化结果文件以及BigWig可视化轨道，为后续功能元件注释、表观调控分析和结果展示提供标准化输出。}
+    \label{fig:Figure26}
+\end{figure}
+
+总体而言，iOmics作为本论文构建的多组学分析工具，为植物T2T基因组的功能注释与表观基因组学研究提供了统一的技术框架。它不仅支撑了本论文中ATAC-seq、ChIP-seq、RNA-seq和BS-seq等数据的系统分析，也为后续围绕高质量T2T基因组开展多组学整合研究提供了可复用的标准化方案。
+
+\subsection{PlanT2T数据库}
+
+在完成植物T2T基因组的大规模收集、统一注释及多层次解析之后，如何对这些高质量基因组资源进行系统整合与共享，成为进一步推动相关研究的重要环节。为此，本论文构建了 PlanT2T（The Plant Telomere-to-Telomere Genome Database）数据库平台(\url{https://bis.zju.edu.cn/plant2t/}，\url{https://biobigdata.nju.edu.cn/plant2t/})
+，旨在为植物T2T基因组提供集中化管理、标准化分析及可视化查询的一体化资源（\blueref{fig:Figure27}{}）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure27}
+    \caption[PlanT2T数据库构建流程与功能模块]{
+    \textbf{PlanT2T数据库构建流程与功能模块。}
+    从左至右依次展示数据来源、基础分析及深度分析流程。数据来源包括用户上传与公共数据库收集的T2T基因组；基础分析模块包括物种及基因命名标准化、端粒与着丝粒预测及序列生成；深度分析模块包括转录因子预测、蛋白结构分析、同源基因家族构建、功能注释及基因组浏览等，最终构建交互式数据库平台。}
+    \label{fig:Figure27}
+\end{figure}
+
+PlanT2T 以230个植物T2T基因组为核心数据基础，整合用户上传数据与自主收集数据两大来源，并对所有基因组统一进行质量评估与标准化处理（\blueref{fig:Figure27}{}）。在此基础上，数据库构建了从基础信息整理到深度功能分析的完整流程，包括染色体与基因命名标准化、端粒与着丝粒预测、DNA/mRNA/蛋白序列生成及数据库归档等基础分析模块，以及转录因子预测、蛋白结构分析、跨物种同源基因家族构建、GO/KEGG功能注释、重复序列与非编码RNA注释等深度分析模块。所有分析结果均通过统一接口进行管理，并可在数据库中长期存储与调用。
+
+在功能实现上，PlanT2T 提供了多层次的数据浏览与分析能力。一方面，用户可以通过基因组浏览器对染色体结构、功能元件及重复序列进行可视化查看；另一方面，数据库集成了在线BLAST、同源基因检索及功能注释工具，支持用户进行跨物种比较分析。此外，平台还构建了基于MySQL的数据存储体系，并通过API接口实现数据的高效调用与共享，从而提高数据访问效率和可扩展性。除基因组结构与功能注释数据外，PlanT2T 还利用iSeq和iOmics整合了丰富的转录组资源（\blueref{fig:Figure28}{}）。针对水稻（\textit{Oryza sativa}）、拟南芥（\textit{Arabidopsis thaliana}）、玉米（\textit{Zea mays}）和大豆（\textit{Glycine max}）等代表性作物，数据库收集并整理了覆盖多个组织和发育时期的RNA-seq表达数据，为基因功能研究和调控网络分析提供了重要支持。同时，数据库还提供基因家族演化分析结果及相关工具，用户可基于平台进一步开展个性化分析。
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{Figure28}
+%     \caption[PlanT2T数据库中的多组织多时期转录组表达资源]{
+%     \textbf{PlanT2T数据库中的多组织多时期转录组表达资源。}
+%     展示\textbf{(A)}水稻、\textbf{(B)}拟南芥、\textbf{(C)}玉米和\textbf{(D)}大豆等代表性作物在不同组织和发育阶段的表达数据分布，以及对应的表达模式热图。}
+%     \label{fig:Figure28}
+% \end{figure}
+
+% 总体而言，PlanT2T 构建了一个面向植物T2T基因组的综合性资源平台，实现了从数据收集、标准化处理到多组学分析与可视化展示的全流程整合。该数据库不仅为本论文中大规模T2T基因组分析提供了数据支撑，也为植物基因组学研究者提供了便捷、高效的资源获取与分析工具，有助于推动T2T基因组在植物研究中的广泛应用。
+
+\subsection{T2T-Hub在线分析平台}
+
+在前述 iSeq 和 iOmics 工具的基础上，为进一步降低T2T基因组分析门槛、提升结果共享与传播效率，本论文构建了 T2T-Hub 在线分析平台（\url{https://bis.zju.edu.cn/t2thub/}，\url{https://biobigdata.nju.edu.cn/t2thub/}）。该平台面向植物与动物T2T基因组，提供无需编程基础的一站式分析与可视化服务，使用户能够通过简单上传基因组序列及注释文件，快速生成标准化、可交互的基因组分析页面。T2T-Hub 的核心目标在于“自动化分析 + 可视化展示 + 结果共享”。用户仅需上传组装好的T2T基因组序列及对应的GFF3注释文件，平台即可自动完成一系列统一分析流程（\blueref{fig:Figure29}{}）。所有分析均在后台自动执行，无需用户干预，从而显著降低了T2T基因组分析的技术门槛。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure29}
+    \caption[T2T-Hub在线分析平台的流程与系统架构]{
+    \textbf{T2T-Hub在线分析平台的流程与系统架构。}
+    \textbf{(A)} 用户任务提交与结果追踪流程，支持上传基因组序列及GFF3注释文件，并生成可共享的状态与结果链接；
+    \textbf{(B)} 输入数据的质量控制与标准化处理；
+    \textbf{(C)} 染色体及基因ID标准化；
+    \textbf{(D)} 端粒与着丝粒识别；
+    \textbf{(E-H)} 功能注释、转录因子识别、蛋白理化性质计算及基因组完整性评估；
+    \textbf{(I-K)} 染色体结构可视化、序列检索及结果下载模块；
+    \textbf{(L)} 基于前后端分离的Web架构，实现任务调度与在线分析服务。}
+    \label{fig:Figure29}
+\end{figure}
+
+在结果呈现方面，T2T-Hub 将分析结果组织为结构化、可交互的网页界面（\blueref{fig:Figure30}{}）。平台为每个任务生成唯一的状态链接与结果链接，用户可随时访问和分享。结果页面涵盖基因组概览、质量评估统计、基因与转录本信息、功能注释（GO/KEGG）、蛋白理化性质、保守结构域及同源关系等内容，并支持多层级序列浏览（基因组、转录本、CDS及蛋白序列）。此外，一旦用户构建起专属的基因组页面，T2T-Hub会自动提供针对上传物种的GO/KEGG、BLAST检索、基因家族分析及多种可视化模块，使用户能够在网页端直接完成基础分析与结果探索。
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\textwidth]{Figure30}
+%     \caption[T2T-Hub生成的交互式基因组与基因页面示例]{
+%     \textbf{T2T-Hub生成的交互式基因组与基因页面示例。}
+%     \textbf{(A)} 分析流程及结果访问入口；
+%     \textbf{(B)} 基因组整体信息与分析模块概览；
+%     \textbf{(C)} 基因级信息展示表；
+%     \textbf{(D)} 基因组质量评估与统计结果；
+%     \textbf{(E--F)} 转录本及功能注释信息（GO/KEGG）；
+%     \textbf{(G)} 蛋白理化性质分析；
+%     \textbf{(H)} 多层级序列展示与相似性检索；
+%     \textbf{(I)} 保守结构域组成；
+%     \textbf{(J)} 同源基因分布及系统发育关系。}
+%     \label{fig:Figure30}
+% \end{figure}
+
+另外，我们基于后台标准的流程对230个植物（\blueref{tab:genomeInfo}{}）和39个动物的T2T基因组（\blueref{tab:animalInfo}{}）进行了测试，并将运行结果进行整合嵌入功能模块，从而让T2T-Hub 集成了多种在线分析与可视化工具（\blueref{fig:Figure31}{}）。
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{Figure31}
+%     \caption[T2T-Hub集成的在线分析与可视化工具]{
+%     \textbf{T2T-Hub集成的在线分析与可视化工具。}
+%     平台集成多种分析模块，包括BLAST检索、ID转换、基序搜索、GO/KEGG富集分析、共线性分析、染色体结构展示（Ideogram）、基因组浏览（JBrowse）、端粒与着丝粒识别等，实现对T2T基因组的多维度在线解析与可视化展示。}
+%     \label{fig:Figure31}
+% \end{figure}
+
+% 总体而言，T2T-Hub 实现了从“数据上传”到“结果展示”的全流程自动化，并通过网页化界面将复杂的基因组分析过程转化为可交互、可共享的结果页面。这种设计不仅提高了T2T基因组数据的可用性，也为科研成果的传播与协作提供了便捷途径，使高质量基因组资源能够被更广泛的研究者群体所利用。
+
+% \section{本章小结}
+
+% 本章围绕植物T2T基因组研究中的数据获取、标准化分析、资源整合与结果共享，构建了较完整的工具与平台体系。首先，开发了高通量数据下载工具iSeq，实现了对GSA、SRA、ENA和DDBJ等公共数据库中多种 accession 类型及多种测序数据格式的统一获取，为大规模多组学数据收集提供了高效稳定的技术支撑。其次，构建了iOmics多组学分析工具，整合ATAC-seq、ChIP-seq、RNA-seq和BS-seq等核心分析流程，为T2T基因组的功能注释和表观调控研究提供了标准化分析框架。
+
+% 在数据资源建设方面，本章进一步构建了PlanT2T数据库，对230个植物T2T基因组进行了集中管理、统一分析和可视化展示，并整合了代表性物种的多组织多时期转录组资源，提升了植物T2T基因组数据的可检索性和可利用性。在此基础上，又构建了面向动植物T2T基因组的T2T-Hub在线分析平台，实现了用户上传基因组和注释文件后自动完成质量评估、结构识别、功能注释及结果页面生成的全流程分析，并通过可交互网页支持结果浏览、分享和传播。
+
+% 总体而言，本章形成了从公共数据获取、多组学标准化分析，到数据库整合与在线服务的完整技术体系。这些工具与平台不仅支撑了本论文各章节的系统分析，也为后续T2T基因组的持续积累、功能解析和开放共享提供了实用基础设施。
+
+\section{本章小结}
+本章系统分析了当前植物T2T相关基因组的来源、地理分布、物种分类特征以及测序策略组成。结果表明，植物T2T基因组主要集中在被子植物，特别是核心蔷薇类和重要农作物类群，而早期分化植物和非模式类群的高质量基因组资源相对较少。在测序策略方面，多平台联合测序已成为主流，长读长技术HiFi，ONT与Hi-C的结合显著推动了高质量T2T基因组的产生。另外，围绕植物T2T基因组研究中的数据获取、标准化分析、资源整合与结果共享，构建了较完整的工具与平台体系，这些资源、工具与平台不仅支撑了本论文后续各章节的系统分析，也为T2T基因组的持续积累、功能解析和开放共享提供了实用基础框架。
+
+\chapter{植物T2T基因组的结构特征与调控元件演化}
+
+基于上一章收集的植物T2T基因组资源，本章将系统分析这些高质量基因组在结构特征、功能元件分布以及调控机制方面的多样性与演化规律。探讨这些结构特征与功能元件如何影响植物基因组的稳定性、表达调控以及适应性进化，为理解植物基因组的复杂性和多样性提供新的视角。
+
+\section{材料与方法}
+
+\subsection{系统发育树的构建}
+首先提取每个基因组中最长转录本翻译得到的蛋白质序列。随后在每个属中随机选取一个代表性物种构建“Core”数据集，并使用 OrthoFinder v3.0.1b1 进行直系同源分组分析\cite{emms2019orthofinder}，其余基因组作为“assign”回比到 Core 结果中。230个T2T基因组的系统发育树直接采用 OrthoFinder 的最终结果。对于1354个基因组，进一步筛选低拷贝 orthogroup（OG），定义为：超过90\%的物种在该 OG 中存在，且每个物种在该 OG 中的基因数不超过2个。对每个低拷贝 OG 采用 MAFFT v7.525 进行多序列比对\cite{katoh2002mafft}，随后使用 trimAl v1.5.1 去除比对质量较低的位点，参数为 \texttt{-gt 0.9 -cons 60}\cite{capella2009trimal}，再利用 FastTree v2.2.0 构建单基因树\cite{price2009fasttree}。最后将所有单基因树合并，并使用 ASTRAL-Pro2 构建物种树\cite{zhang2020astral}。系统发育树以红藻爱尔兰苔藓（\textit{Irish Moss}）为根。后续子系统发育树均使用 R 中 \texttt{ape} v5.8-1 包中的 \texttt{keep.tip} 函数提取\cite{paradis2004ape}。
+
+\subsection{物种WGD时间推断}
+
+物种内重复事件的同义替换率（Synonymous substitution rate，Ks）通过共线性基因对计算获得。首先，基于基因组注释文件提取最长转录本对应的基因位置信息，并筛选其对应的蛋白序列和 CDS 序列。随后，使用 DIAMOND v2.1.24 进行蛋白序列自比对（\texttt{--evalue 1e-10 --max-target-seqs 5}）\cite{buchfink2015fast}，结合 MCScanX v1.0.0（\texttt{-e 1e-10 -a}）鉴定共线性同源基因对\cite{wang2012mcscanx}。对共线性基因对采用 ParaAT v2.0 进行密码子比对\cite{zhang2012paraat}，并使用 KaKs\_Calculator 3.0 按 YN 模型计算 Ks 值\cite{zhang2022kaks_calculator}。保留 \texttt{P.Value.Fisher < 0.00001} 且 \(0 \leq Ks \leq 5\) 的基因对用于后续分析。WGD 峰值通过 R 中核密度估计获得，并将局部极大值定义为候选峰；最终仅保留密度值大于 0.005 的峰作为 WGD 事件对应的 Ks 峰。
+
+\subsection{物种分歧时间估计}
+
+物种分歧时间估计基于单拷贝直系同源基因进行。提取 OrthoFinder 识别的单拷贝同源基因序列后\cite{emms2019orthofinder}，使用 MAFFT（\texttt{--maxiterate 1000 --localpair}）进行多序列比对\cite{katoh2002mafft}，并通过 Gblocks v0.91b（\texttt{-b4=5 -b5=h -t=p}）去除低置信度区域\cite{castresana2000selection}。各基因比对结果经整理后串联为超级矩阵，使用 ModelTest-NG v0.1.7 选择氨基酸替换模型\cite{darriba2020modeltest}，并在 RAxML v8.2.13 中基于最大似然法构建系统发育树\cite{stamatakis2014raxml}，主要参数包括 \texttt{-f a -N 1000}。分歧时间估计采用 PAML v4.8 中的 MCMCTree 进行\cite{yang2007paml}，并结合 TimeTree 信息对系统树多个节点进行时间标定\cite{kumar2022timetree}，最终获得各节点的分歧时间及其 95\% HPD 区间。系统发育树的时间树可视化在 R 中使用 \texttt{ggtree} v4.0.4 完成\cite{yu2017ggtree}。
+
+\subsection{基因家族的扩张与收缩}
+
+显著扩张与收缩的基因家族基于 CAFE5 分析\cite{mendes2020cafe}。首先利用 OrthoFinder 生成的基因家族拷贝数矩阵构建输入文件\cite{emms2019orthofinder}，并结合时间校正后的系统树进行分析。CAFE5 运行参数包括 \texttt{-c 100 -k 2 -p}。以家族变化显著性 \(P<0.05\) 作为阈值，分别统计各节点显著扩张和收缩的基因家族数量。
+
+\subsection{基因功能注释与基因家族分析}
+转录因子（TF）使用 iTAK v1.8 进行鉴定\cite{zheng2016itak}。蛋白结构域、GO 及功能描述等信息使用 InterProScan v5.59-91.0 进行注释\cite{jones2014interproscan}，主要参数包括 \texttt{-f GFF3 --iprlookup --goterms -pa -dp}。KEGG 注释使用 KofamScan v1.3.0 的 \texttt{exec\_annotation} 程序完成\cite{aramaki2020kofamkoala}，参数为 \texttt{-E 1e-5 --report-unannotated}，并对结果去冗余，每个基因仅保留1个最高得分的 KO 注释。NLR 基因使用 Resistify v2.1.0 的 \texttt{nlr} 模块进行鉴定\cite{smith2025resistify}。蛋白质理化性质基于 Biopython v1.86 的 \texttt{ProteinAnalysis} 模块进行计算\cite{cock2009biopython}，包括分子量、芳香性、不稳定指数、等电点、二级结构组成（$\alpha$-helix、turn 和 $\beta$-sheet 比例）、还原态与氧化态半胱氨酸消光系数、平均疏水性（Grand average of hydropathicity，GRAVY）、平均柔性以及 pH 7.0 条件下的电荷。
+
+\section{植物T2T基因组的物种与序列演化}
+
+\subsection{植物T2T基因组的物种演化}
+
+为了系统解析植物T2T基因组的序列特征及其在植物系统发育中的演化关系，本论文基于230个植物基因组的最长转录本序列利用OrthoFinder工具构建了系统发育树\cite{emms2019orthofinder}，并结合多层基因组特征信息对其进行综合可视化展示（\textcolor{blue}{\autoref{fig:Figure5}}）。该系统发育树覆盖了绿藻、苔藓及被子植物等多个植物类群，能够较为全面地反映当前已获得T2T级别或接近T2T级别植物基因组的系统发育结构。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure5}
+    \caption[230个植物T2T基因组序列特征与演化关系]
+    {
+    \textbf{230个植物T2T基因组序列特征与演化关系。}
+    基于230个植物物种最长转录本序列构建的系统发育树及多层基因组特征注释。系统树外围依次展示了不同基因组特征，包括：
+    \textbf{(1)} 基因组大小（刻度尺扩大了2倍）和\textbf{(2)}GC含量；不同基因组类型（Gap free、Gap less、Near T2T 和 T2T）以及倍性信息；
+    \textbf{(3)} 基因组序列组成比例，包括转座元件（TE）、LTR转座子、DNA转座子、串联重复序列（TR）和编码序列（CDS）；
+    \textbf{(4)} 蛋白编码基因类型分布；
+    \textbf{(5)} 调控相关基因家族，包括转录因子（TF）、NLR以及TR相关调控因子；
+    \textbf{(6)} 基因组组装间隙数量；
+    \textbf{(7)} 非编码RNA组成，包括miRNA、rRNA、snRNA和tRNA。最外侧是代表性植物的剪影图标。
+    }
+    \label{fig:Figure5}
+\end{figure}
+
+系统发育分析结果表明，所有植物物种在整体上可清晰划分为绿藻类群（Chlorophyta）、苔藓类群（Bryophytes）和被子植物类群（Angiosperm）三个主要演化分支。其中，绿藻类群位于系统树的基部，代表了早期分化的植物谱系，而陆地植物则形成多个独立的进化分支，包括苔藓植物以及被子植物等类群。在被子植物内部，不同系统发育分支进一步形成了较为清晰的聚类结构，例如单子叶植物（Monocots）、核心蔷薇类（Core rosids）和菊类（Asterids）等主要进化谱系均形成独立分支，表明基于全基因组最长转录本序列构建的系统发育树能够较好地反映植物的真实进化关系。
+
+在系统发育树外围，本论文进一步整合了多层基因组序列特征信息，以揭示不同植物类群之间的基因组结构差异。首先，在最外层环中展示了各物种的单倍型基因组大小及GC含量信息。需要指出的是，这里统计的基因组大小为单倍型基因组大小，即对于多倍体物种仅保留一套基因组进行比较，因此与第二章中统计的物种完整基因组大小有所不同。总体来看，不同植物谱系之间的单倍型基因组大小仍然存在明显差异，其范围约从50 Mb到5 Gb不等。其中，部分单子叶植物和经济作物类群表现出较大的单倍型基因组规模，如辣椒(\textit{Capsicum annuum})与棉花（\textit{Gossypium hirsutum} ZM113），而部分绿藻和模式植物则具有相对较小的基因组（\textcolor{blue}{\autoref{fig:Figure5}}）。
+
+相比基因组大小而言，GC含量在不同植物类群中的变化范围相对较窄，但仍表现出一定的谱系特异性。例如，绿藻类群整体具有较高的GC含量，而在被子植物中，单子叶植物特别是禾本科物种也普遍表现出较高的GC水平。相比之下，大多数双子叶植物的GC含量则相对稳定，通常集中在约35\%至45\%之间。这种GC含量的谱系差异反映了不同植物类群在基因组组成和序列进化过程中的不同演化模式。
+
+在基因组序列组成方面，本论文对重复序列和非编码RNA（non-coding RNA, ncRNA）做了全面的注释，统计了转座元件（transposable element, TE）、长末端重复转座子（long terminal repeat, LTR）、DNA转座子（DNA transposon）、串联重复序列（tandem repeat, TR）以及编码序列（coding sequence, CDS）在基因组中的比例。总体来看，重复序列在植物基因组中占据主要组成部分，其中LTR类转座子在多数植物基因组中具有较高比例，反映出LTR转座子在植物基因组扩张与结构重塑中的重要作用。相比之下，编码序列在基因组中的比例通常较低，正如第2章中提到的，大多数植物基因组的CDS比例仅占基因组总长度的一小部分（2\%至10\%），而从系统发育树的分布来看，部分模式植物如拟南芥（\textit{Arabidopsis thaliana}）和经济作物黄瓜（\textit{Cucumis sativus} CLv4）的CDS比例相对较高（能达到20\%），这与他们的基因组结构较为紧凑、重复序列较少有关。
+
+在基因功能组成方面，本论文进一步统计了不同类型蛋白编码基因及调控因子在基因组中的分布情况。根据编码特征，即终止子出现在序列中的位置，蛋白编码基因被划分为出现在序列尾部的密码子（EndStop）、出现在序列中部的密码子（MidStop）以及无终止密码子（NoStop）三种类型。之所以进行这样的分类，是因为不同类型的蛋白编码基因在基因组中的分布和功能可能存在差异，例如出现在序列尾部的密码子通常与基因的正常表达和功能相关，而出现在序列中部的密码子可能与基因的调控或重复序列的插入相关，此处，当然也不能排除编码基因组注释时造成的系统误差。结果显示，大多数植物基因组中EndStop类型的蛋白编码基因占主导地位，表明大多数基因具有完整的开放阅读框（ORF）。基于以上编码蛋白，我们对调控相关基因进行了分类统计，包括转录因子（TF）、NLR抗病基因以及TR相关调控因子等。结果表明，不同植物类群在调控基因家族规模上存在明显差异，其中部分作物类群在转录因子和NLR基因数量上表现出扩张趋势，如大豆（\textit{Glycine max} Wm82）和白杨(\textit{Populus tremula} x \textit{Populus alba} 717)等物种的转录因子数量显著高于其他物种，这与植物适应复杂环境以及抗病防御机制的进化有密切的关系\cite{li2025convergent}。
+
+此外，本论文还统计了各基因组中的组装间隙数量以及非编码RNA的组成情况。结果显示，大多数接近T2T级别的基因组具有较低的gap数量（小于10个）（\textcolor{blue}{\autoref{fig:Figure5}}），进一步证明这些基因组具有较高的组装完整度。在非编码RNA方面，不同物种均包含多种类型的功能RNA，包括miRNA、rRNA、snRNA和tRNA等。何首乌（\textit{Fallopia multiflora} CYY）、深纹核桃（\textit{Juglans sigillata}）和辣椒（\textit{Capsicum annuum}）等物种具有较多的核糖体RNA（rRNA），而水稻（\textit{Oryza sativa} NIP）等物种的miRNA数量相对较多，而部分绿藻类物种则表现出较少的非编码RNA类型和数量，反映出不同植物类群在非编码RNA组成和功能上的差异，且这些非编码RNA在基因表达调控和细胞功能维持中发挥重要作用\cite{bartel2004micrornas}。
+
+总体而言，基于230个植物T2T基因组构建的系统发育树不仅揭示了不同植物类群之间清晰的演化关系，同时结合多层基因组序列特征展示了植物基因组在大小、序列组成以及功能基因分布等方面的多样性。这些结果为后续深入解析植物基因组结构演化、转座子扩张以及调控元件演化提供了重要基础。
+
+\subsection{植物T2T基因组的序列演化}
+
+为了更加系统的解析植物基因组序列组成的演化模式，在这一节中我们从230个植物T2T基因组中选取了121个具有高质量T2T或近T2T级别基因组的不同物种，从而减小T2T泛基因组中可能存在的统计误差，重点分析了其染色体GC含量分布、序列组成特征以及基因组大小之间的关系，以揭示不同植物类群在基因组序列演化方面的差异和规律（\blueref{fig:Figure6}）。
+
+首先，在染色体水平上统计了121个物种各条染色体的GC含量分布。结果表明，不同植物类群单个染色体之间的GC含量存在明显差异。大多数被子植物的染色体GC含量主要集中在35\%至45\%之间，而绿藻类群整体表现出较高的GC含量水平，这和上一节在物种层面的结论一致。此外，在单子叶植物中，禾本科物种普遍具有较高的GC含量，且这一趋势在多个染色体尺度上均保持一致（\blueref{fig:Figure6}{A}），表明GC含量在不同植物谱系完成分化后会迅速将染色体GC含量调整到一个相对稳定的水平，而为了追求这种稳定的GC水平，单子叶植物特别是禾本科物种可能经历了更为剧烈的基因组序列重塑和转座子扩张事件，从而导致其染色体GC含量显著高于其他植物类群。
+
+因此，为了进一步分析不同基因组区域对GC含量的贡献，本论文统计了121个物种在不同序列类型中的GC含量分布，包括启动子区域（Promoter）、基因间区（Intergenic）、内含子（Intron）、外显子（Exon）以及不同类型的重复序列（\blueref{fig:Figure6}{B}）。总体来看，外显子区域普遍具有较高的GC含量，而内含子及DNA转座子等的GC含量相对较低。不同植物类群在这些序列特征上的组成比例存在明显差异，其中部分作物类群表现出较高比例的LTR转座子和串联重复（TR），提示重复序列在植物基因组结构演化中发挥了重要作用。
+
+在基因组尺度上，本论文进一步分析了基因组大小与GC碱基数量之间的关系。总体上，两者之间呈现出较强的线性关系，表明随着基因组规模的扩大，GC碱基总量也随之增加。然而，部分植物类群表现出明显的离群现象，其中禾本科和绿藻类群在该关系中表现出显著偏离整体趋势（\blueref{fig:Figure6}{C}），提示这些类群在基因组序列组成演化方面可能经历了不同的进化过程。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure6}
+    \caption[植物T2T基因组中的序列演化]
+    {
+    \textbf{植物T2T基因组中的序列演化。}
+    \textbf{(A)} 121个植物物种各染色体GC含量分布，不同颜色表示不同系统发育类群。
+    \textbf{(B)} 121个植物基因组不同序列类型的GC含量热图，包括启动子（Promoter）、基因间区（Intergenic）、内含子（Intron）、外显子（Exon）、串联重复（TR）、DNA转座子、Gypsy、Copia以及全基因组水平。
+    \textbf{(C)} 基因组大小与GC碱基总长度之间的关系，不同点表示不同物种，其中禾本科和绿藻类群表现为显著离群类群。
+    \textbf{(D)} 在2134个传统植物基因组中分析GC含量与基因组大小之间的关系，左图为单倍型基因组大小，右图为完整基因组大小（包含多倍体）。红色表示禾本科物种，蓝色表示灯心草科物种。
+    \textbf{(E)} 不同序列类型对GC含量的贡献分析，不同序列区域对整体GC水平具有不同的促进或抑制作用。
+    \textbf{(F)} 基因组大小与不同序列组成之间的关系，包括总重复序列、Gypsy、Copia、SINE-LINE、DNA转座子、串联重复以及编码序列比例。
+    }
+    \label{fig:Figure6}
+\end{figure}
+
+为了进一步验证这一趋势，本论文扩大数据集\cite{vsmarda2019genome}，在2134个传统植物基因组中分析了基因组大小与GC含量之间的关系（\blueref{fig:Figure6}{D}）。结果表明，在单倍型基因组尺度上，GC含量与基因组大小之间存在一定的正相关关系。特别是在禾本科物种中，GC含量普遍高于整体平均水平，而灯心草科（Juncaceae）物种则表现出相对较低的GC含量。进一步在完整基因组尺度（包括多倍体基因组）进行分析后发现，这一相关关系仍然存在，说明基因组大小变化在一定程度上与GC含量的变化相伴随。
+
+结合序列组成分析，本论文进一步评估了不同序列类型对GC含量变化的潜在贡献（\blueref{fig:Figure6}{E}）。结果表明，不同序列区域对GC含量的影响存在明显差异。其中，外显子区域普遍具有较高的GC含量，并对整体GC水平具有促进作用；而启动子区域、DNA转座子及部分基因间区序列的GC含量相对较低，对整体GC水平具有一定的抑制效应。这些结果表明，植物基因组不同功能区域在GC含量演化过程中可能承担不同的作用。
+
+最后，本论文进一步分析了基因组大小与不同序列组成之间的关系（\blueref{fig:Figure6}{F}）。结果显示，基因组大小与总重复序列比例以及LTR转座子含量之间存在显著正相关关系，其中Gypsy类LTR转座子的相关性最为明显。相比之下，编码序列比例与基因组大小之间呈现显著负相关关系，说明随着基因组扩张，重复序列的积累成为主要驱动力，而编码序列在基因组中的相对比例逐渐降低。
+
+总体而言，这些结果表明植物基因组在进化过程中呈现出明显的序列组成差异，其中GC含量、重复序列扩张以及不同功能序列区域的结构变化共同塑造了植物基因组的多样性，并在不同植物分化后的谱系中形成了特征性的演化模式。
+
+\subsection{转录因子与启动子的协同演化}
+
+承接上一节关于植物基因组GC含量演化的分析，我们进一步提出一个值得关注的观点：植物基因组在演化过程中，不仅启动子序列本身发生了组成变化，与其相互作用的转录因子（TF）也可能在蛋白质理化性质层面发生了同步调整，从而表现出启动子与转录因子的协同演化趋势。换言之，GC含量的变化并不只是局限于DNA序列层面的被动结果，而可能与调控蛋白的结合偏好、表面电荷特征以及疏水性分布共同塑造了植物调控系统的长期演化轨迹。
+
+
+为检验这一推测，本节首先基于121个高质量T2T或近T2T植物基因组，对其编码蛋白和转录因子组成进行了系统统计。在这121个基因组中，共注释获得约1000万条蛋白序列，其中高质量的EndStop蛋白占比达到97.7\%，说明绝大多数预测蛋白具有较完整的开放阅读框，可作为后续转录因子鉴定和理化性质分析的可靠基础。
+
+在此基础上，利用iTAK对EndStop蛋白进行转录因子预测\cite{zheng2016itak}，共鉴定得到586,567个转录因子，约占调控相关蛋白的80\%，而TR相关调控因子约占20\%（\blueref{fig:Figure7}{A}）。结合上节植物的系统演化关系，我们进一步比较了不同植物类群启动子序列与转录因子理化性质的变化趋势。结果显示，从早期分化的藻类到苔藓、蕨类、裸子植物，再到被子植物主要类群，启动子GC含量总体呈现下降趋势（\blueref{fig:Figure7}{B}）。更为重要的是，与启动子结合的转录因子在蛋白质理化性质上也呈现出与之相一致的变化方向：转录因子的GRAVY和平均等电点（pI）均随着植物谱系演化而同步下降（\blueref{fig:Figure7}{B}）。其中，GRAVY值下降意味着蛋白整体亲水性增强，而pI下降则提示蛋白的净电荷状态及其酸碱特性发生系统性偏移。由于转录因子与DNA之间的识别与结合不仅依赖于碱基序列本身，也受到局部静电环境、蛋白-DNA界面亲和性及蛋白结构稳定性的影响，因此这种“启动子GC下降—TF理化性质同步下降”的一致趋势可能反映了调控元件与调控蛋白之间长期适配的结果。
+
+为了排除T2T基因组样本数量相对有限可能带来的偏差，我们进一步扩展数据范围，从PGCP数据库收集了1354个植物基因组\cite{zhou2025pgcp}，并开展同样的蛋白注释与转录因子预测分析（\blueref{fig:Figure7}{C}）。在该数据集中，共注释获得57,864,559条蛋白序列，并进一步鉴定得到2,986,549个转录因子（同样占比80\%）。与121个T2T基因组分析结果一致，扩展到更广泛的APG IV系统发育框架后，启动子GC含量、转录因子平均GRAVY值和平均pI仍然表现出沿植物演化分支同步下降的总体趋势（\blueref{fig:Figure7}{D}）。这一结果说明，上述模式并非高质量T2T基因组中的局部现象，而是广泛存在于植物界中的普遍规律。特别是从红藻、绿藻到裸子植物，再到被子植物主要分支，这一趋势在大尺度系统发育背景下依然保持连续性，进一步增强了“转录因子与启动子协同演化”这一解释的可信度。
+
+在此基础上，我们对启动子GC含量与转录因子理化性质之间的关系进行了定量评估。对于121个T2T基因组，启动子GC含量与转录因子平均pI之间呈显著正相关（$r=0.35$, $P=6.6\times10^{-5}$），而与平均GRAVY之间呈更强的正相关关系（$r=0.85$, $P<2.2\times10^{-16}$）（\blueref{fig:Figure7}{E}）。在1354个植物基因组中，这一关系同样得到验证：启动子GC含量与平均pI之间的相关性为$r=0.40$，与平均GRAVY之间的相关性为$r=0.66$，均达到极显著水平（$P<2.2\times10^{-16}$；\blueref{fig:Figure7}{F}）。尽管不同数据集间相关强度存在差异，但两套独立数据均指向同一个结论，即启动子序列组成与转录因子整体理化性质之间存在稳定而可重复的共变关系。其中，GRAVY与启动子GC含量表现出更高的一致性，提示蛋白质整体疏水性变化可能比等电点变化更敏感地反映了TF-DNA互作系统的演化适配过程。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure7}
+    \caption[转录因子与启动子的协同演化]
+    {
+    \textbf{转录因子与启动子的协同演化。}
+    \textbf{(A)} 基于121个植物T2T或近T2T基因组注释获得的蛋白与转录因子统计结果。
+    \textbf{(B)} 在121个T2T基因组中，不同植物系统发育类群的启动子GC含量、转录因子平均GRAVY值以及平均等电点（pI）分布。
+    \textbf{(C)} 在1354个植物基因组中注释得到的Gene和Transcript数量，以及基于蛋白预测的转录因子组成统计。
+    \textbf{(D)} 在1354个植物基因组中，不同植物类群中启动子GC含量、转录因子平均GRAVY值及平均pI的比较。
+    \textbf{(E)} 在121个T2T基因组中，启动子GC含量与转录因子pI及GRAVY值的相关关系。
+    \textbf{(F)} 在1354个植物基因组中，启动子GC含量与转录因子pI及GRAVY值的相关关系。
+    }
+    \label{fig:Figure7}
+\end{figure}
+
+基于上述结果，我们认为植物转录调控系统的演化并不是“DNA序列单方面变化、蛋白被动适应”的过程，也不是“转录因子独立扩张、启动子随后响应”的单向过程，而更可能是二者在长期共选择作用下发生的双向协同演化。一方面，启动子GC含量的变化会影响DNA双螺旋的稳定性、局部构象特征以及潜在结合位点的碱基背景；另一方面，转录因子的表面电荷、疏水性和蛋白结构域特征也会影响其对不同序列背景的识别效率和结合稳定性（\blueref{fig:Figure8}{}），这扩充了前人提到的转录因子和启动子仅在表面电荷特征上存在适配关系的观点\cite{zhang2022coevolutionary}，进一步强调了蛋白质整体理化性质与DNA序列组成之间的复杂互动关系
+。特别是在植物不同谱系经历全基因组复制、转座子扩张和基因调控网络重构的过程中，启动子与转录因子的这种相互适配，可能是维持调控网络可塑性与稳定性的重要分子基础。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Figure8}
+    \caption[转录因子与启动子的协同演化模型]
+    {
+    \textbf{转录因子（TF）与启动子(promoter)的协同演化模型。}
+    }
+    \label{fig:Figure8}
+\end{figure}
+
+\subsection{NLR基因家族的演化分析}
+
+NLR基因家族在植物免疫中扮演着重要角色，主要通过感知病原体的效应分子，激活植物的免疫反应。NLR基因的多样性和扩张为植物适应不同环境压力提供了基础，这一现象在植物的进化过程中具有重要意义。具体而言，NLR基因家族的扩张可能与植物的免疫防御、生态适应以及生存策略密切相关。因此，研究不同植物类群中NLR基因的演化模式，有助于揭示植物在长期进化过程中如何通过基因家族的变化应对不同的生态挑战。
+
+因此，为了深入了解NLR基因家族的演化模式，我们首先对121个植物T2T基因组进行了NLR基因的注释。通过使用Resistify工具\cite{smith2025resistify}，我们共鉴定出84,217个NLR基因，并基于这些数据在不同APG IV类群进行了统计。我们发现NLR基因数量在不同植物类群中存在显著差异，值得注意的是在绿藻类群中，几乎没有NLR基因的存在（\blueref{fig:Figure9}{A}）。这一观察表明，NLR基因可能在早期植物演化中并未得到广泛扩张，也暗示了绿藻类群可能存在其他类型的免疫防御机制。
+
+为了验证这一趋势，我们将研究范围扩大至1354个植物基因组，涵盖了更多APG IV类群，并对其同样进行了NLR基因的注释。此次分析共鉴定出342,279个NLR基因。结果进一步确认，绿藻和苔藓类群在NLR基因的数量上表现出极为有限的扩张，而裸子植物类群则出现了NLR基因的爆发式增加（\blueref{fig:Figure9}{B}）。这一发现表明，裸子植物在其进化过程中可能经历了NLR基因家族的快速扩张，从而增强了其免疫防御能力，为适应多样化的陆地环境提供了分子基础。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure9}
+    \caption[NLR基因家族的演化模式]
+    {
+    \textbf{NLR基因家族的演化模式。} 
+    \textbf{(A)} 121个T2T单倍型基因组在APG IV类群的NLR家族基因分布。左上角是不同NLR亚家族（CNL、TNL、RNL等）的序列模式图。C表示CC结构域，T表示TIR结构域，N表示NB-ARC结构域，L表示LRR结构域。
+    \textbf{(B)} 1354个植物基因组在APG IV类群的NLR家族基因分布。
+    \textbf{(C)} 不同生态习性（SLHs）植物的NLR基因分布。non-SLH表示无特殊生态习性的被子植物。其他数字编号对应的SLHs可以在D图右侧查看。
+    \textbf{(D)} 基于演化和不同生态习性的植物NLR基因家族演化模式图。红色的点表示NLR基因数量的多少。
+    }
+    \label{fig:Figure9}
+\end{figure}
+
+为了更全面地理解NLR基因家族的演化模式，我们还探讨了不同植物生态习性（special lifestyles/habitats, SLHs）对NLR基因扩展的影响。我们参考了前人的研究\cite{li2025convergent}，将植物按照其生态习性分为以下几类：无特殊生态习性的被子植物（non-SLH angiosperm）、沙漠植物（Desert plant）、红树林植物（Mangrove plant）、水生植物（Aquatic plant）、寄生植物（Parasitic plant）、食虫植物（Carnivorous plant）和真菌营养植物（Mycoheterotrophic plant）。这一分类体系为我们进一步分析不同生态环境下植物的NLR基因分布提供了框架。分析结果表明，无特殊生态习性的植物（如大多数常见的被子植物）保持较高的NLR基因数量，而在一些特殊生存环境下，NLR基因的数量明显减少(\blueref{fig:Figure9}{C})。这印证了植物NLR基因的“生态适应性演化”假说\cite{li2025convergent}，即在病原选择压力降低时，植物不再无休止的扩充抗病“军备”，而是巧妙地选择“裁军”，减少不必要的抗病基因以降低其适应性代价。
+
+这些发现促使我们构建了一个植物NLR基因家族演化的模式图（\blueref{fig:Figure9}{D}），以总结NLR基因家族在不同生态习性植物中的演化模式。总的来说，NLR基因家族是一个在植物演化过程中经历了多次扩张和收缩的动态基因家族，其扩张模式与植物的系统发育位置以及生态习性密切相关。特别是在裸子植物中，NLR基因的爆发式扩张可能是其适应陆地环境的重要分子机制，而在一些特殊生态环境下，NLR基因的减少则反映了植物对病原选择压力的适应性调整。这些结果不仅丰富了我们对植物免疫系统演化的理解，也为未来研究植物与病原体相互作用提供了重要线索。
+
+\section{植物T2T基因组的比较基因组学分析}
+
+\subsection{基于116个被子植物的系统发育树估计分歧时间}
+
+我们首先使用了基于最长单拷贝基因的系统发育分析方法，结合分子钟模型和化石校准点\cite{kumar2022timetree}，构建了被子植物的系统发育树，并估算了各物种的分歧时间（\blueref{fig:Figure10}{}）。从系统发育树中的数据来看，我们能够明确地观察到被子植物的主要辐射事件。首先可以确定樟目（Laurales）是被子植物的基部类群，其大约在1.6亿年前（159.7个百万年，million years ago，Mya）与单双子叶植物完成分化，形成了木兰类（Magnoliidae）中一个独立的分支。当然由于系统发育树具有拓扑结构，在一些研究中也会将木兰类当作双子叶植物的姊妹类群，即在进化水平上晚于单子叶植物\cite{one2019one}。总的来说，真双子叶植物、单子叶植物和木兰科之间关系的问题依旧存在\cite{soltis2019nuclear}。随后，单子叶（Monocots）和双子叶（Eudicots）植物的分化时间大约发生在1.5亿年前（155.4 Mya），这标志着被子植物的两大类群开始了各自独立的演化历程。
+
+通过对系统发育树中各物种分歧时间的估算，我们能够进一步推测出被子植物在不同地质时期的演化动态。比如在晚白垩纪（Late creteceouslate）至古新世（Paleogene）期间（\blueref{tab:geologicalAges}{}），物种的分化事件尤其活跃，这可能与当时地球经历的剧烈环境变化（如白垩纪-古近纪灭绝事件）以及随之而来的生态位空缺有关。这些环境变化为被子植物提供了新的适应机会，促进了它们的快速辐射和多样化。
+
+% 增加一个空行
+\vspace{0.5em}
+\vspace{0.5em}
+\vspace{0.5em}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure10}
+    \caption[基于116个被子植物的系统发育树及分歧时间估算]
+    {
+    \textbf{基于116个被子植物的系统发育树及分歧时间估算。} 时间节点以百万年（Mya）为单位标注在树的分支上。95\% CI表示分歧时间估算的置信区间。不同颜色的点表示不同时期发生的全基因组复制事件，绿色点代表gamma（γ）或lambda（λ），紫色点代表tau（τ），粉色点代表asterid-specific（As）和legume-specific（Ls）多倍化事件，蓝色点代表sigma（σ）多倍化事件。
+    }
+    \label{fig:Figure10}
+\end{figure}
+
+与此同时，我们也通过计算单倍型T2T基因组中（多倍体被拆分为单套基因组避免冗余）的基因对的Ks值（同义替换率）来计算物种发生大规模全基因组复制（Whole genome duplication, WGD）事件的时间，通过Ks值分布的密度图可以确定基因对发生大规模复制的时间点，通过假设分子钟速率为$6.5\times10^{-9}$同义替换/位点/年\cite{wolfe1989rates}，我们可以将Ks值转换为时间单位（百万年）。通过这种方法，我们在系统发育树的框架下定位了多个重要的WGD事件。
+
+结果显示，在被子植物的演化过程中不同分支经历了不同的WGD事件，如核心真双子叶（Core eudicots）约在~1.25亿年前经历了全基因组三倍化事件（\blueref{fig:Figure10}{}中绿色的点），我们通常称之为gamma（γ） 多倍化事件\cite{jiao2012genome}，而木兰类如樟目植物约在~1.2亿年前也发生了WGD事件\cite{chen2020litsea}，有研究者将其称为lambda（λ）多倍化事件（\blueref{fig:Figure10}{}中绿色的点）\cite{zhang2020ancient}。在单双子叶分化后，单子叶主要类群如禾本目（Poales）和姜目（Zingiberales）的祖先在~1.15亿年前经历了tau（τ）多倍化事件（\blueref{fig:Figure10}{}中紫色的点）\cite{jiao2014integrated}。而菊类植物（Asterids）和壳斗目（Fabales）植物约在~0.6亿年前分别经历了asterid-specific（As）多倍化事件和legume-specific（Ls）多倍化事件（\blueref{fig:Figure10}{}中粉色的点）。而如果我们将视角放的更近一些，在新近纪（Neogene）时期还可以观察到更多、更分散的WGD事件，如在禾本目植物中，玉米（\textit{Zea mays}）和芦苇（\textit{Phragmites australis}），蔷薇目（Rosales）的苹果（\textit{Malus domestica}）和梨（\textit{Pyrus communis}）等都经历了sigma（σ）多倍化事件（\blueref{fig:Figure10}{}中蓝色的点）\cite{wu2020genetic}。
+
+因此，在植物界中，至少这四个主要的WGD事件（γ、λ、τ、σ）构成了被子植物早期多样化过程中古老的全基因组复制浪潮，这股古老的全基因组复制浪潮似乎在被子植物的多样化和环境适应中发挥了关键作用\cite{zhang2020water}。
+
+\subsection{全基因组复制事件与基因家族演化}
+
+在上一节中，我们基于116个被子植物构建了时间校准的系统发育树，并在该框架下定位了多个重要的WGD事件。WGD不仅是植物基因组演化中最显著的结构重塑力量之一，同时也是推动基因家族扩张、功能创新与谱系分化的重要机制\cite{wu2020genetic}。因此，在获得可靠的系统发育关系与分歧时间之后，进一步从全基因组尺度考察WGD事件与基因家族演化之间的关系，对于理解被子植物长期演化中的基因组创新规律具有重要意义。
+
+为此，本节基于116个物种约一千万个蛋白编码基因，利用OrthoFinder进行了全基因组水平正交组（Orthogroup，OG）的无监督聚类分析\cite{emms2019orthofinder}，在跨物种同源关系框架下定义了各物种共享或特异的基因家族。随后，结合上一节所构建的时间校准系统发育树，采用CAFE5对所有OG在系统发育分支上的扩张与收缩进行了似然推断\cite{mendes2020cafe}，从而系统刻画了被子植物不同谱系中基因家族规模变化的总体趋势(\blueref{fig:Figure10}{}最右侧柱形图)。与仅比较物种间基因数目的静态分析不同，该策略能够在系统发育背景下识别基因家族扩张/收缩发生的方向、强度及其与关键演化事件之间的关系。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure11}
+    \caption[全基因组复制事件与基因家族演化之间的关系]
+    {
+    \textbf{全基因组复制事件与基因家族演化之间的关系。}
+    顶部气泡表示对应时期地球撞击事件（Earth impacts）的时间与规模。上部曲线表示不同地质时期WGD事件的频率分布，下部散点图展示了不同WGD发生时间下，扩张型与收缩型正交组（Orthogroup，OG）所占比例的变化趋势。紫色表示扩张型OG，橙色表示收缩型OG；点大小表示对应物种中OG的数量；实线表示拟合趋势，灰色阴影表示置信区间。结果表明，WGD事件发生时间越晚，扩张型OG保留比例越高，而收缩型OG比例相对降低，二者之间存在显著相关性。
+    }
+    \label{fig:Figure11}
+\end{figure}
+
+基于这一结果，我们进一步统计了各物种最近一次WGD事件发生时间与其对应OG扩张/收缩比例之间的关系（\blueref{fig:Figure11}{}）。结果显示，WGD发生时间与OG扩张保留比例之间存在显著正相关（$r=0.448$，$P=4.46\times10^{-7}$）。具体而言，WGD事件发生得越晚，其后代基因组中最终保留下来的扩张型OG比例越高，而收缩型OG比例相对越低。这一结果说明，较新的WGD事件通常保留了更多可识别的重复基因家族信号；相反，较古老的WGD事件由于经历了更长时间尺度上的基因丢失、染色体重排、冗余拷贝清除以及功能分化，其最初造成的大规模扩张痕迹会被逐步削弱。换言之，今天观察到的OG扩张格局，本质上是“WGD产生冗余”与“长期分馏清除冗余”共同作用后的结果。
+
+这一模式与植物古多倍化后的普遍演化规律是一致的。WGD发生后，基因组并不会长期维持完整加倍状态，而是快速进入二倍化过程\cite{tong2025genome}。绝大多数重复基因会在后续演化中丢失，仅有部分与转录调控、信号转导、发育建成、环境响应及代谢调控相关的基因更容易被选择性保留。因此，较近时期发生的WGD在OG层面往往表现出更高的扩张比例，而远古WGD则更多地只留下少数关键基因家族的保守扩张信号。这也提示我们，在解释不同植物类群基因家族数量差异时，必须同时考虑“WGD发生”与“WGD后保留”两个阶段，而不能将家族扩张简单等同于复制事件本身。
+
+更进一步，我们还揭示了WGD频率在时间维度上的非随机分布特征。将本论文中推断的WGD发生时间与地质历史上已报道的地外撞击事件（Earth impacts）时间进行对应后可以发现\cite{kumar2022timetree}，若干WGD高频区间与较强烈的撞击事件在时间上存在一定重叠，尤其是在白垩纪末至古近纪早期附近（K-Pg界线），这种对应关系更为明显（\blueref{fig:Figure11}{}）。考虑到大型地外撞击常伴随全球尺度的环境扰动，如光照骤降、温度波动、火灾增强、初级生产力下降及生态系统重组，这些剧烈变化可能显著提高原有生态系统中的灭绝风险，同时也为具有更强遗传缓冲能力与表型可塑性的多倍体类群提供了新的定殖和扩张机会。
+
+在上述总体相关性分析的基础上，我们进一步按照最近一次WGD发生的大致时间，将相关物种划分为三个演化阶段，即S1（115--135 Mya）、S2（50--70 Mya）和S3（10--30 Mya），并分别统计各阶段中发生WGD的物种数、由扩张基因所对应的OG数量，以及这些OG在GO不同层面的功能分布（\blueref{fig:Figure12}）。在GO注释过程中，我们将同一OG内所有基因关联到的GO条目进行汇总与去重，并以此作为该OG的功能注释基础，从而尽可能从基因家族整体层面反映WGD后被保留下来的功能模块。
+
+首先，从三个阶段的总体数量特征来看，S1时期发生WGD的物种数量最多，共检测到39个物种；而S2和S3时期分别为35个和23个物种。然而，与物种数目的变化趋势不同，三个时期最终保留下来的扩张型OG数量却呈现出相反的模式：S1时期仅保留2250个OG，S2时期增加到5188个，而S3时期进一步上升至5885个（\blueref{fig:Figure12}{}左侧）。这一结果与前述WGD时间与OG扩张比例之间的显著相关关系相一致，再次说明WGD发生后并非所有重复基因家族都能够被长期保留。特别是对于S1这一更古老的阶段，尽管当时经历WGD的物种更多，但由于其后经历了更长时间尺度的二倍化、染色体重排、基因丢失以及选择性分馏，能够在现生基因组中仍被识别为扩张并具备明确功能注释的OG反而更少。
+
+
+进一步地，我们分别统计了三个时期扩张OG在GO三个层面上的注释数量，包括生物过程（biological process, BP）、细胞组分（cellular component, CC）和分子功能（molecular function, MF）。结果显示，三个层面的注释OG数量均表现出从S1到S3逐渐增加的趋势，其中BP层面分别为148、270和281个，CC层面分别为46、97和100个，MF层面分别为157、282和293个（\blueref{fig:Figure12}{}左侧）。这一现象表明，较近时期发生的WGD不仅保留了更多数量上的扩张OG，而且这些OG在功能层面上也表现出更高的可识别性和更广的功能覆盖范围。换言之，随着WGD事件距离现今时间缩短，基因家族扩张所携带的功能信号被更完整地保存下来，这从功能注释层面进一步支持了“WGD发生越晚，保留的有效功能OG越多”的总体结论。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figure12}
+    \caption[不同演化时期WGD保留扩张OG的功能比较]
+    {
+    \textbf{不同演化时期WGD保留扩张OG的功能比较。}
+    根据最近一次WGD发生时间，将相关物种划分为S1（115--135 Mya）、S2（50--70 Mya）和S3（10--30 Mya）三个时期。左侧柱形图分别展示各时期发生WGD的物种数量、扩张OG数量及其在GO三个层面（BP、CC和MF）中的注释数量。右上为三个时期共享扩张OG的Venn图及其BP富集结果。气泡大小表示对应GO条目中的OG数量，颜色表示富集显著性。
+    }
+    \label{fig:Figure12}
+\end{figure}
+
+为了进一步比较不同阶段被保留扩张OG的功能组成，我们对三个时期BP层面的富集结果进行了整合分析。结果显示，S1、S2和S3三个阶段共有1172个共享OG，这些共享扩张OG显著富集于细胞分裂、能量代谢、蛋白质合成、染色质组装以及胞内运输等基本生命活动相关通路（\blueref{fig:Figure12}{}右上），说明无论WGD发生于哪个演化时期，最终能够长期保留下来的扩张基因家族首先集中于维持生命基本运行所必需的“核心功能模块”。相比之下，三个时期各自特异的扩张OG则表现出更强的环境响应属性（\blueref{fig:Figure12}{}右下）。例如，S1时期特异OG富集于水分胁迫和干旱适应相关条目；S2时期特异OG富集于热响应，生物胁迫等过程；而S3时期特异OG则富集于光信号感知、机械损伤修复、离子胁迫耐受等通路。这种差异说明，不同时期WGD留下的扩张家族虽然都服务于植物对外界环境的适应，但其功能重心并不完全相同，而是呈现出一定的时期特异性和生态适应偏向。
+
+从演化机制上看，这种“共享OG偏向核心生命过程、特异OG偏向环境适应过程”的格局具有重要启示意义。一方面，WGD为植物基因组带来的大规模冗余拷贝，为核心生物学过程提供了剂量补偿与稳态维持的可能，因此一部分涉及转录、翻译、细胞周期和能量代谢的基因家族能够在长期演化中被反复保留；另一方面，环境响应相关家族则更容易在不同历史时期的生态压力和选择背景下发生差异化保留，从而形成谱系特异或阶段特异的扩张信号。也就是说，WGD后基因家族的保留并不是随机的，而是同时受到“维持基础生命活动的内在约束”和“响应外界环境变化的适应性需求”双重驱动。这种双重驱动机制可能是解释为什么在不同演化时期发生的WGD事件虽然都能产生大量冗余基因，但最终保留下来的扩张家族在功能组成上却表现出既有共性又有差异的复杂格局的关键所在。
+
+\subsection{基于1354个物种的全基因组复制事件分析}
+
+在前述基于116个被子植物基因组的研究中，我们初步揭示了WGD事件发生时间与基因家族扩张保留之间的关系。然而，植物界的演化历史远不止于被子植物，红藻、绿藻、苔藓、石松、蕨类以及裸子植物等类群同样在陆地生态系统形成和演化过程中扮演了关键角色。
+
+为了在更完整的绿色植物（Viridiplantae）演化框架下理解WGD的宏观格局，我们将分析规模扩展至1354个植物基因组，涵盖红藻门（Rhodophyta）、灰藻门（Glaucophyta）、绿藻门（Chlorophyta）、链形植物（Streptophyta）中的轮藻、苔藓、角苔、地钱、石松、蕨类、裸子植物以及被子植物的主要分支，总计21个高级分类单元（\blueref{fig:Figure13}{}）。该数据集包含了约5000万个蛋白编码基因，为系统揭示绿色植物进化历程中WGD的时空分布提供了前所未有的分辨率。
+
+为构建可靠且具有广泛代表性的物种树，我们首先利用OrthoFinder对所有1354个物种的蛋白编码基因进行了全基因组范围的直系同源组（OG）聚类\cite{emms2019orthofinder}。在获得的OG集合中，我们筛选出在各物种中普遍以低拷贝数（每个物种0–2个拷贝）存在的OG，这类基因通常为单拷贝或近期丢失的单拷贝直系同源基因，适合用于系统发育重建。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure13}
+    \caption[1354个植物基因组的系统发育树]
+    {
+    \textbf{1354个植物基因组的系统发育树。}
+    }
+    \label{fig:Figure13}
+\end{figure}
+
+最终，我们提取了由这些低拷贝OG并联而成的氨基酸序列矩阵，采用ASTRAL-Pro基于基因树重建了包含1354个物种的系统发育树（\blueref{fig:Figure13}{}）\cite{zhang2025aster}。该树不仅清晰地再现了绿色植物从水生到陆生的主要演化步骤（绿藻–轮藻–苔藓–石松–蕨类–裸子植物–被子植物），也精细解析了被子植物内部单子叶、真双子叶各目的亲缘关系。
+
+我们进一步对每个物种的基因组进行了Ks分析以推断其经历的WGD事件，并将Ks分布中显著的峰解释为WGD事件的印记。同时，为了确保Ks峰推断的可靠性，我们要求每个物种参与分析的基因对数量不少于200对，最终共有1058个物种获得了高质量的Ks分布数据。通过将Ks值转换为绝对时间（采用植物核基因分子钟速率 $6.5\times10^{-9}$ 同义替换/位点/年\cite{wolfe1989rates}），我们得到了每个物种最近一次及多次WGD事件的估计发生时间。
+
+将所有物种的WGD时间汇总后，我们得到了绿色植物WGD事件在时间轴上的宏观分布格局（\blueref{fig:Figure14}{}）。该分布呈现出几个引人注目的特征：首先，在约300–320百万年前（Mya）存在一个极其显著的WGD峰，这一时间对应于石炭纪早期（Carboniferous），恰是种子植物（包括裸子植物和被子植物）共同祖先起源与早期分化的关键时期（\blueref{tab:geologicalAges}{}）。其次，在约250–150 Mya这一长达1亿年的区间内，WGD事件频率显著降低，形成一个宽阔的“低谷”。这一低谷起始于二叠纪（Permian）-三叠纪（Triassic）灭绝事件（约252 Mya）\cite{benton2003kill}，持续整个三叠纪和侏罗纪（Jurassic），与当时裸子植物主导、生态系统相对稳定的时期基本吻合。最后，自白垩纪早期（约120 Mya）开始，WGD事件再次变得频繁，并在新生代达到新的高峰——这一趋势与我们之前基于116个被子植物分析的结果高度一致，反映了被子植物辐射演化过程中WGD的频繁发生及其在环境波动下的适应性变化。为进一步探究这些WGD峰值的可能驱动因素，我们将WGD发生时间与地质历史时期的地外撞击事件、大气成分（如CO$_2$和O$_2$浓度）的波动进行了叠加比较（\blueref{fig:Figure14}{A}）。
+
+尽管大型撞击事件与WGD峰之间并非严格的一一对应，但值得注意的是，K-Pg界线（约66 Mya）附近的强烈撞击恰好处在WGD频率显著升高的窗口内，暗示环境剧变可能通过创造新的生态位而促进了多倍体类群的存活与扩张。同时，大气成分的剧烈变化（如白垩纪中期高CO$_2$浓度向古近纪较低水平的转变）也可能通过影响植物生理与生态系统结构，间接调控了WGD的发生与后续基因组的演化轨迹。此外，白垩纪（Cretaceous）中期至古近纪（Paleogene）的多个撞击事件也与WGD频率的波动在时间上存在部分重叠。
+
+
+进一步按主要植物类群对WGD时间进行分析，我们发现一个有趣的现象：在单子叶和真双子叶植物中，除了各自近期辐射相关的WGD峰外，普遍在约300 Mya处也检测到一个共享的WGD信号（\blueref{fig:Figure14}{C}）。考虑到被子植物的冠群起源时间远晚于300 Mya，这一信号不可能是被子植物各自独立发生的古老WGD，而应解释为来自它们与裸子植物共有的种子植物祖先的一次古老WGD事件的“遗传印记”。换言之，现生被子植物基因组中保留了种子植物祖先在石炭纪经历的多倍化痕迹，这一古老事件通过垂直传递被多个被子植物谱系继承，从而在跨类群的Ks汇总分析中表现为一个共同的远古峰。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure14}
+    \caption[1058个植物WGD事件的时间分布]
+    {
+    \textbf{1058个植物WGD事件的时间分布。}
+    \textbf{(A)} 地质历史上地外撞击事件的时间与相对规模（单位为km），以及二氧化碳（CO$_2$）和氧气（O$_2$）浓度的变化趋势。
+    \textbf{(B)} 基于1058个植物物种Ks峰推断的WGD事件时间分布。上方是标志性事件，中间是该时期代表性植物。
+    \textbf{(C)} 主要植物类群的WGD时间分布。括号中的数字表示每个类群中参与分析的物种数量。
+    }
+    \label{fig:Figure14}
+\end{figure}
+
+综上所述，基于1354个植物基因组的系统分析，我们在更大尺度和更高分辨率上验证并扩展了此前基于被子植物的结论：WGD在植物进化史中的发生并非均匀分布，而是高度集中于几个关键的地质时期，且这些时期往往与全球环境变化和生物类群的重大演化转折相重叠。古老的WGD信号可通过垂直传递保留在后续谱系中，形成跨类群的共享峰；而近期WGD则更多反映特定类群适应新生境过程中的基因组创新。这些发现为深入理解植物基因组的动态演化及其与地球环境的协同变化提供了重要线索。
+
+
+% \section{本章小结}
+
+% 本章系统地分析了植物T2T基因组的序列特征及其在植物系统发育中的演化关系。我们基于230个植物基因组的最长转录本序列构建了系统发育树，结合多层基因组序列特征展示了不同植物类群之间的基因组差异。这些分析揭示了植物基因组在大小、GC含量、重复序列比例及功能基因分布等方面的多样性，特别是在基因组扩展与重复序列积累方面的谱系特异性差异。通过对不同植物类群的基因组特征进行比较，我们发现绿藻类群和被子植物类群在基因组大小、GC含量以及基因组序列组成上存在明显的差异，而单子叶植物和经济作物类群则普遍具有较大的基因组和较高的GC含量。
+
+% 在基因组序列演化分析中，我们进一步分析了GC含量的分布，特别是在不同基因组区域（如启动子、外显子、内含子及重复序列）中的GC含量贡献。结果表明，外显子区域具有较高的GC含量，且重复序列在植物基因组结构演化中发挥了重要作用。通过扩大数据集，分析了2134个传统植物基因组中的基因组大小与GC含量的关系，进一步揭示了不同类群在基因组演化中的独特模式，特别是在禾本科和绿藻类群中表现出的显著偏离。
+
+% 在转录因子与启动子的协同演化分析中，我们提出了启动子与转录因子在长期共进化中的双向适配机制。通过对121个高质量T2T基因组的转录因子及启动子GC含量的系统统计，我们发现，随着植物类群的演化，启动子GC含量和转录因子的理化性质（如疏水性和等电点）呈现出一致的变化趋势，这可能反映了转录因子与启动子之间长期适配的共演化过程。进一步的分析扩展到了1354个植物基因组，验证了这一模式在更广泛的植物类群中的普遍性。
+
+% 最后，在NLR基因家族的演化分析中，我们发现NLR基因在不同植物类群中的分布存在显著差异，特别是在绿藻类群几乎没有NLR家族基因，而在裸子植物类群中，NLR基因家族的数量显著增加，表明NLR基因家族在植物演化过程中经历了不同的扩张与收缩。我们进一步探讨了不同生态习性植物中NLR基因的分布，发现无特殊生态习性的植物保持较高的NLR基因数量，而在特殊生存环境下，NLR基因数量则显著减少，反映了植物对病原选择压力的适应性调整。
+
+% 本章的研究通过对植物T2T基因组序列特征、基因组演化、转录因子与启动子的协同演化以及NLR基因家族的演化进行系统分析，揭示了植物基因组在不同类群中的多样性与适应性演化规律。这些结果为后续研究植物基因组结构演化、调控元件协同演化以及免疫基因家族演化提供了重要的理论基础。
+
+\section{本章小结}
+
+本章系统分析了植物T2T基因组的序列特征及演化规律。通过对230个植物T2T基因组的比较，揭示了不同植物类群在基因组大小、GC含量和重复序列比例等方面的差异，以及重复序列在基因组扩展中的重要作用。进一步扩展至2134个植物基因组后，发现不同类群具有明显不同的基因组演化模式，尤其是禾本科和绿藻类群表现出显著偏离。
+
+在功能演化方面，本章提出了转录因子与启动子协同演化的“双向适配”机制。基于121个高质量T2T基因组的分析，发现启动子GC含量与转录因子理化性质在不同植物类群中呈一致变化趋势，验证了该机制的广泛性。同时，NLR基因家族分析表明，其在不同植物类群中的分布差异明显，并与植物生态适应密切相关。
+
+此外，基于116个被子植物T2T基因组构建的时间校准系统发育树，定位了多个关键WGD事件，揭示了WGD与基因家族扩张及环境适应之间的关系。进一步结合1354个植物基因组，分析了WGD的时空分布特征，发现K-Pg界线附近存在高频WGD窗口，提示环境剧变可能促进了多倍体植物的扩张。
+
+总体而言，本章从基因组结构、基因家族演化及WGD等方面揭示了植物基因组演化的多样性与适应性，为理解植物基因组演化及环境适应机制提供了新的视角。
+
+\chapter{植物T2T基因组重复序列和着丝粒的演化}
+
+植物基因组的结构和演化历程是植物进化生物学研究中的重要领域。近年来，随着高通量测序技术的迅速发展，越来越多的植物基因组数据得以解析，为我们深入理解植物基因组的多样性、复杂性及其演化动态提供了宝贵的资源。为了推动植物基因组学领域的进一步发展，本章将基于代表性植物的T2T基因组数据，对基因组的重复序列进行\textit{de novo}注释，分析不同植物类群中重复序列的组成和分布特征，以探讨重复序列在植物基因组演化中的作用和意义。进一步推断着丝粒的位置，并分析着丝粒区域的基因组特征，揭示着丝粒在植物基因组结构和功能中的独特地位。
+
+% 在本章中，我们之所以选择116个被子植物的主要原因基于以下几点考虑：首先，为避免相同物种的泛基因组的干扰，我们在那些进化上极为接近的物种（如西瓜，葡萄，水稻等均有泛T2T基因组）中挑选了一个作为代表物种，因为它们的进化关系在时间尺度上较为相似，进一步分析意义不大；其次，考虑到绿藻与苔藓植物与被子植物的分化距离较远，且其基因组结构与被子植物差异较大，我们也从分析中排除了3个绿藻和2个苔藓植物。最后，对于父母本同时存在的单倍型T2T基因组，我们仅保留了其中一个单倍型用来分析。这使得最终的分析聚焦于116个典型的被子植物物种。
+
+\section{材料与方法}
+
+\subsection{重复序列注释}
+
+重复序列注释结合结构预测、\textit{de novo} 建库和同源比对多种策略完成。首先，使用 LTR\_HARVEST 和 LTR\_FINDER 分别预测 LTR 类转座子候选序列，并通过 LTR\_retriever v3.0.5 整合和筛选高可信 LTR 元件\cite{ou2018ltr_retriever}，参数中中性突变率设为 \texttt{-u 1.3e-8}。MITE 类元件使用 MITE-Hunter v1.0 进行预测\cite{han2010mite}。随后，将已鉴定的 LTR 和 MITE 库对基因组进行屏蔽后，使用 RepeatModeler v2.0.7 进行 \textit{de novo} 重复序列预测\cite{flynn2020repeatmodeler2}；对其中未分类序列，结合转座酶蛋白数据库进行 \texttt{blastx} 比对辅助注释\cite{ye2006blast}。
+
+为减少非重复蛋白编码序列的干扰，候选重复序列进一步与去除转座酶相关条目的 UniProt/Swiss-Prot 数据库进行 \texttt{blastx} 比对，并去除可能来源于基因片段的序列。所得重复序列经 \texttt{vsearch} v2.30.6 以 97\% 相似性聚类去冗余，构建非冗余重复序列库\cite{edgar2010search}。对于其中未分类的 LTR 序列，进一步使用 DeepTE 进行分类\cite{yan2020deepte}。最终整合得到的重复序列库用于 RepeatMasker v4.2.3 注释基因组中的转座子重复序列\cite{chen2004using}，主要参数包括 \texttt{-gff -xsmall -norna -no\_is}。
+
+此外，采用 RepeatProteinMask 基于同源蛋白比对进一步识别蛋白水平的重复相关区域\cite{chen2004using}，参数为 \texttt{-pvalue 0.0001}；串联重复序列则使用 TRF v4.09.1 进行预测\cite{benson1999tandem}，参数为 \texttt{2 7 7 80 10 50 2000}。最后，合并转座子重复和串联重复的注释结果，生成全基因组重复序列注释文件及统计结果。
+
+\subsection{调控元件注释}
+
+在重复序列注释的基础上，进一步整合 ChIP-Hub 收录的 ChIP-seq、ATAC-seq 和 DNase-seq 数据 \cite{fu2022chip}，对调控元件进行跨基因组映射与统一标注。具体而言，首先将原始参考基因组中的峰位点转换为 BED 格式，并提取各峰中心上下游各 100 bp 的序列；随后使用 BWA 将这些峰中心序列比对到对应的 T2T 基因组\cite{jung2022bwa}，保留比对质量不低于 30 的唯一比对结果。根据原始峰区长度恢复映射后的峰区范围，并筛选比对得分为 60 的高置信度位点，最终获得映射到 T2T 基因组上的调控元件注释结果。
+
+\subsection{非编码RNA注释}
+首先，使用 Infernal v1.1.5 中的 cmscan 基于 Rfam 数据库\cite{kalvari2021rfam}扫描基因组序列鉴定 miRNA、snRNA 等非编码RNA\cite{nawrocki2013infernal}，参数包括 \texttt{--rfam --nohmmonly --cut\_ga}，并对结果进行去重叠处理后转换为 GFF3 格式。rRNA 采用 Barrnap v0.9 (\url{https://github.com/tseemann/barrnap})预测，参数为 \texttt{--kingdom euk --reject 0.8}。tRNA 采用 tRNAscan-SE v2.0.12 预测\cite{chan2021trnascan}，参数为 \texttt{-Q -E -G}。随后合并各类注释结果，并去除 Rfam 结果中与 rRNA 和 tRNA 重复的条目，最终生成标准化的 ncRNA 注释文件及统计结果。
+
+\section{植物T2T基因组中重复序列的演化}
+
+上一节基于序列结构、单拷贝直系同源基因建树与基因家族聚类结果，对植物物种的序列演化，分歧历史、全基因组复制事件及其功能后果进行了系统解析。我们注意到，植物基因组结构的形成并非仅由编码基因的获得、丢失与重排所驱动，非编码区特别是重复序列的大规模积累、清除与再塑造，同样是决定基因组大小、染色体结构与演化轨迹的核心力量。相较于传统草图水平基因组，T2T组装显著提升了着丝粒、近着丝粒、端粒邻近区及其他高度重复区域的连续性和完整性，使得植物重复序列的系统注释与跨物种比较首次具备了近乎全景式的精度。因此，在完成编码区演化分析之后，有必要进一步从重复序列层面揭示植物T2T基因组结构的基本组成规律及其演化特征。
+
+\subsection{植物基因组重复序列的注释与组成}
+
+本章以230个植物T2T基因组为对象，构建了统一的重复序列注释流程，对各基因组中的转座元件（transposable elements, TEs）、串联重复（tandem repeats，TRs）及其他序列成分进行了系统识别、分类和统计分析（\blueref{fig:Figure15}{A}）。从整体结果来看，重复序列构成了植物T2T基因组中最主要的非编码组分，并呈现出显著的类群差异和谱系特异性。对全部样本进行汇总后可以发现，反转录转座子，尤其是LTR-RT（包括Gypsy和Copia两个主要亚类）是植物基因组中最主要的重复类型；与之相比，DNA转座子、LINE、SINE、滚环复制型元件（rolling-circle transposons, RC/Helitron）及串联重复虽在不同物种中均有分布，但其总体占比通常低于LTR类群。以代表性物种观察不同重复类型的极值分布，可以发现小麦（\textit{Triticum aestivum}）和人参（\textit{Panax ginseng}）等大型基因组物种在Gypsy或总体TE比例上尤为突出，而香蕉（\textit{Musa acuminata}）、胡桃（\textit{Juglans sigillata}）、油菜（\textit{Brassica juncea}）以及核桃（\textit{Juglans sigillata}）、桉树（\textit{Eucalyptus regnans}）等物种则在Copia、LINE、TR、RC和SINE等成分上分别表现出代表性的偏高水平。这些结果说明，不同植物谱系在长期演化过程中并非简单共享同一套重复序列扩张机制，而是在共同的转座元件框架之上形成了各自特异的重复序列景观。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure15}
+    \caption[230个植物T2T基因组中重复序列的注释流程与组成特征]
+    {
+    \textbf{230个植物T2T基因组中重复序列的注释流程与组成特征。}
+    \textbf{(A)} 重复序列统一注释流程示意图。
+    \textbf{(B)} 230个植物T2T基因组中主要重复类别的比例分布。左侧和右侧的物种图片分别代表每种重复类型占比最低和最高的物种。右下角的散点图展示了基因组大小与重复序列总比例、CDS比例之间的关系。
+    }
+    \label{fig:Figure15}
+\end{figure}
+
+进一步地，随着基因组大小增加，重复序列总比例整体呈上升趋势，而编码DNA序列（coding DNA sequence, CDS）比例则明显下降（\blueref{fig:Figure15}{B}右下角）。该结果具有两层重要含义。其一，植物基因组大小的扩张在很大程度上由重复序列而非蛋白编码基因驱动，说明植物基因组演化的主要“增量单元”是转座元件而不是基因本身。其二，随着重复序列大量积累，编码区在全基因组中的相对空间被不断稀释，从而使得大型植物基因组呈现“低基因密度—高重复密度”的结构特征。这种结构格局不仅影响局部染色质状态与表观修饰分布，也可能通过改变基因间距、调控元件布局等对基因表达与表型变异产生深远影响。
+
+\subsection{植物中重复序列的扩张与演化}
+
+在上一节对230个植物T2T基因组的重复序列组成进行统一注释和总体比较的基础上，本节进一步聚焦于其中系统发育关系较为清晰、比较分析信息更为完整的121个植物T2T基因组，解析重复序列在系统发育框架下的扩张模式与演化趋势。相较于仅统计各类重复序列在基因组中的静态占比，这一部分更关注两个问题：其一，不同谱系中重复序列组成差异是否具有显著的系统发育结构；其二，近年来发生扩张的“年轻”转座元件（young transposable elements, young TEs）是否遵循一致的积累规律，抑或表现出谱系特异的偏向性。
+
+基于121个物种的系统发育关系以及各类重复序列在基因组中的比例分布，可以观察到植物重复序列演化具有明显的谱系聚集特征（\blueref{fig:Figure16}{A}）。在整个系统树上，内圈展示的总重复序列组成与外圈展示的年轻TE比例并非随机分布，而是沿系统发育分支呈现连续变化。具体而言，若将Kimura substitution levels（CpG adjusted，K2P）小于3的元件定义为年轻TE，则多个类群在外圈中表现出特定类型年轻元件的富集，提示这些元件在相对较近的演化时期仍保持较高活性。
+
+为了更精细地量化这种谱系差异，本论文进一步对科水平的TE组成变异进行了冗余分析（redundancy analysis, RDA）。结果显示，前两个主轴共解释了约45.85\%的变异，且整体显著（$P = 1\times10^{-4}$），表明植物TE组成的变异具有较强的系统发育成分（\blueref{fig:Figure16}{B}）。共有12个科与前两个排序轴中的至少一个显著相关，且不同科与不同TE类型之间的关联方向和强度存在明显差异。这说明，即便在统一的植物转座元件框架下，不同谱系在长期演化过程中仍形成了各自特征化的重复序列积累模式。
+
+从排序轴的生物学含义看，第一主轴主要与Gypsy的丰度呈正相关，并且与基因组大小也呈明显正相关关系（\blueref{fig:Figure16}{B}）。这一结果与前文的总体分析相一致，再次说明Gypsy类LTR反转录转座子是驱动植物基因组扩张的核心力量之一。由于Gypsy通常能够在异染色质区域持续积累，其扩增不仅增加了基因组总长度，也深刻参与了染色体结构的塑造。相对而言，DNA转座子、RC/Helitron、Copia和LINE更多地沿其他方向分布，且整体上与主轴1呈负向或偏离关系，提示这些重复类型虽同样参与植物基因组重塑，但其扩张并非简单伴随基因组增大而同步增强，而可能更多受制于谱系背景、宿主抑制机制或局部基因组环境。值得注意的是，这种模式与哺乳动物基因组中由LINE主导近期扩张的典型情形明显不同，表明植物与动物在TE主导类型及基因组扩张机制上存在显著差异\cite{osmanski2023insights}。
+
+除了从谱系组成角度刻画TE扩张，本论文还借鉴群落生态学中的多样性分析思路，将全基因组TE视作一个“重复序列群落”，并使用香农多样性指数（Shannon diversity index）和Pielou均匀度指数（Pielou's J evenness index）对每个基因组中的近期TE组成进行量化（\blueref{fig:Figure16}{C}）。其中，香农指数用于衡量近期TE整体类型多样性，而Pielou's J反映各TE类型在一个基因组中的分布均匀程度。结果表明，无论是香农多样性还是Pielou均匀度，均与近期TE总含量呈显著负相关（$R^2 = 0.52$ 和 $0.51$，$P < 2.2\times10^{-16}$）。这一结果表明，当植物基因组发生近期TE积累时，这种积累通常不是多类元件同步、均衡地增加，而更倾向于由少数甚至单一类型的TE主导。在各类TE中，Gypsy与香农多样性的相关性最为显著（\blueref{fig:Figure16}{D}）。其他TE或TR虽然表现出一定相关性，但效应强度明显较弱。这一结果进一步支持了前述判断：在植物基因组近期TE扩张过程中，Gypsy不仅是总量增加的重要来源，也是导致TE组成由“多样化”转向“单一化”的关键因素。换言之，许多植物基因组中近期重复序列扩张，并不是各类TE共同增加的结果，而主要是Gypsy家族在短时间尺度上占据了主导地位。
+
+为了进一步刻画不同类型重复序列的扩张时间特征，本节对121个物种中重复序列的插入事件进行了系统分析（\blueref{fig:Figure16}{E}）。结果显示，除LINE和串联重复（TR）外，其余主要TE类型均表现出不同程度的近期扩增信号，尤其是Gypsy和Copia的年轻拷贝在多个类群中均具有较高丰度，说明LTR类元件是植物中近期重复序列更新的主要来源。DNA转座子和RC元件也在部分谱系中显示出明显的低Kimura替代水平峰值，提示其在某些类群中仍保有活跃扩张能力。相比之下，LINE和TR总体上缺乏显著的近期集中扩张信号，其丰度分布更偏向较高的替代水平区间，说明其大规模活跃可能更多发生于较早时期。这一点与哺乳动物中LINE近期大量扩张的情况形成鲜明对照，再次表明植物和动物在重复序列演化动力学上存在本质差异\cite{osmanski2023insights}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure16}
+    \caption[121个植物T2T基因组中重复序列的扩张模式与演化趋势]{
+    \textbf{121个植物T2T基因组中重复序列的扩张模式与演化趋势。}
+    \textbf{(A)} 基于121个植物物种系统发育关系展示各类重复序列组成及年轻TE比例的分布。内圈为不同类型重复序列在基因组中的总占比，外圈为年轻TE比例（K2P<3）。
+    \textbf{(B)} 科水平TE组成变异的冗余分析（RDA）。
+    \textbf{(C)} 近期TE含量与TE群落多样性的关系。
+    \textbf{(D)} 不同TE类型与香农多样性指数关系的显著性分析。
+    \textbf{(E)} 不同重复类型的Kimura替代水平分布。}
+    \label{fig:Figure16}
+\end{figure}
+
+综合来看，121个植物T2T基因组的比较分析表明，植物重复序列扩张与演化具有三个突出特征。第一，TE组成变异具有显著的系统发育结构，不同科和不同分支表现出稳定而可识别的重复序列偏好；第二，近期TE积累通常并不伴随类型多样性的增加，反而表现为均匀度和多样性的下降，说明植物基因组更倾向于在特定时期由单一TE家族主导扩张；第三，植物与动物的TE扩张模式不同，或者可以说不同类型的TE在持续地进行“军备竞赛”，一旦有一方占据优势便会持续扩大占比。而在植物中，Gypsy是这一过程中的核心驱动因子，其不仅与基因组大小扩张密切相关，也最显著地塑造了近期TE组成的单一化趋势。上述结果共同说明，植物基因组中的重复序列演化不是一个均匀、被动的累积过程，而是一个受系统发育约束、具有明显家族偏向性和时间阶段性的动态重塑过程。
+
+\subsection{重复序列与植物性状的关联}
+
+为系统评估TE在基因组中的整合位置及其潜在功能影响，本节在20个代表性植物T2T基因组中构建了高分辨率的功能注释体系。在重复序列注释基础上，进一步整合来自ChIP-Hub的ChIP-seq、ATAC-seq及DNase-seq数据\cite{fu2022chip}，对调控元件进行跨基因组映射与统一标注（\blueref{fig:Figure17}{A}，上）。整体映射率均超过80\%，表明该策略能够在不同物种间稳定识别开放染色质区域及转录调控元件。此外，考虑到非编码RNA在基因组功能中的重要作用，我们对230个植物基因组中的miRNA、rRNA和tRNA进行了系统注释（\blueref{fig:Figure17}{A}，下），从而获得覆盖编码区、调控区、重复序列及非编码RNA的综合注释框架。
+
+基于上述注释体系，我们对20个代表性物种的基因组组成进行了系统统计（\blueref{fig:Figure17}{B}）。结果显示，不同物种中重复序列占比差异极大，从\textit{Arabidopsis thaliana}（16.87\%）到\textit{Triticum aestivum}（90.48\%）呈连续变化，而基因比例（3\%-48\%）则相对稳定但与重复序列呈明显负相关。与此同时，调控元件（约1\%-21\%）和非编码RNA（约1\%-21\%）在不同物种中的占比整体较低但相对稳定，提示其功能区域在基因组中受到更强的选择约束。在此基础上，我们进一步分析了调控元件在基因组中的分布特征。结果表明，无论基因组中重复序列比例如何变化，在排除重复序列区域后发现调控元件始终显著富集于基因间区（intergenic）和基因内部区域（intragenic）（\blueref{fig:Figure17}{C-D}）。这一现象说明，功能性调控区域倾向于分布在非重复序列环境中，以保证其稳定性和调控效率。相比之下，重复序列区域较少承载稳定的调控信号，可能与其序列高度可变及易发生结构重排有关。
+
+与调控元件分布形成对比的是重复序列的插入偏好。统计结果显示，TE更倾向于插入基因内部区域，尤其是内含子（intron）和外显子（exon）（\blueref{fig:Figure17}{E}）。这一现象表明，TE插入并非完全随机，而是在一定程度上偏向功能基因区域，从而为基因结构变异、转录调控改变甚至新功能产生提供原始材料。这种“插入-重塑”机制被认为是驱动植物性状多样化的重要分子基础\cite{tao2025harnessing}。然而，TE的插入也可能对基因功能产生潜在负效应，因此基因组需要建立有效的抑制机制以维持稳定性。本论文通过分析4个物种不同序列类型的DNA甲基化水平（CHG、CHH和CpG）发现，重复序列区域具有显著更高的甲基化水平（\blueref{fig:Figure17}{F}），而基因和调控区域则维持较低甲基化状态。这表明植物基因组通过表观遗传调控对TE进行沉默，从而抑制其进一步转座活动。这种“扩张—抑制”的动态平衡是维持基因组稳定与可塑性的关键机制\cite{tao2025harnessing}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure17}
+    \caption[植物T2T基因组中重复序列与功能元件的关系]{
+    \textbf{植物T2T基因组中重复序列与功能元件的关系。}
+    \textbf{(A)} 调控元件与非编码RNA的注释流程。上：基于ChIP-Hub数据进行调控元件跨基因组映射；下：miRNA、rRNA和tRNA注释流程。
+    \textbf{(B-C)} 20个代表性植物基因组中不同序列类型（基因、调控元件、非编码RNA、重复序列等）的组成比例。
+    \textbf{(D)} 调控元件在基因组中的分布特征，主要富集于intergenic和intragenic区域（排除重复序列）。
+    \textbf{(E)} 重复序列插入偏好，主要集中于intron和exon区域。
+    \textbf{(F)} 不同序列类型的DNA甲基化水平，重复序列显著富集甲基化信号。
+    \textbf{(G)} 植物基因组典型序列组成模式示意。
+    \textbf{(H)} 重复序列插入与调控作用模型。}
+    \label{fig:Figure17}
+\end{figure}
+
+
+综合上述结果，我们总结了植物基因组中典型的序列组织模式（\blueref{fig:Figure17}{G}）：基因、调控元件、重复序列及非编码RNA在染色体上交错分布，其中重复序列构成主要结构背景，而功能元件嵌入其间并受到严格调控。此外，仍有约1\%--30\%的基因组区域尚无法被明确注释，提示植物基因组中仍存在大量未知功能序列。基于重复序列插入特征与调控关系，我们进一步提出了TE在基因组中的动态作用模型（\blueref{fig:Figure17}{H}）。在该模型中，TE通过插入到增强子、启动子或基因内部区域，改变局部染色质状态及调控网络，从而影响基因表达；随后，宿主通过DNA甲基化等机制对其进行沉默，限制其扩散。这一“插入—调控—沉默”的循环过程，为植物性状演化提供了持续的遗传变异来源。
+
+为进一步验证重复序列对具体性状的影响，我们结合典型实例分析了TE插入在果实性状形成中的作用（\blueref{fig:Figure18}）。例如，在豌豆中，DNA/hAT转座子插入外显子区域使终止密码子提前，从而影响了\textit{PsSBE1}基因功能，导致其功能丧失，使支链淀粉合成受阻、直链淀粉比例显著升高，种子成熟干燥后水分失衡不均而皱缩\cite{feng2025genomic}；另一个例子是LTR/Copia插入豌豆内含子区域使\textit{PsSGR}基因无法正常剪切，导致其功能丧失，叶绿素降解受阻，最终使得种子在成熟时仍呈现绿色\cite{feng2025genomic}。当然，重复序列的插入并不总是导致基因功能丧失，反而在某些情况下可能带来新的调控活性或功能创新。例如在苹果中，LTR/Gypsy插入\textit{MdMYB1}上游UTR区域带来了新的增强子活性，使花青素生物合成的核心转录激活因子\textit{MdMYB1}高表达，从而导致果皮颜色由绿转红\cite{zhang2019high}；在血橙中，LTR/Copia插入到\textit{Ruby}基因上游启动子区域，带来了新的TATA盒，使转录因子能够结合并激活\textit{Ruby}表达，从而启动花青素生物合成，导致果肉颜色由橙转红\cite{huang2019retrotransposon}。
+
+值得强调的是，在本论文收集的T2T基因组中，多个物种已实现泛T2T基因组的构建，这为系统解析转座元件插入与性状变异之间的因果关系提供了关键基础。相比单一参考基因组，泛基因组能够全面刻画同一物种不同单倍型之间的结构变异，尤其是TE插入所导致的基因结构重塑与调控差异。因此，我们开发了针对泛基因组的结构比较分析流程，用于识别同源基因上下游区域中由TE插入引起的结构差异，从而挖掘潜在的功能关联位点。
+
+以辣椒（\textit{Capsicum}）为例\cite{zhang2025transposon}，我们在\textit{CCS}（capsanthin/capsorubin synthase）基因区域中检测到显著的TE插入差异（\blueref{fig:Figure18}{B}）。在黄色果皮品种中，LTR类转座元件\textit{Pret1}插入到\textit{CCS}基因内部，导致该基因功能受损或表达异常，从而阻断类胡萝卜素合成通路中花药黄质（Antheraxanthin）向辣椒红素（Capsanthin）的转化，最终使果皮呈现黄色；而在红色果皮品种中，该插入缺失，\textit{CCS}功能正常，能够合成辣椒红素并形成典型红色表型。这一结果表明，TE插入可通过改变关键代谢基因的结构或表达，直接驱动重要农艺性状的形成。
+
+进一步地，我们发现，在泛基因组背景下，单倍型差异对于TE功能效应的解析尤为关键。例如，在葡萄（\textit{Vitis vinifera}）中，\textit{VvMYBA1}基因上游调控区域的LTR/Copia元件\textit{Gret1}插入与果皮颜色密切相关（\blueref{fig:Figure18}{C}）\cite{kobayashi2004retrotransposon}。然而，该性状并非由单一等位基因决定，而是依赖于两个单倍型的组合状态：只有当两个单倍型均发生\textit{Gret1}插入时，\textit{VvMYBA1}的表达被显著抑制，从而导致果皮呈现浅色或白色；而当至少有一个单倍型未发生插入时，\textit{VvMYBA1}仍可正常表达，果皮表现为黑色。这一现象说明，TE插入的表型效应具有明显的剂量效应和单倍型依赖性。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure18}
+    \caption[重复序列插入驱动植物性状变异的典型案例]{
+    \textbf{重复序列插入驱动植物性状变异的典型案例。}
+    \textbf{(A)} 不同类型TE插入基因或调控区域影响性状的示意，包括DNA转座子插入外显子、LTR插入增强子或启动子等。
+    \textbf{(B)} 辣椒属不同物种中\textit{CCS}区域结构差异及其与果实颜色的关系。
+    \textbf{(C)} 葡萄中\textit{Gret1}插入\textit{VvMYBA1}调控区域导致不同品种果皮颜色差异。}
+    \label{fig:Figure18}
+\end{figure}
+
+综上，基于泛T2T基因组的比较分析表明，TE不仅通过单点插入改变基因功能，还通过在不同单倍型间形成结构差异，调控性状的表达模式。辣椒和葡萄的案例共同说明，TE驱动的结构变异是植物重要农艺性状形成的重要分子机制，而对其进行准确解析必须依赖于高质量T2T组装和泛基因组框架下的多单倍型比较分析。
+
+% \section{本章小结}
+
+% 本章基于大规模植物T2T基因组资源，从编码区与非编码区两个层面系统解析了植物基因组的演化动态。首先，基于116个被子植物T2T基因组构建了时间校准的系统发育树，定位了多个关键全基因组复制事件，并结合Orthogroup与基因家族演化分析揭示了WGD发生时间、扩张型基因家族保留及功能分化之间的关系；进一步扩展到1354个植物及相关绿色植物基因组后，从更宏观尺度刻画了近4亿年来WGD的时空分布格局及其与环境变化之间的潜在联系。其次，基于230个植物T2T基因组的重复序列注释与比较分析表明，重复序列尤其是LTR反转录转座子是植物基因组扩张的主要驱动力，不同植物谱系具有显著差异化的TE组成与近期扩增模式；同时，TE插入及其表观沉默与基因结构、调控元件分布及农艺性状形成密切相关。
+
+% 总体而言，本章表明，植物基因组演化并非仅由编码基因的保守与分化所塑造，而是WGD驱动的基因家族重组与重复序列介导的非编码区重塑共同作用的结果。T2T基因组的完整性使得这些长期被低估的复杂区域和结构事件能够在跨物种尺度上被统一纳入比较框架，为理解植物基因组大小变异、结构创新和性状分化提供了更完整的证据。上述结果也为下一章进一步聚焦植物着丝粒这一典型复杂重复区域的结构特征与演化模式奠定了基础。
+
+
+% 本章基于116个被子植物T2T基因组，通过系统发育与分子钟分析构建了时间校准的物种树，明确了樟目、单子叶与真双子叶植物的主要分化时间节点。在此基础上，结合Ks分析在系统发育框架下定位了多个重要的全基因组复制事件，包括核心真双子叶的γ事件、木兰类的λ事件、单子叶的τ事件以及近期禾本目和蔷薇目中的σ事件，揭示了WGD在被子植物演化历程中的普遍性和阶段性。
+
+% 进一步整合OrthoFinder直系同源聚类与CAFE5基因家族演化分析，我们发现WGD发生时间与扩张型OG的保留比例呈显著正相关，表明较晚发生的WGD保留了更多可识别的扩张基因家族信号，而古老WGD的扩张痕迹在长期演化过程中被逐步削弱。功能分析显示，不同时期WGD保留的扩张OG存在“核心共享”与“时期特异”的分化：共享OG集中于细胞周期、能量代谢、蛋白质合成等基础生命过程，而时期特异OG则分别富集于干旱、热胁迫、生物胁迫、光信号响应等环境适应相关通路，提示WGD后基因家族的保留同时受“基础功能约束”与“环境选择驱动”双重作用。
+
+% 为在更完整的绿色植物演化框架下验证上述规律，我们将分析扩展至1354个物种（涵盖红藻、绿藻、苔藓、石松、蕨类、裸子植物及被子植物主要分支），基于低拷贝直系同源基因重建了包含21个类群的系统发育树，并对1058个物种的WGD时间进行了系统推断。宏观尺度上的WGD时间分布呈现出三个显著特征：石炭纪早期（约300–320 Mya）的强烈主峰、二叠纪至侏罗纪（约250–150 Mya）的宽阔低谷、以及白垩纪以来持续升高的高频区。将WGD时间与地外撞击事件及大气CO$_2$/O$_2$浓度变化叠加比较后发现，K-Pg界线附近的高频WGD窗口与撞击事件及大气成分剧变在时间上存在重叠，暗示环境扰动可能通过创造新生态位促进了多倍体类群的扩张。此外，单子叶与真双子叶植物中普遍检测到约300 Mya的共享WGD信号，证实其为种子植物祖先古老WGD事件在多谱系中保留下来的遗传印记。
+
+% 综上所述，本章跨越4亿年在从百种至千种尺度的植物基因组分析中系统揭示了WGD的时空分布规律、与基因家族演化的关系、以及环境因素对WGD保留模式的影响。我们相信这些发现能为理解植物基因组多样性及演化动态提供更加宝贵的视角和线索。
+
+
+% 本章基于230个植物T2T基因组，系统分析了重复序列的组成特征、扩张模式及其与植物性状的关联。结果表明，重复序列是植物T2T基因组中最主要的非编码成分，其中LTR反转录转座子，尤其是Gypsy和Copia，是最主要的重复类型；随着基因组大小增加，重复序列比例总体升高，而编码序列比例相对下降，说明植物基因组扩张主要由重复序列积累驱动。
+
+% 在121个植物T2T基因组的比较分析中，重复序列组成及年轻TE积累呈现明显的系统发育结构，不同谱系具有特征化的TE扩张模式。RDA分析表明，TE组成差异具有显著的类群分化特征，其中Gypsy与基因组大小扩张关系最为密切。近期TE积累通常伴随多样性和均匀度下降，提示植物基因组中的重复序列扩张往往由少数优势家族主导，而非多类TE同步增加。插入时间分析进一步表明，除LINE和TR外，多数主要TE类型均保留了不同程度的近期扩增信号。
+
+% 进一步结合20个代表性植物基因组的功能注释结果发现，调控元件主要分布于非重复序列区域，而TE则更倾向于插入基因内部区域，尤其是内含子和外显子。重复序列区域同时表现出更高水平的DNA甲基化，说明植物基因组通过表观遗传机制对TE进行沉默，以维持基因组稳定。典型案例及泛T2T基因组分析进一步表明，TE插入可通过改变基因结构、调控元件组成及单倍型间结构状态，影响重要农艺性状的形成与分化。
+
+% 总体而言，T2T基因组为重复序列的完整识别和跨物种比较提供了可靠基础。本章结果说明，重复序列不仅是植物基因组结构的重要组成部分，也是驱动基因组扩张、结构重塑及部分性状变异的重要因素。
+
+\section{植物T2T基因组中着丝粒的结构与演化}
+
+上一章系统分析了植物T2T基因组中重复序列的组成、扩张及其与性状变异的关系。结果表明，重复序列不仅主导了植物基因组大小和结构的分化，也为理解高度重复区域的组织方式提供了重要线索。在此基础上，本章进一步聚焦于染色体上最典型、也最难解析的重复区域之一——着丝粒。作为染色体正确分离的核心功能区，着丝粒通常富集卫星重复序列和特定类型的转座元件，并伴随特殊的表观遗传状态。T2T组装的建立，使得植物着丝粒区域得以在近完整尺度上进行系统识别和比较分析，从而为揭示其结构组成与演化规律提供了可靠基础。
+
+\subsection{植物着丝粒区域的识别}
+
+为在大规模植物T2T基因组中尽可能准确地界定着丝粒区域，本论文根据是否具有CENH3 ChIP-seq数据，构建了两套相互补充的识别流程（\blueref{fig:Figure19}{}）。
+
+对于具有CENH3 ChIP-seq数据的T2T基因组（\blueref{tab:CENH3}{}），首先使用自主开发的iSeq工具获取原始测序数据，随后采用fastp进行质量控制\cite{chen2018fastp}，使用bwa mem将测序读段比对到对应的T2T基因组上\cite{jung2022bwa}，并通过sambamba markdup去除PCR重复\cite{tarasov2015sambamba}。之后，利用bamCompare对CENH3 ChIP与Input/Control进行比较\cite{ramirez2014deeptools}，生成以$\log_2$为底的富集信号轨道（bdg文件）。在此基础上，使用bedtools merge对相邻区间进行合并（-d 10000）\cite{quinlan2010bedtools}，并筛选平均$\log_2$富集值大于2且区间长度大于0.2 Mbp的区域作为候选着丝粒区间。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure19}
+    \caption[植物T2T基因组中着丝粒区域识别流程]{
+        \textbf{植物T2T基因组中着丝粒区域识别流程。}
+    }
+    \label{fig:Figure19}
+\end{figure}
+
+在获得候选区间后，并不直接将其视为最终着丝粒，而是进一步结合重复序列和功能元件的分布特征进行人工校正。具体而言，我们以100 kb为窗口，绘制TR、TE（主要为Gypsy和Copia）、基因和ncRNA（特别是rDNA）的沿染色体分布曲线，对候选区域进行手工比对与边界修正，并在必要时对区间进行适度延伸，以获得与重复序列富集模式一致的着丝粒范围。对于以TR为主的着丝粒，还进一步结合TRASH的分析结果\cite{wlodzimierz2023trash}，检查其卫星重复单元长度及连续分布范围，以辅助判断着丝粒核心重复序列的真实性和完整性。
+
+对于缺乏CENH3 ChIP-seq数据的T2T基因组，则主要依赖序列组成特征进行识别。首先同样以100 kb为窗口，综合考察TR、TE（Gypsy和Copia）、基因和ncRNA（rDNA）的分布模式，手工确定具有典型着丝粒特征的候选区域。对于TR型着丝粒，重点关注卫星重复的局部富集、连续性及其在染色体上的成簇分布，并结合TRASH结果验证其重复单元长度和总体分布范围。对于TE型着丝粒，则重点识别由Gypsy或Copia等元件连续富集形成的大片段区域。具体策略为：以100 kb为窗口筛选TE覆盖度较高的连续区段，通常要求覆盖度大于60\%，再将相邻30 kb以内的候选窗口进行合并，定义为候选着丝粒区域。对于在以往研究中有特定序列组成的着丝粒类型，我们也会通过BLAST的方式在T2T基因组中进行特定序列的搜索，以辅助识别和验证着丝粒区域。值得注意的是，rDNA有时会与着丝粒区域重叠，尤其是在某些物种中rDNA位于着丝粒附近或直接嵌入其中，因此在识别过程中也会特别关注rDNA的分布特征，以避免误将rDNA富集区域误判为着丝粒。
+
+最后， 对于这类基于序列特征识别得到的候选区间，若同时具备BS-seq数据或测序下机产生的电信号原始数据（fast5），则进一步结合DNA甲基化等表观遗传特征进行验证（\blueref{tab:BSseq}{}），以提高着丝粒边界判定的可靠性。最终，综合ChIP富集信号、重复序列组成、基因与rDNA分布特征，以及表观遗传信息，对每条染色体的着丝粒区域进行统一确定。
+
+总体而言，本论文建立的着丝粒识别流程兼顾了实验数据驱动和序列特征驱动两种模式：前者依赖CENH3 ChIP-seq直接指示功能性着丝粒位置，后者则通过重复序列组成和表观特征对缺乏实验数据的基因组进行推断。两者结合，使得不同数据条件下的植物T2T基因组均能够在统一框架下完成着丝粒区域的识别，整体对100个物种的1493个染色体进行了着丝粒区间的界定，为后续解析植物着丝粒的重复序列组成、结构特征及演化模式奠定了基础。
+
+\subsection{着丝粒大小与结构特征}
+
+在完成植物T2T基因组着丝粒区域识别后，本节进一步对100个物种的着丝粒大小与结构特征进行系统比较。这些物种涵盖绿藻、苔藓、单子叶和双子叶植物，能够较全面地反映植物界着丝粒的整体分布格局（\blueref{fig:Figure20}{A}）。总体来看，不同类群的着丝粒在证据来源、数量类型、序列组成、染色体位置及长度尺度上均表现出明显差异，说明植物着丝粒并不存在单一的组织模式，而是具有较强的结构多样性。
+
+首先，根据着丝粒识别所依据的主要证据类型，可将其划分为TE-based inference、TR-based inference、BLAST-based inference和CENH3 ChIP-seq四类（\blueref{fig:Figure20}{B}）。其中，基于CENH3 ChIP-seq的实验验证仅占32.8\%，说明目前大多数植物着丝粒的判定仍主要依赖序列组成与结构特征推断，而直接的功能验证数据仍相对不足。这一结果表明，随着更多植物CENH3 ChIP-seq或其他着丝粒定位实验数据的积累，未来仍有必要进一步提高着丝粒鉴定的实验支撑程度。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure20}
+    \caption[100个植物T2T基因组中着丝粒大小与结构特征]{
+    \textbf{100个植物T2T基因组中着丝粒大小与结构特征。}
+    \textbf{(A)} 100个植物物种中着丝粒特征的整体分布。1.外圈依次表示着丝粒识别证据类型、2.着丝粒数量类型、3.着丝粒主要序列组成、4.着丝粒所在染色体位置，5.以及着丝粒内部与外部完整LTR/solo LTR比例差异（$\Delta$ISR）。
+    \textbf{(B)} 着丝粒主要结构特征的统计汇总。
+    \textbf{(C)} 着丝粒长度分布统计。
+        }
+    \label{fig:Figure20}
+\end{figure}
+
+在着丝粒数量层面，本节依据单条染色体上着丝粒区段的数目及分布范围，将其划分为单着丝粒（monocentric）、多着丝粒（polycentric）和全着丝粒（holocentric）三类（\blueref{fig:Figure20}{B}）。其中，单着丝粒是最主要的类型，占97.2\%，说明绝大多数植物染色体仍以单一主着丝粒为基本组织形式。多着丝粒在当前数据中较少见，相关代表物种目前仍较有限；而全着丝粒则仅在少数物种中检测到，例如川桑（\textit{Morus notabilis}）。在本论文中，全着丝粒的判定标准为：单条染色体上存在3个以上着丝粒样区域，且其总覆盖范围跨越超过90\%的染色体长度。该结果说明，尽管全着丝粒在植物中并非主流模式，但在特定谱系中确实存在显著偏离经典单着丝粒结构的情况。
+
+在序列组成层面，本节进一步根据着丝粒内部主要重复序列类型，将其划分为TR型、Gypsy型、Copia型和LINE型（\blueref{fig:Figure20}{A, B}）。具体判定规则为：若串联重复（TR）覆盖度超过50\%，则无论TE覆盖度高低，均定义为TR型着丝粒；否则，按照覆盖度最高的TE类型确定其着丝粒序列类别。统计结果显示，TR型着丝粒占48.7\%，而TE型着丝粒合计占51.3\%。这说明，在植物T2T基因组中，着丝粒并不总是以经典卫星重复为核心组成，相当比例的着丝粒主要由TE构成（\blueref{fig:Figure55}{}）。换言之，TE在植物着丝粒形成与维持中具有比传统认识更重要的作用。
+
+在空间位置上，本节根据着丝粒左端与右端染色体臂长度比值对其进行分类：当该比值介于1至1.7之间时定义为中着丝粒（metacentric），1.7至3之间为次中着丝粒（submetacentric），3至7之间为近端着丝粒（acrocentric），大于7为端着丝粒（telocentric）（\blueref{fig:Figure20}{A, B}）。结果显示，中着丝粒占59.0\%，为最主要类型，其次为次中着丝粒和近端着丝粒，而端着丝粒比例最低。这表明，在植物中，着丝粒总体上更倾向于位于染色体中部或偏中部区域，而非极端靠近端部。该格局与多数植物染色体在细胞学上的常见形态总体一致。
+
+为了进一步考察着丝粒内部LTR动态，本节比较了着丝粒内部与外部完整LTR和solo LTR的比例，并计算其内外差异指标$\Delta$ISR（difference of intact/solo ratio）（\blueref{fig:Figure20}{A, B}）。结果显示，当$\Delta$ISR为负时，即着丝粒内部相对富集solo LTR，此时TE型着丝粒占57.26\%；当$\Delta$ISR为正时，即着丝粒内部完整LTR相对更多，TR型着丝粒占56.27\%。这一现象提示，着丝粒内部TR与TE的组成并非静态不变，而可能受到LTR插入、重组切除及序列清除过程的共同影响。本质上，这反映了着丝粒区域内TE积累与TR维持之间的动态平衡，也说明着丝粒重复序列组成可能处于持续重塑过程中。
+
+在长度尺度上，植物着丝粒总体集中分布于5 Mb以内（\blueref{fig:Figure20}{C}），说明多数着丝粒属于中小尺度重复区域。但不同物种之间仍存在明显差异，最大着丝粒长度可达13 Mb，出现在小麦（\textit{Triticum aestivum} CS-IAAS）中。总体而言，着丝粒长度虽具有一定可变性（\blueref{fig:Figure56}{}），但极端超长着丝粒仍较少见。该结果表明，植物着丝粒在保持功能稳定的同时，其物理长度可以在较大范围内发生伸缩，这可能与局部重复序列扩张、删除及染色体重塑过程密切相关。
+
+综上，100个植物T2T基因组的比较结果表明，植物着丝粒在证据来源、数量类型、序列组成、空间位置和长度等方面均具有显著多样性。尽管单着丝粒和中着丝粒仍是植物中最常见的组织形式，但TE型着丝粒已占据超过一半的比例，说明植物着丝粒的结构基础并不局限于卫星重复。与此同时，着丝粒内部LTR动态及长度分布特征进一步提示，植物着丝粒是一个在重复序列积累与清除过程中持续演化的结构单元。
+
+\subsection{着丝粒重复序列组成与表观基因组学规律}
+
+在明确植物着丝粒的位置、长度与结构类型后，进一步解析其内部重复序列组成及表观遗传特征，有助于理解不同植物类群中着丝粒的组织方式及维持机制。为此，本节选取6个代表性植物的代表性染色体，综合比较着丝粒区域中主要重复序列类型（Gypsy、Copia、TR、LINE）、基因、CENH3 ChIP-seq富集信号以及三种DNA甲基化水平（CHG、CHH和CpG）的分布特征（\blueref{fig:Figure21}{}）。这些物种分别代表绿藻、苔藓、单子叶、双子叶及多着丝粒/全着丝粒类型，为比较不同演化阶段植物着丝粒的分子组成提供了典型例证。
+
+在早期植物中，绿藻(\textit{Chlorella sorokiniana})的代表性着丝粒主要由Copia构成，并夹杂少量LINE序列（\blueref{fig:Figure21}{A}）。在CENH3富集区域，对应位置出现明显的CpG甲基化下降，形成典型的着丝粒沉降区域（centromere dip region, CDR），而CHG和CHH变化相对较弱。这说明在较早分化的植物类群中，即使着丝粒并非由大量卫星重复主导，仍可形成具有局部低CpG甲基化特征的功能区域。
+
+苔藓(\textit{Physcomitrium patens})的着丝粒则以Copia为主，同时伴有一定比例的Gypsy序列（\blueref{fig:Figure21}{B}）。与绿藻相比，其着丝粒处不仅存在CpG甲基化下降，同时CHG甲基化也表现出明显凹陷，而CENH3信号则定位于这些重复序列富集区域。这说明随着陆生植物演化，着丝粒表观状态可能进一步复杂化，低甲基化特征从CpG扩展至CHG背景。
+
+在单子叶植物中，水稻（\textit{Oryza sativa}）的着丝粒表现出典型的TR主导特征（\blueref{fig:Figure21}{C}）。其CENH3信号与TR富集区域高度对应，同时CpG和CHG甲基化在着丝粒核心区均明显降低，形成清晰的局部低甲基化区域。该结果说明，以串联重复为核心的经典植物着丝粒通常伴随着较为明确的表观遗传边界。
+
+相比之下，棉花（\textit{Gossypium hirsutum}）的代表性着丝粒主要由Gypsy构成（\blueref{fig:Figure21}{D}）。值得注意的是，CENH3并不主要富集于TR信号最强的区域，而是定位于相邻的Gypsy富集区，提示在TE主导型着丝粒中，功能性着丝粒染色质与传统卫星重复并不一定严格重合。其CpG和CHG甲基化在着丝粒处虽有下降，但凹陷程度相对较弱，表明不同序列背景下着丝粒的表观状态可能存在差异。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figure21}
+    \caption[6个代表性植物着丝粒的重复序列组成与表观基因组学特征]{
+    \textbf{6个代表性植物着丝粒的重复序列组成与表观基因组学特征。}
+    \textbf{(A)} 绿藻3号染色体(\textit{Chlorella sorokiniana} NS4-2)，
+    \textbf{(B)} 苔藓5号染色体(\textit{Physcomitrium patens})，
+    \textbf{(C)} 水稻11号染色体(\textit{Oryza sativa} NIP)，
+    \textbf{(D)} 棉花11号染色体(\textit{Gossypium hirsutum} TM-1)，
+    \textbf{(E)} 豌豆6号染色体(\textit{Pisum sativum})，
+    \textbf{(F)} 川桑6号染色体(\textit{Morus notabilis})。
+    }
+    \label{fig:Figure21}
+\end{figure}
+
+豌豆（\textit{Pisum sativum}）属于多着丝粒类型，其代表性染色体上存在多个着丝粒样区域，且各区域均以TR为主（\blueref{fig:Figure21}{E}）。然而，CENH3与TR信号之间并非完全一一对应，说明并非所有TR富集区都具有相同的功能活性。与此同时，CpG和CHG甲基化仅在其中两处表现出明显下降，提示多着丝粒染色体中不同着丝粒单元之间可能存在功能分化，部分区域更接近活性着丝粒，而另一些则可能仅保留结构特征。
+
+川桑（\textit{Morus notabilis}）则代表了另一类全着丝粒样组织模式（\blueref{fig:Figure21}{F}）。其多个着丝粒区域均以TR为主，并在每个区域均能观察到清晰的CENH3富集信号，同时CpG和CHG甲基化均出现明显凹陷。这表明在该类染色体中，不同着丝粒单元具有较高一致性，重复序列组成、CENH3装配和表观低甲基化状态之间表现出较强耦合。
+
+综合这6个代表性案例可以看出，植物着丝粒的序列基础具有显著多样性：早期植物可由Copia主导，部分高等植物则以TR或Gypsy为主；但从表观遗传层面看，CENH3富集区常伴随CpG和CHG甲基化的局部下降，构成较为保守的功能性特征。其中，TR型着丝粒往往表现出更清晰的CENH3-低甲基化对应关系，而TE型着丝粒则可能出现功能区与主要重复区段部分错位的现象。上述结果说明，植物着丝粒的形成并不依赖单一序列类型，而更可能是在不同重复序列背景上，通过相对保守的表观遗传机制建立和维持其功能状态。
+
+\subsection{植物着丝粒的演化模式}
+
+在前两节中，我们分别解析了植物着丝粒的大小、结构类型、重复序列组成及其表观基因组学特征。综合这些结果可以看出，植物着丝粒并非由单一重复序列长期稳定维持，而是在串联重复（TR）与转座元件（TE）之间不断发生替换、扩张与清除，从而形成动态变化的结构单元。为进一步理解这种变化的方向性，本节结合近缘物种间的共线性关系及代表性着丝粒组成差异，归纳植物着丝粒的主要演化模式。
+
+首先，在拟南芥近缘物种中，可以观察到由TE--TR混合型着丝粒向TR主导型着丝粒的转变（\blueref{fig:Figure22}{A}）。拟南芥野生种(\textit{Arabidopsis lyrata}, Aly)的Chr1和Chr2着丝粒仍保留TE与TR共存的特征，而拟南芥(\textit{A. thaliana}, Ath)的Chr1则表现为典型的TR主导型着丝粒。两者比较显示，拟南芥着丝粒卫星重复由CEN179向CEN178发生了替换，同时卫星重复序列之间缺乏明显共线性，说明其序列本身已发生较大重塑。这一结果提示，在拟南芥谱系中，TR不仅发生了卫星序列的更新，也在着丝粒内部竞争中逐步占据优势，并伴随对TE成分的清除，最终形成更为纯化的TR型着丝粒。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure22}
+    \caption[植物着丝粒在近缘物种中的类型转换与演化模式]{
+    \textbf{植物着丝粒在近缘物种中的类型转换与演化模式。}
+    \textbf{(A)} 拟南芥野生种与拟南芥着丝粒区域的共线性比较。上方依次为重复序列组成、DNA甲基化、染色体位置、共线性关系及CENH3 ChIP-seq信号。
+    \textbf{(B)} 在无明显大尺度染色体交换背景下的着丝粒类型转换。左侧为杜鹃属物种Chr1共线性比较，显示着丝粒由TR型向TE型转变；右侧为稻属物种Chr6共线性比较，显示着丝粒由TE型向TR型转变。
+    \textbf{(C)} 葫芦科物种间着丝粒类型转换及共线性变化。苦瓜、黄瓜、南瓜、甜瓜和西瓜之间的比较表明，在明显染色体交换和共线性断裂背景下，着丝粒可经历由TE型向TR型再向TE型的连续转变。}
+    \label{fig:Figure22}
+\end{figure}
+
+其次，在不伴随大规模染色体交换的情况下，着丝粒类型可以在近缘物种间发生直接转换。以杜鹃属为例，\textit{Rhododendron vialii}（Rvi）、\textit{R. liliiflorum}（Rli）和\textit{R. molle}（Rmo）的Chr1之间保持较高共线性，但其着丝粒类型却表现出由TR型向TE型的转变（\blueref{fig:Figure22}{B}，左）。这表明，即使整体染色体骨架较为保守，着丝粒内部重复序列组成仍可快速重塑。相反，在稻属中，\textit{Oryza granulata}（Ogr）、\textit{O. australiensis}（Oau）和\textit{O. sativa}（Osa）的Chr6则展示了另一种方向，即在未发生显著染色体交换的前提下，由TE型向TR型着丝粒转变（\blueref{fig:Figure22}{B}，右）。这两个案例共同说明，TR与TE之间的转换并不存在固定方向，而是可以根据不同谱系的重复序列扩张与清除过程双向发生。
+
+进一步地，在葫芦科物种中，着丝粒演化还可伴随大尺度染色体交换与重组事件（\blueref{fig:Figure22}{C}）。从苦瓜（\textit{Momordica charantia}，Mch）到黄瓜（\textit{Cucumis sativus}，Csa）、南瓜（\textit{Cucurbita maxima}，Cma）、甜瓜（\textit{Cucumis melo}，Cme）再到西瓜（\textit{Citrullus lanatus}，Cla）的比较表明，在明显的共线性断裂和染色体重排背景下，着丝粒类型经历了由TE型到TR型，再由TR型到TE型的连续转变。这说明，大尺度染色体交换不仅能够改变着丝粒所在的局部序列环境，也可能促进不同重复序列类型在着丝粒区域中的重新定植和替换。因此，植物着丝粒的演化既可发生于总体染色体结构相对稳定的背景下，也可发生于剧烈重排之后。
+
+基于上述跨物种比较结果，本论文认为植物着丝粒的演化本质上是TE与TR之间持续竞争、替换和扩张的过程，而非由某一类重复序列单向主导的线性模式。为概括这一过程，我们进一步提出了“植物着丝粒TE-TR循环演化模型”（\blueref{fig:Figure23}{}）。具体来讲，我们首先假设在染色体形成初期，如果动粒没有识别到着丝粒位点或发生染色体交换丢失掉着丝粒之后，动粒会诱导染色体以简单重复序列快速形成以卫星序列包裹的CENH3核小体，从而实现TR的初始定植（\blueref{fig:Figure23}{}，右上），此时不招募LTR的原因是LTR的插入需要复杂的转座机制，而简单重复序列则更容易通过复制滑移等机制快速扩张，当然目前该假设仍然处于猜想阶段，有待进一步的验证。随后，在类似端粒酶的模板依赖型聚合酶机制及染色体外环状DNA（extrachromosomal circular DNA, eccDNA）扩增的作用下\cite{huang2026genetic}，TR能够快速形成并扩张高阶重复阵列（higher-order repeats, HORs），推动TR在着丝粒内进一步富集（\blueref{fig:Figure23}{}，右下）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Figure23}
+    \caption[植物着丝粒中TE与TR循环演化模型]{
+    \textbf{植物着丝粒中TE与TR循环演化模型。}
+    }
+    \label{fig:Figure23}
+\end{figure}
+
+另一方面，CENH3染色质本身也可能为TE提供有利的定植环境（\blueref{fig:Figure23}{}，左下）。某些TE，尤其是反转录转座子，可以优先插入CENH3富集区域，并在着丝粒内部积累。近期的研究表明，在拟南芥中\textit{Tal1}作为一种LTR反转录转座子，能够通过特定的蛋白质相互作用机制优先且特异定植于CENH3染色质上\cite{tsukahara2025centrophilic}。随后，反转录转座子通过“复制-粘贴”机制持续扩增，从而形成TE富集型着丝粒（\blueref{fig:Figure23}{}，左上）。随着TE不断累积，原有TR阵列可能被稀释、切割或清除；反之，当TR重新扩张形成高密度阵列时，也可能逐步排挤TE，导致TE型向TR型的转变。该机制在植物中不仅得到了验证，更在拟南芥中被具象化为KARMA（kinetochore-associated recombination machine in \textit{Arabidopsis}）模型\cite{wlodzimierz2023cycles}，从而将人类中“动粒招募重组因子促进卫星进化”的观点拓展至植物界。总之，植物着丝粒并非稳定停留在“TR型”或“TE型”某一终点，而更可能在“高TE阵列”和“高TR阵列”两种状态之间循环转换。
+
+
+综上，比较基因组结果表明，植物着丝粒至少存在三类主要演化模式：其一，在近缘物种中由TE--TR混合型向TR纯化型演化；其二，在整体染色体结构基本保守的情况下，TR型与TE型着丝粒之间可双向转换；其三，在大尺度染色体交换背景下，着丝粒类型可伴随局部序列环境重塑而发生反复替换。结合机制模型可以看出，TR扩张、TE定植及两者的竞争性清除共同塑造了植物着丝粒的长期演化轨迹。这说明，植物着丝粒的演化并不是单一路径，而是一个由重复序列动态平衡驱动的循环过程。
+
+% \section{本章小结}
+
+% 本章围绕100个植物T2T基因组中1493条染色体的着丝粒区域，系统分析了其识别方法、结构特征、重复序列组成及演化模式。首先，针对是否具有CENH3 ChIP-seq数据，构建了实验信号驱动与序列特征驱动相结合的着丝粒识别流程，并结合TR、TE、基因、rDNA分布及表观遗传信息，对植物着丝粒区间进行了统一界定。
+
+% 在整体结构层面，植物着丝粒表现出显著多样性。绝大多数染色体属于单着丝粒类型，中着丝粒是最常见的空间分布形式；着丝粒长度总体集中在5 Mb以内，但不同物种之间仍存在明显差异。值得注意的是，着丝粒的主要序列组成并不局限于传统的串联重复，TE型着丝粒在全部样本中略高于TR型着丝粒，说明转座元件在植物着丝粒形成和维持中具有重要作用。
+
+% 在代表性物种的精细比较中，不同类群着丝粒的序列基础差异明显：早期植物可由Copia主导，部分高等植物则以TR或Gypsy为主；但CENH3富集区通常伴随CpG和CHG甲基化的局部下降，提示植物着丝粒在重复序列背景多样化的同时，仍具有相对保守的表观遗传特征。TR型着丝粒中，CENH3与低甲基化区域的对应关系更为清晰；而TE型着丝粒中，功能性着丝粒染色质与主要重复区段可出现一定程度的错位。
+
+% 基于近缘物种共线性比较，本章进一步总结了植物着丝粒的三类主要演化模式：由TE-TR混合型向TR主导型的纯化演化、在整体染色体结构较保守背景下TR型与TE型之间的双向转换，以及在大尺度染色体交换背景下的反复替换。结合提出的TE-TR循环演化模型可以看出，TR扩张、TE定植及其相互竞争与清除，共同推动了植物着丝粒的长期动态重塑。
+
+% 总体而言，本章结果表明，植物着丝粒并非由单一序列长期稳定维持，而是在不同重复序列背景和表观遗传状态共同作用下形成和演化的动态功能区域。T2T基因组的建立为这一复杂区域的系统比较提供了可靠基础，也为后续理解植物染色体稳定性及其演化机制提供了新的视角。当然，其中仍然有很多奥秘有待进一步挖掘，例如不同类型着丝粒的功能差异、TE与TR之间的具体竞争机制，以及着丝粒演化与物种适应性之间的关系等，都是未来研究的重要方向。
+
+\section{本章小结}
+
+本章系统分析了植物T2T基因组中重复序列与着丝粒区域的特征、扩张模式及其演化机制。在重复序列部分，通过对230个植物T2T基因组的分析，发现重复序列是植物基因组中最主要的非编码成分，LTR反转录转座子，尤其是Gypsy和Copia，是最主要的重复类型。随着基因组大小的增加，重复序列的比例上升，而编码序列比例相对下降，表明基因组扩张主要由重复序列积累驱动。不同植物谱系表现出特征化的TE扩张模式，且RDA分析揭示，Gypsy与基因组大小扩张关系最为密切。研究进一步表明，TE的插入主要发生在基因内部区域，尤其是内含子和外显子，且这些区域通常表现出较高水平的DNA甲基化。重复序列的扩张不仅影响基因结构和调控元件组成，也对重要农艺性状的形成产生影响。
+
+在着丝粒区域分析中，本章通过对100个植物T2T基因组中的1493条染色体的系统研究，构建了实验信号驱动与序列特征驱动相结合的着丝粒识别流程。研究发现，植物着丝粒呈现出显著的多样性，主要由单着丝粒类型组成，且着丝粒的序列组成不局限于传统的串联重复。TE型着丝粒在样本中略高于TR型，表明转座元件在植物着丝粒的形成与维持中扮演着重要角色。精细比较显示，不同植物类群的着丝粒序列基础差异明显，Copia主导的早期植物与以TR或Gypsy为主的高等植物之间有所不同。CENH3富集区通常伴随CpG和CHG甲基化的局部下降，提示植物着丝粒具有相对保守的表观遗传特征。
+
+通过对近缘物种的共线性比较，本章总结了植物着丝粒的三种主要演化模式：TE-TR混合型向TR主导型的演化、TR型与TE型之间的双向转换、以及在大尺度染色体交换背景下的反复替换。这些模式揭示了TR扩张、TE定植及其相互作用共同推动了植物着丝粒的长期动态重塑。
+
+总体而言，本章的研究表明，植物基因组的重复序列和着丝粒区域并非静态存在，而是通过重复序列积累、表观遗传机制调控和转座元件作用共同形成和演化的动态功能区域。T2T基因组为这些复杂区域的系统比较和跨物种分析提供了可靠基础，也为进一步研究植物基因组的稳定性、演化机制及其对农艺性状的影响提供了新的视角。
+
+\chapter{T2T基因组组装策略评估及其多组学应用}
+
+前几章围绕植物T2T基因组资源的构建与比较分析，从基因空间、重复序列、着丝粒区域到多倍化演化，系统梳理了植物基因组的结构特征与演化规律。结果表明，T2T基因组不仅显著提升了复杂基因组的解析精度，也为从全基因组尺度重新审视植物演化与功能基因组学问题提供了新的基础。不过，如何组装出来一个高质量基因组，尤其是对于复杂的植物基因组来说，仍然是一个技术挑战。不同测序平台、组装软件及建库策略在不同植物基因组中的表现可能存在较大差异，因此系统评估这些策略在植物T2T基因组组装中的适用性和效果，对于指导后续研究具有重要意义。所以，本章将首先系统评估不同组装策略在植物T2T基因组组装中的表现，随后以同源六倍体落地生根为例，展示高质量T2T基因组在复杂多倍体植物中的组装与分析过程，并进一步探讨T2T基因组在多组学研究中的应用优势。
+
+\section{材料与方法}
+\subsection{基准测试环境与性能指标}
+基准测试在基于CentOS操作系统的计算节点上进行。计算节点配备了80个处理核心和756GB的内存。为了确保测试结果的准确性，每次基准测试都在独立节点上单独运行，以避免系统负载过重或资源竞争对测试结果产生干扰。基准测试过程中，系统通过实时监控工具记录了包括运行时间、峰值内存使用量、CPU使用率等重要性能指标。所有数据集均经过预处理，确保格式统一，以保证测试结果的可靠性和公平性。
+
+\subsection{基准测试数据集}
+本论文选取了拟南芥（\textit{A. thaliana}，2n=2x=10，基因组大小（GS）=133.72 Mb，杂合率（HR）=0.10\%）、水稻（\textit{O. sativa}，2n=2x=24，GS=385.71 Mb，HR=0.16\%）、大豆（\textit{G. max}，2n=2x=40，GS=1.01 Gb，HR=0.18\%）、四倍体棉花（\textit{G. hirsutum}，2n=4x=52，GS=2.29 Gb，HR=2.12\%）和八倍体草莓（\textit{Fragaria x ananassa}，2n=8x=56，GS=793.46 Mb，HR=0.14\%）5个具有代表性的植物基因组作为基准测试（benchmark）对象。所有基因组均来自于PlanT2T数据库。所有测序数据均来自SRA，ENA和GSA数据库。对于每个物种，我们选取了PacBio HiFi、ONT、Hi-C和Illumina四种不同文库的数据集（\blueref{tab:benchmarkDatasets}{}），确保每个平台的数据量和质量均满足组装要求。
+
+\subsection{落地生根植物材料与测序数据}
+落地生根（\textit{Kalanchoe laetivirens}）植物在温室内的受控环境条件下进行培养。白天气温维持在26–28 °C，夜间气温为19–21 °C。植物在长日照条件下培养（16小时光照/8小时黑暗），使用自然光并辅以人工照明（飞利浦TLD 36 W/865）。从新鲜叶片组织中分离出\textit{K. laetivirens}的细胞核，并提取高分子量基因组DNA。使用PacBio Sequel II平台构建PacBio HiFi文库并进行测序。同时，采用同一DNA源制备了ONT超长文库和Illumina双端文库，并分别进行了测序。对于Hi-C文库的制备，新鲜的幼叶通过液氮研磨，然后进行染色质提取、限制性酶消化、邻近连接、纯化和碎片化，最终构建文库。
+
+\subsection{落地生根基因组大小估算与倍性分析}
+基因组大小通过流式细胞术和k-mer分布分析进行估算。在流式细胞术中，使用拟南芥（\textit{A. thaliana}）和水稻（\textit{O. sativa}）作为内参标准，依据荧光强度与基因组大小之间的比例关系进行测定。拟南芥和水稻的平均荧光强度分别为33,037和65,876，而落地生根的荧光强度分别为35,850和58,038，估算得到的基因组大小分别约为210 Mb和237 Mb。
+
+基于k-mer的估算使用Illumina短读段和PacBio HiFi读段，通过Jellyfish v2.3.0 和GenomeScope v2.0 进行分析\cite{marccais2011fast, ranallo2020genomescope}。基因组大小的计算公式为：基因组大小 = k-mer 数量 / k-mer 深度（k = 23）。根据此公式，估算的单倍体基因组大小约为222 Mb。Smudgeplot v0.5.4 分析进一步支持了六倍体的证据\cite{ranallo2020genomescope}，且AAAAAB型的k-mer组合最为丰富。通过共聚焦显微镜观察染色体分布，确认染色体数最多为102条（\blueref{fig:Figure57}{}）。
+
+\subsection{落地生根T2T基因组组装}
+单倍体参考基因组使用PacBio HiFi、ONT和Hi-C数据进行组装。初步的contig（p\_ctg）通过Hifiasm v0.19.7-r598 生成\cite{cheng2026efficient}，参数设置为 \texttt{--n-hap 6 --dual-scaf --ul --h1 --h2}。通过Khaper（\url{https://github.com/lardo/khaper}）根据读深度、序列相似性和分布模式去除冗余序列。利用 HapHiCv1.0.7 将Hi-C数据整合\cite{zeng2024chromosome}，生成染色体级的 scaffold。组装错误通过Juicebox v1.8.8 手动修正\cite{durand2016juicebox}，最终得到17条主干，分别对应17条染色体。通过LR\_Gapcloser v1.0 结合ONT读段进行gap填充\cite{xu2019lr_gapcloser}，获得最终的单倍体参考组装。
+
+对于六倍体组装，PacBio HiFi和ONT读段使用Hifiasm 在默认参数下进行组装\cite{cheng2026efficient}，生成主要的unitig（p\_utg）。Hi-C数据通过 HapHiC 整合\cite{zeng2024chromosome}，得到染色体级scaffold。通过HapHiC refsort，参考\textit{K. fedtschenkoi}基因组对scaffold进行排序和定向\cite{zeng2024chromosome}。使用Juicebox 进行手动修正\cite{durand2016juicebox}，最终得到102条染色体级组装结果。
+
+gap填充分为三个阶段进行：在S1阶段，使用ONT读段通过LR\_Gapcloser进行初步的gap填充\cite{xu2019lr_gapcloser}；在S2阶段，分别使用 quarTeT v1.2.5 和 TGS-GapCloser v1.2.1 基于S1组装结果进行gap填充\cite{lin2023quartet, xu2020tgs}，并使用quarTeT整合结果；在S3阶段，使用PacBio HiFi读段与quarTeT进行进一步的gap填充，并整合S2结果，最终得到无gap的组装。
+
+\section{T2T基因组组装策略评估}
+\subsection{T2T基因组大小与倍性评估}
+
+在开展T2T基因组组装之前，首先需要对目标基因组的大小、杂合水平及倍性特征进行预评估，以便为后续测序深度设计、组装策略选择以及结果解释提供参考。为此，本论文基于Illumina短读长数据，利用Jellyfish分别对$k=19$--$31$范围内的k-mer频谱进行了统计\cite{marccais2011fast}，并进一步结合GenomeScope 2.0推断单倍型基因组大小和杂合率\cite{ranallo2020genomescope}，利用Smudgeplot评估不同物种的倍性模式\cite{ranallo2020genomescope}。
+
+总体来看，二倍体物种的k-mer评估结果较为稳定，而多倍体和高复杂度基因组则表现出明显的参数敏感性（\blueref{fig:Figure38}{}）。对于拟南芥（\textit{A. thaliana}，2n=2x=10，基因组大小（GS）=133.72 Mb，杂合率（HR）=0.10\%）和水稻（\textit{O. sativa}，2n=2x=24，GS=385.71 Mb，HR=0.16\%），随着k-mer长度从19增加到31，GenomeScope估计的单倍型基因组大小基本保持稳定，杂合率始终处于较低水平，k-mer分布曲线均呈现出较清晰的主峰结构，说明其k-mer组成简单、背景噪声较低，适合通过短读长频谱进行估计。Smudgeplot结果表明拟南芥和水稻均以典型的AB型信号为主，符合二倍体基因组的特征。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure38}
+    \caption[T2T基因组大小与倍性评估]{
+    \textbf{T2T基因组大小与倍性评估。}
+    基于Illumina短读长数据，使用Jellyfish统计$k=19$--$31$范围内的k-mer频谱，并结合GenomeScope和Smudgeplot对5个代表性植物基因组进行评估。自上而下分别为拟南芥、水稻、大豆、四倍体棉花和八倍体草莓。
+    }
+    \label{fig:Figure38}
+\end{figure}
+
+相比之下，多倍体及古多倍化背景物种的k-mer结果更加复杂。大豆在不同k值下的单倍型基因组大小和杂合率估计波动较大，Smudgeplot除AB型信号外还出现了更高阶的组合模式，符合其古多倍化基因组特征（\blueref{fig:Figure38}{}）。草莓的波动幅度进一步增大，尤其在较大k值下基因组大小估计明显升高，且Smudgeplot呈现出更复杂的高阶smudge类型，反映出其八倍体基因组中亚基因组关系较为复杂（\blueref{fig:Figure38}{}）。相比之下，四倍体棉花在不同k值下的估计结果稳定性较差，Smudgeplot信号分离不清，未能有效解析其预期倍性，说明在高重复和高同源背景下，基于短读长k-mer的倍性评估存在一定局限性（\blueref{fig:Figure38}{}）。
+
+从方法学上看，本结果说明，基于k-mer频谱的基因组大小与倍性评估在二倍体和低杂合物种中具有较高稳定性，而在多倍体植物中则更适合作为组装前的先验判断工具，而非绝对定量标准。对于复杂多倍体基因组，不同k值下估计结果的一致性本身也是一个重要信息，它能够在一定程度上反映基因组中重复序列比例、同源亚基因组相似性以及潜在的组装难度。
+
+\subsection{T2T基因组初步组装策略的系统评估}
+
+为了系统评估不同测序平台、组装软件及建库策略在植物T2T基因组组装中的表现，本论文选取了拟南芥（\textit{A. thaliana}）、水稻（\textit{O. sativa}）、大豆（\textit{G. max}）、四倍体棉花（\textit{G. hirsutum}）和八倍体草莓（\textit{Fragaria x ananassa}）5个具有代表性的植物基因组作为benchmark对象。上述物种在基因组大小、重复序列组成、杂合度及倍性背景等方面具有一定差异，可以比较好的覆盖从简单到复杂的植物基因组类型。在建库类型上，则采用HiFi、ONT以及Hi-C等不同数据类型（\blueref{tab:benchmarkDatasets}{}）。
+
+首先，我们拟对当前主流的基因组组装软件进行评估，包括Flye v2.9.6 \citep{kolmogorov2019assembly}、Hifiasm v0.25.0-r726 \citep{cheng2021haplotype}、Mecat2\citep{xiao2017mecat}、Necat v0.0.1\citep{chen2021efficient}、NextDenovo v2.5.2\citep{hu2024nextdenovo}、Verkko v2.3.2\citep{rautiainen2023telomere}和Wtdbg2\citep{ruan2020fast}，并以我们收集的高质量T2T基因组作为参考真值（ground truth）进行对照分析。首先以基因组相对较小、杂合度较低的拟南芥和水稻为例，对不同组装策略在简单植物基因组中的表现进行了比较（\blueref{fig:Figure32}{A-B}）。
+
+对于拟南芥，不同组装策略之间的性能差异较为明显。总体来看，基于HiFi数据的组装方案在组装准确性和完整性上整体优于仅使用ONT数据的方案（\blueref{fig:Figure32}{A}）。以组装连续性（N50）为例，Hifiasm在HiFi+ONT和HiFi+ONT+Hi-C两种模式下均获得了与ground truth一致的N50（26 Mb），同时组装结果中识别到3条T2T与3条T2N染色体，值得一提的是拟南芥的2号和4号染色体的左端富含45S DNA而缺少端粒\cite{naish2021genetic}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure32}
+    \caption[不同组装策略在拟南芥和水稻T2T基因组组装中的性能比较]{
+    \textbf{不同组装策略在拟南芥和水稻T2T基因组组装中的性能比较。}
+    \textbf{(A)} 拟南芥（\textit{A. thaliana}）。\textbf{(B)} 水稻（\textit{O. sativa}）。其中，Fragment count指初步组装的contig数量；N50指组装连续性指标；T2T count指组装结果中在染色体两端都识别到端粒且没有gap的染色体数量，N指没有端粒；Run time是组装所需的真实运行时间；Average memory指平均内存占用；Max memory指最大内存占用。HiFi和ONT来评估比对率（Mapping rate）和覆盖率（Coverage）。Illumina reads和HiFi则用来评估单碱基准确性（QV值）。 BUSCO C指完整注释的BUSCO基因百分比，S指单拷贝BUSCO基因百分比，D指重复BUSCO基因百分比。下图相同将不再赘述。
+    }
+    \label{fig:Figure32}
+\end{figure}
+
+因此，Hifiasm在初步组装就已经达到了Near T2T的级别，但其代价就是需要较长的组装时间（Run time），好在所需的运行内存较少。相比之下，Flye和NextDenovo虽然在ONT数据下也能够得到较高的N50（15 Mb），且片段数较少，但在T2T染色体数量和末端完整性上仍逊于Hifiasm。Verkko在引入Hi-C后，N50由13 Mb提升至22 Mb，T2T数也由1条增加至2条，说明Hi-C数据整合能够改善拟南芥基因组的长距离连接关系，但其最终结果仍未超过Hifiasm的HiFi主导组装。
+
+从单碱基准确性来看，拟南芥中HiFi组装软件优势更加明显。NextDenovo (HiFi)、Flye (HiFi) 和 Mecat2 (HiFi) 的QV值相对较高，其中NextDenovo (HiFi) 在Illumina评估下的QV达到59，Flye (HiFi) 和Mecat2 (HiFi) 也分别达到56和54；Hifiasm各方案的QV同样保持在较高水平（\blueref{fig:Figure32}{A}）。这表明在低复杂度植物基因组中，HiFi数据已经能够提供较高的碱基级精度，而额外引入ONT或Hi-C数据，对于提升碱基准确性没有贡献，这归根到底的原因是ONT的测序准确性目前偏低。与之相对，Wtdbg2无论使用ONT还是HiFi数据，在基因组大小偏差、片段化程度、N50和BUSCO完整性等方面均明显落后（\blueref{fig:Figure32}{A}），说明其在当前T2T组装场景下已不具备竞争优势（后续将不再讨论）。
+
+水稻表现出与拟南芥相似但又略有差异的规律。首先，从基因组大小估计和连续性指标来看，多数主流组装软件均能够较好恢复水稻基因组的整体结构，但不同软件在“高连续性”和“高准确性”之间存在一定权衡。Hifiasm (HiFi+ONT) 和 Hifiasm (HiFi+ONT+Hi-C) 均获得了10条T2T染色体，N50达到31 Mb，与参考真值最为接近，是所有方案中在T2T层面表现最优的策略之一（\blueref{fig:Figure32}{B}）。Verkko在HiFi+ONT+Hi-C模式下同样取得了31 Mb的N50和9条T2T染色体，也显示出较强的染色体级组装能力（\blueref{fig:Figure32}{B}）。
+
+在碱基准确性方面，水稻中HiFi主导的组装优势更加突出。NextDenovo (HiFi) 的QV最高，HiFi评估下达到71，Illumina评估下为52；Flye (HiFi) 和 Hifiasm (HiFi) 也分别获得了较高的QV值（HiFi QV分别为65和63）。与此同时，这些HiFi组装结果在BUSCO完整性上也普遍达到99\%--100\%，说明对于水稻这类中等大小但结构相对规则的基因组，高精度长读长数据已经足以支持较高质量的初始组装。相比之下，纯ONT组装虽然在部分软件中仍能获得较高的连续性，但在碱基精度和结构完整性上整体弱于HiFi方案。例如NextDenovo (ONT) 和 Necat (ONT) 的N50分别可达到30 Mb和22 Mb，但QV和BUSCO单拷贝比例均不及对应的HiFi结果，提示ONT数据更适合作为复杂重复区补充，而非在该类基因组中单独承担高精度组装任务。
+
+从计算资源消耗看，拟南芥和水稻中不同软件也表现出较大差异。Hifiasm (HiFi) 在两种基因组上均表现出较好的效率与精度平衡：运行时间较短，内存占用适中，同时能够获得较高的QV和BUSCO完整性。Verkko和NextDenovo在连续性方面具有竞争力，但峰值内存消耗明显更高，尤其在引入多方数据后更加明显。Flye在ONT数据下运行时间较长，且内存占用也相对较高；Wtdbg2虽然运行较快，但整体组装质量不足。综合来看，在拟南芥和水稻这类相对简单的植物基因组中，HiFi数据是决定组装质量的核心因素，Hifiasm表现出最稳定的综合优势；在此基础上引入ONT和Hi-C数据，可进一步提升染色体末端和复杂区域的连接能力，从而更接近真正的T2T组装。
+
+对于大豆（\textit{G. max}）而言，不同组装策略之间的差异较拟南芥和水稻更加明显（\blueref{fig:Figure33}{}）。总体来看，在约1 Gb的中等偏大基因组中，仅依赖单一数据类型的组装策略已难以同时兼顾连续性、完整性和结构正确性，而整合HiFi与ONT，尤其进一步结合Hi-C信息后，组装质量提升最为显著。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure33}
+    \caption[不同组装策略在大豆T2T基因组组装中的性能比较]{
+    \textbf{不同组装策略在大豆T2T基因组组装中的性能比较。}
+    }
+    \label{fig:Figure33}
+\end{figure}
+
+从组装连续性来看，Verkko（HiFi+ONT+Hi-C）、Hifiasm（HiFi+ONT+Hi-C）和Hifiasm（HiFi+ONT）均取得了与参考基因组一致的N50（52 Mb），表现最佳。与此同时，Verkko（HiFi+ONT+Hi-C）获得了19条T2T染色体，为所有策略中最高，最接近ground truth的20条；Verkko（HiFi+ONT）和Hifiasm（HiFi+ONT+Hi-C）均获得14条T2T染色体，Hifiasm（HiFi+ONT）同样达到14条，说明在大豆基因组中，HiFi与ONT的联合组装已经能够显著提升染色体级连续性，而Hi-C的进一步引入则主要体现在T2T完整性的继续提高。相比之下，Hifiasm（HiFi）虽然仍可获得34 Mb的N50，但T2T数仅为5条，提示单独依赖HiFi数据在该类基因组中仍不足以充分跨越复杂重复区并恢复完整染色体结构。
+
+从组装碎片化程度看，多数据整合策略同样表现更优。Verkko（HiFi+ONT+Hi-C）和Verkko（HiFi+ONT）的fragment数分别仅为375和385，Hifiasm（HiFi+ONT+Hi-C）和Hifiasm（HiFi+ONT）也仅有219和221，显著优于大多数单一数据组装结果。特别是Flye（ONT）虽然在ONT覆盖下具有较强的延伸能力，但其组装结果中仍保留了713个片段，并伴随较多N2N染色体，说明其连续性提升更多来自局部长片段拼接，而非真正的染色体级正确恢复。
+
+从碱基准确性来看，HiFi主导的组装策略依然具有明显优势。Hifiasm（HiFi+ONT+Hi-C）、Hifiasm（HiFi+ONT）和Flye（HiFi）的HiFi-QV均达到62，Hifiasm（HiFi）为61，均处于最高水平；NextDenovo（HiFi）次之，为49。相比之下，纯ONT组装策略的QV普遍偏低，如NextDenovo（ONT）、Necat（ONT）和Flye（ONT）的HiFi-QV仅为25--26。这说明在大豆这类基因组中，ONT长读长对于跨越复杂重复和提升染色体连续性具有重要作用，但单碱基水平准确性仍主要依赖HiFi数据保证。Illumina-QV的结果也与此基本一致，HiFi参与的组装整体更稳定。BUSCO评估进一步支持了上述结论。Verkko（HiFi+ONT）、Verkko（HiFi+ONT+Hi-C）、Hifiasm（HiFi+ONT+Hi-C）、Hifiasm（HiFi+ONT）、Hifiasm（HiFi）、Flye（ONT）和Flye（HiFi）的BUSCO完整度均达到100\%，说明这些策略准确且完整的组装基因区间。然而，大豆作为古多倍化背景明显的物种\cite{wang2021altered}，其BUSCO单拷贝比例普遍仅为39\%--40\%，而重复比例高达49\%--60\%，这也在情理之中。
+
+
+在更高复杂度的多倍体基因组中，不同组装策略之间的差异进一步放大。以四倍体棉花和八倍体草莓为例，单一数据类型组装在连续性、完整性和结构正确性上的局限性更加明显，而混合组装策略，尤其是整合HiFi、ONT和Hi-C数据后，整体表现更优（\blueref{fig:Figure34}{A-B}）。
+
+具体而言，对于四倍体棉花，Hifiasm和Verkko的混合组装策略表现最为突出。Hifiasm（HiFi）、Hifiasm（HiFi+ONT）和Hifiasm（HiFi+ONT+Hi-C）均获得了较高的连续性，N50均达到108 Mb，其中Hifiasm（HiFi）获得了21条T2T染色体，最接近ground truth的26条；Verkko（HiFi+ONT+Hi-C）同样获得了较高的N50（108 Mb），并恢复了19条T2T染色体（\blueref{fig:Figure34}{A}）。相比之下，单一ONT组装虽然在部分策略下也能得到较长contig，如NextDenovo（ONT）的N50达到81 Mb，但其T2T数量、N2N数量及结构完整性仍逊于HiFi主导或混合组装结果（\blueref{fig:Figure34}{A}）。
+
+\vspace{2\baselineskip}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure34}
+    \caption[不同组装策略在棉花和草莓T2T基因组组装中的性能比较]{
+    \textbf{不同组装策略在棉花和草莓T2T基因组组装中的性能比较。}
+    \textbf{(A)} 四倍体棉花（\textit{G. hirsutum}）。\textbf{(B)} 八倍体草莓（\textit{Fragaria $\times$ ananassa}）。
+    }
+    \label{fig:Figure34}
+\end{figure}
+
+对于八倍体草莓，组装难度进一步增加，各策略之间的优劣更加分明。ground truth的N50为28 Mb，包含23条T2T染色体。Hifiasm系列在该基因组中表现最为稳定，Hifiasm（HiFi）、Hifiasm（HiFi+ONT）和Hifiasm（HiFi+ONT+Hi-C）均获得了24 Mb的N50和15条T2T染色体，同时fragment数控制在742--758之间，明显优于多数其他策略（\blueref{fig:Figure34}{B}）。相比之下，Verkko（HiFi+ONT+Hi-C）虽然能够将N50提升至10 Mb，但T2T数量仅为5条；Flye和NextDenovo在草莓中的连续性和完整性则明显不足，组装碎片化更加严重（\blueref{fig:Figure34}{B}）。说明在高倍体且具有较强同源相似性的基因组中，单纯依靠超长读长并不足以解决等位折叠和复杂重复区解析问题，高精度HiFi数据仍然是保证组装质量的关键。与此同时，Hi-C的引入虽然有助于提升挂载水平，但其增益在超高倍体背景下并不像在二倍体或较低复杂度基因组中那样显著。
+
+综合棉花和草莓的结果可以看出，随着倍性升高和基因组复杂度增加，组装策略选择对最终结果的影响更加显著（\blueref{fig:Figure34}{}）。对于四倍体及以上植物基因组，HiFi数据仍是获得高碱基精度和较高结构可信度的基础；在此基础上结合ONT数据，可进一步提升跨重复区和长片段拼接能力；而Hi-C更多用于后续染色体级挂载和局部结构优化。总体而言，Hifiasm在多倍体植物基因组中表现出最稳定的综合优势，而Verkko在整合多源数据后也具有较强竞争力，更适合作为复杂多倍体植物T2T组装的主要候选策略。
+
+值得注意的是，我们进一步比较了基于ONT R10、HiFi以及HiFi+ONT（R10）数据组装得到的豌豆3个亚种的碱基准确性（\blueref{fig:Figure37}{}）。结果显示，无论在Illumina还是HiFi reads评估下，ONT R10组装的QV值均已与HiFi组装非常接近，而HiFi与HiFi+ONT（R10）联合组装之间的差异也十分有限。这说明随着ONT R10测序精度的提升，其组装结果在单碱基水平上已经接近HiFi，为后续复杂多倍体植物T2T基因组构建提供了新的技术选择。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure37}
+    \caption[ONT R10与HiFi组装在豌豆中的QV和N50比较]{
+    \textbf{ONT R10与HiFi组装在豌豆中的QV比较。}
+     从左到右依次是豌豆3个亚种（Pea-1、Pea-2和Pea-3）基于Illumina reads评估的QV值、基于HiFi reads评估的QV值和N50（Mb）,其中UL指组装以ONT R10数据为主。
+    }
+    \label{fig:Figure37}
+\end{figure}
+
+\subsection{T2T基因组挂载策略的系统评估}
+
+在完成不同组装软件与测序策略的benchmark之后，我们进一步关注染色体级挂载步骤对T2T基因组构建的影响。对于植物基因组而言，即便初步组装（primary assembly）已经具备较高的contig连续性，如何借助Hi-C等长程互作信息将contig正确锚定、排序并定向到染色体水平，仍然是决定最终能否获得高质量T2T组装的关键步骤。尤其是在多倍体和含大量重复序列的植物基因组中，挂载错误、局部断裂以及染色体间误连接均可能显著影响最终结果。因此，本节以各物种Hifiasm（HiFi）的初步组装结果作为统一输入，系统比较ALLHiC v0.9.8\cite{zhang2019assembly}、HapHiC v1.0.7\cite{zeng2024chromosome}、LACHESIS\cite{burton2013chromosome}、3D-DNA v201008\cite{dudchenko2017novo}、SALSA2\cite{ghurye2017scaffolding}和YaHS v1.2.2\cite{zhou2023yahs}六种主流挂载工具在不同植物基因组中的表现差异。
+
+对于拟南芥（\blueref{fig:Figure35}{A}），不同工具挂载后均在一定程度上改善了组装结果，其中HapHiC表现最佳，N50提高至23 Mb，并获得了3条T2T染色体，与ground truth一致，同时仅包含3条T2N和3条N2N结构，表明其在小基因组中的挂载效果最为稳定。YaHS也将N50提升至22 Mb，但其gap数达到16，且N2N数增加至4，说明其连续性提升伴随着一定程度的挂载错误。相比之下，3D-DNA的效果最差，因为3D-DNA的逻辑是先打断再挂载，对于目前三代组装连续性较高的物种来说，过度打断反而会导致更多的误连接和结构错误，且消耗的资源和时间最多，所以后续将不再讨论3D-DNA的结果。
+
+对于水稻（\blueref{fig:Figure35}{B}）。可以看出ALLHiC将N50提升至241 Mb，远高于ground truth，说明其错误的将不同contigs进行了合并。综合来看，HapHiC和SALSA2的表现更加均衡：二者均获得8条T2T染色体，接近ground truth的12条，其中HapHiC仅引入5个gap，T2N数为4，N2N数为1，在连续性与结构正确性之间取得了较好的平衡。
+
+对于大豆（\blueref{fig:Figure35}{C}），ALLHiC同样表现出过度连接的倾向，N50达到惊人的1.2 Gb，远高于ground truth的52 Mb，但T2T数仅为3条，且引入了大量gap（共计157个），说明其在大豆这样具有古多倍化背景的基因组中容易产生严重的挂载错误。相比之下，YaHS和HapHiC的挂载效果更具实用价值：YaHS将T2T数提升至14条，N50达到52.96 Mb；HapHiC则获得12条T2T染色体，N50为50.81 Mb。SALSA2同样获得14条T2T染色体，但其N50略低于YaHS，且T2N数达到8。
+
+在四倍体棉花中（\blueref{fig:Figure35}{D}），初步组装本身已经具备较高连续性，N50达到108.21 Mb，且已有21条T2T染色体。多数工具在此基础上难以带来实质性改进，反而可能引入额外错误。其中SALSA2和YaHS基本维持了原有连续性，T2T数仍为21条，gap数分别仅为4和6，整体较为稳健。HapHiC同样保持了21条T2T染色体，且仅引入5个gap，表现稳定。相比之下，ALLHiC将N50进一步提高至126.4 Mb，但T2T数下降至6条，并产生157个gap，说明其在高倍性背景下同样存在较为明显的过度挂载问题，LACHESIS亦是如此，说明这两种工具在复杂四倍体基因组中的适用性较差。
+
+对于八倍体草莓（\blueref{fig:Figure35}{E}），HapHiC则表现最为均衡，其N50提升至29 Mb，T2T数为12条，T2N数为12，N2N数为4，在多个指标之间保持了较好的平衡。SALSA2和YaHS虽然也将N50分别提升至35 Mb和36 Mb，但对应的T2T数仅为13条，且gap数较多。LACHESIS在草莓中恢复了15条T2T染色体，与初步组装持平，但其N50仅为25 Mb，提升有限。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure35}
+    \caption[不同挂载策略在五个植物基因组中的性能比较]{
+    \textbf{不同挂载策略在五个植物基因组中的性能比较。}
+    \textbf{(A)} 拟南芥（\textit{A. thaliana}）。\textbf{(B)} 水稻（\textit{O. sativa}）。\textbf{(C)} 大豆（\textit{G. max}）。\textbf{(D)} 四倍体棉花（\textit{G. hirsutum}）。\textbf{(E)} 八倍体草莓（\textit{Fragaria $\times$ ananassa}）。图中比较了以Hifiasm（HiFi）初步组装结果为输入时，ALLHiC、HapHiC、LACHESIS、3D-DNA、SALSA2和YaHS在不同植物基因组中的挂载表现，包括组装大小、片段数、N50、gap数、T2T数量、T2N数量、N2N数量、运行时间、平均内存占用和最大内存占用。Ground truth表示对应物种已获得的高质量参考T2T基因组，用作对照标准。
+    }
+    \label{fig:Figure35}
+\end{figure}
+
+进一步结合Hi-C互作热图进行直观比较可以发现，不同挂载策略之间的差异与前述统计结果总体一致。总体上，HapHiC在五个物种中均表现出更清晰的主对角线和更规整的染色体分块，说明其挂载结果具有较高的结构可信度；YaHS和SALSA2在部分物种中也表现较好，但稳定性略逊于HapHiC（\blueref{fig:Figure36}{}）。相比之下，LACHESIS和ALLHiC在复杂基因组中更容易出现非对角线异常信号、边界模糊或网格状互作模式，提示存在较明显的误挂载或过度连接现象（\blueref{fig:Figure36}{}）。尤其是在大豆、棉花和草莓等复杂多倍体基因组中，这种差异更加明显。整体来看，Hi-C热图从互作信号层面进一步表现出HapHiC在不同复杂度植物基因组中最稳定的挂载优势（\blueref{fig:Figure36}{}）。
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure36}
+    \caption[不同挂载策略在五个植物基因组中的Hi-C热图比较]{
+    \textbf{不同挂载策略在五个植物基因组中的Hi-C热图比较。}
+    列分别表示拟南芥、水稻、大豆、四倍体棉花和八倍体草莓。小于1Mb的互作被过滤掉以突出染色体级互作模式。蓝色边框代表挂载在一起的contigs。
+    }
+    \label{fig:Figure36}
+\end{figure}
+
+另外，在八倍体草莓基因组中，我们进一步利用HapHiC的refsort功能对Hi-C互作矩阵进行了快速重排。结果表明，经过refsort处理后，同源染色体能够更集中地排列在一起，原本分散的互作信号被重新组织为更清晰的块状结构，从而更有利于识别同源染色体之间的对应关系，更有利于候选进行手工矫正（\blueref{fig:Figure39}{}）。该结果说明，refsort不仅能够提升多倍体Hi-C热图的可读性，也为后续亚基因组分型和染色体关系解析提供了便利。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure39}
+    \caption[HapHiC在八倍体草莓Hi-C热图重排中的应用]{
+    \textbf{HapHiC在八倍体草莓Hi-C热图重排中的应用。}
+    }
+    \label{fig:Figure39}
+\end{figure}
+
+\subsection{T2T基因组补洞策略的系统评估}
+
+在完成初步组装与染色体级挂载之后，残余gap的有效填补仍是获得高质量T2T基因组的重要步骤。为比较不同补洞工具在植物基因组中的表现，本论文进一步统计了TGS-GapCloser\cite{xu2020tgs}、LR\_Gapcloser\cite{xu2019lr_gapcloser}和quarTeT\cite{lin2023quartet}处理后剩余gap的比例，并以模拟挂载后的scaffold assembly作为对照进行比较（其中，scaffold assembly为在原始T2T基因组中随机引入100个长度为10 Kb--1 Mb的gap所得）。此外，为进一步评估补洞后的准确性，我们还利用QUAST将补洞前后的组装结果分别与原始T2T基因组进行比较\cite{gurevich2013quast}，并统计最大contig长度、总长度、N50、NG50、NGA50、LGA50和genome fraction等指标的变化幅度。
+
+结果显示，不同补洞工具在五个植物基因组中的表现差异较为明显。总体上，TGS-GapCloser处理后的剩余gap比例最低，在拟南芥、水稻、大豆、棉花和草莓中分别仅保留5\%、2\%、20\%、18\%和21\%的gap，说明其补洞能力最强（\blueref{fig:Figure40}{A}）。LR\_Gapcloser在拟南芥、水稻虽表现出一定效果，但剩余gap比例仍分别高达68\%、90\%、93\%和89\%，在棉花中几乎没有有效补洞。相比之下，quarTeT处理后仍保留了51\%--98\%的gap，在五个物种中的补洞能力整体最弱（\blueref{fig:Figure40}{A}）。
+
+
+进一步结合QUAST评估结果可以发现，单纯减少gap数量并不能完全反映补洞质量，还需要同时考察补洞后组装连续性和与真值基因组的一致性。总体来看，TGS-GapCloser在显著降低剩余gap的同时，也能够较稳定地提升组装连续性，尤其在N50、NG50和NGA50等指标上均表现出较为一致的正向改进（\blueref{fig:Figure40}{B}），说明其不仅能够完成缺口填补，还能够在较大程度上维持补洞结果的结构正确性。相比之下，LR\_Gapcloser在多个物种中往往带来更大的总长度增加和更高的N50、NGA50等指标，看似连续性提升更明显，但其增益主要来自额外引入的过长序列（\blueref{fig:Figure40}{B}）；结合genome fraction和LGA50等指标可以判断，这些新增片段中包含较多冗余或错误延伸，因此并不代表真实组装质量的提升。quarTeT则整体表现较为保守，一方面剩余gap比例较高，另一方面在连续性相关指标上的改善也较为有限（\blueref{fig:Figure40}{B}），说明其补洞能力和补洞后增益均相对一般。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure40}
+    \caption[不同补洞策略在五个植物基因组中的比较]{
+    \textbf{不同补洞策略在五个植物基因组中的比较。}
+    \textbf{(A)} 比较TGS-GapCloser、LR\_Gapcloser和quarTeT三种工具在拟南芥、水稻、大豆、四倍体棉花和八倍体草莓中补洞后剩余gap的比例，并以模拟挂载后的scaffold assembly作为对照。 
+    \textbf{(B)} 基于QUAST评估三种工具补洞前后相对于原始T2T基因组的指标变化，包括largest contig、total length、N50、NG50、NGA50、LGA50和genome fraction，其中横坐标表示补洞后相对于补洞前的差值。
+    }
+    \label{fig:Figure40}
+\end{figure}
+
+综合来看，TGS-GapCloser在五个测试基因组中表现出最好的综合性能：既能显著降低残余gap比例，又能较稳定地提高与参考T2T基因组一致的连续性指标，因此更适合作为植物T2T基因组精细化补洞的优先方案。LR\_Gapcloser虽然在部分统计指标上数值更高，但存在引入冗余错误序列的风险；quarTeT则更适合作为辅助性补洞工具。总体而言，补洞阶段的评价不能仅依赖gap数量或单一连续性指标，而应同时结合真值比对结果综合判断补洞的有效性与准确性。结合不同工具开展多轮互补补洞，仍然是进一步提升复杂植物T2T基因组完整性和可靠性的可行策略。
+
+\section{同源六倍体落地生根T2T基因组组装与应用}
+
+\subsection{落地生根T2T基因组组装}
+
+在前述benchmark分析中，我们发现，对于复杂多倍体植物基因组，HiFi数据能够提供稳定的单碱基精度，ONT长读长有助于跨越复杂重复区域，而Hi-C在染色体级挂载和同源染色体区分中具有重要作用。其中，Hifiasm在初步组装阶段表现出较好的连续性与准确性平衡，HapHiC在挂载阶段表现出最稳定的结构可信度，多轮长读长补洞则能够进一步提升端到端完整性。基于这一结果，本论文进一步以同源六倍体落地生根（\textit{Kalanchoe laetivirens}）为对象，构建其单倍型解析的六倍体T2T基因组和单倍型压缩的单倍体（monoploid）T2T参考基因组（\blueref{fig:Figure41}{}）。
+
+首先，我们采集幼叶组织，联合PacBio HiFi、ONT（R9）、Hi-C和Illumina数据开展组装、挂载、校正与验证（\blueref{fig:Figure41}{A}），所有数据可以通过国家基因组数据中心获取（\url{https://ngdc.cncb.ac.cn/bioproject/browse/PRJCA040272}）。其中，HiFi数据用于高精度初步组装，ONT数据用于增强复杂区域的连续性和后续补洞，Hi-C数据用于染色体级挂载和同源染色体排序，Illumina数据则用于辅助评估组装质量。基于HiFi与Illumina reads的k-mer分析，落地生根的单倍型基因组大小估计约为222 Mb，与流式细胞术测得的210--237 Mb结果基本一致（\blueref{fig:Figure41}{B}）。Smudgeplot进一步显示其倍性模式以AAAAAB型为主，支持其为六倍体基因组（\blueref{fig:Figure57}{B}）。结合细胞学观察和核型分析结果，我们进一步确认该物种染色体数目为17的倍数，最高可达102条，与$17\times 6$的六倍体核型相符（\blueref{fig:Figure57}{C}）。
+
+在组装流程上，我们首先使用Hifiasm对HiFi reads进行组装，分别得到utg和ctg两个结果（\blueref{fig:Figure41}{A}）。其中，ctg结果经过冗余去除后，结合Hi-C信号进行挂载，并通过多轮补洞获得单倍体参考基因组；utg结果则尽可能保留所有单倍型信息，在参考近缘物种\textit{K. fedtschenkoi}辅助定向和HapHiC重排后\cite{yang2017kalanchoe}，构建六倍体单倍型解析基因组。为提高完整性，我们进一步采用多轮补洞策略：在HapHiC挂载后的初始状态（S0）基础上，首先利用ONT数据和LR\_Gapcloser进行初步补洞（S1），随后使用quarTeT和TGS-GapCloser进一步整合ONT证据（S2），最后再结合HiFi数据通过quarTeT进行最终补洞和抛光（S3）（\blueref{fig:Figure41}{D}）。经过这一流程，六倍体组装中的缺口数由初始的433个逐步降至0个，单倍体组装中的缺口也由48个完全补齐，最终均获得无gap的T2T组装（\blueref{tab:kalanchoe_assembly}{}）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure41}
+    \caption[同源六倍体落地生根T2T基因组组装及其基因组特征]{
+    \textbf{同源六倍体落地生根T2T基因组组装及其基因组特征。}
+    \textbf{(A)} 六倍体和单倍体T2T基因组的整体组装流程。 
+    \textbf{(B)} 基于k-mer分析和实验结果的基因组大小与倍性评估。 
+    \textbf{(C)} 六倍体基因组的Hi-C互作热图。 
+    \textbf{(D)} 多轮补洞流程及剩余gap变化，其中S0表示HapHiC挂载后的初始状态，S1--S3表示连续补洞阶段。 
+    \textbf{(E)} 端粒重复和候选着丝粒长度统计。 
+    \textbf{(F)} 六倍体基因组102条染色体的Circos特征图，依次展示染色体、基因密度、GC含量、转座元件密度、LTR/Copia、LTR/Gypsy、串联重复密度、ATAC峰密度、组蛋白修饰密度以及染色体共线性。
+    }
+    \label{fig:Figure41}
+\end{figure}
+
+最终，单倍体参考基因组组装长度为211.2 Mb，共包含17条T2T染色体；单倍型解析的六倍体组装则包含102条T2T染色体，可归为17个同源群，每个同源群由6条染色体组成（\blueref{fig:Figure41}{F}）。Hi-C热图显示六倍体基因组具有清晰的染色体级互作信号，未见明显的大尺度错误连接，支持组装结构的可靠性（\blueref{fig:Figure41}{C}）。此外，对端粒和着丝粒相关特征的统计表明，六倍体组装中共鉴定到208个CCCTAAA端粒重复阵列，而单倍体组装中鉴定到34个；两套基因组的候选着丝粒长度分布总体相近，说明在染色体级完整组装的基础上，关键结构区域得到了较好的保留（\blueref{fig:Figure41}{E}）。
+
+在基因组整体特征上，六倍体与单倍体组装均表现出较高的一致性。Circos图显示，102条染色体在基因密度、GC含量、转座元件、LTR/Copia、LTR/Gypsy、串联重复以及染色质开放区和组蛋白修饰等特征上具有清晰的全基因组分布模式，而六个亚基因组与单倍体参考之间也表现出良好的共线性关系（\blueref{fig:Figure41}{F}）。重复序列注释结果显示，重复序列分别占单倍体和六倍体组装的43.26\%和42.95\%，其中LTR反转录转座子占16.23\%和16.91\%，主要由Copia和Gypsy超家族构成。进一步结合证据引导和从头预测方法，我们分别在单倍体和六倍体基因组中注释到26,455和152,510个蛋白编码基因，且超过94\%的基因获得了功能注释（\blueref{tab:kalanchoe_assembly}{}）。
+
+综合来看，本论文基于前述benchmark获得的最优策略组合，成功构建了同源六倍体落地生根的单倍体和单倍型解析六倍体 T2T基因组，不仅实现了端粒到端粒的完整组装，也较好解析了其同源群结构、端粒和着丝粒特征以及亚基因组间的共线性关系，为后续多倍体植物再生机制、基因组演化和多组学研究奠定了高质量参考基础。所有数据可以从T2T-Hub数据库中访问（\url{https://biobigdata.nju.edu.cn/t2thub/upload/26860}）。
+
+\subsection{T2T基因组在多组学研究中的应用优势}
+
+在获得高质量T2T基因组之后，一个令人关注的问题是：相较于传统非T2T参考基因组，T2T基因组是否能够在下游多组学分析中提供更高的信号解析能力。为回答这一问题，本论文进一步比较了T2T与非T2T基因组在ATAC-seq、RNA-seq和BS-seq分析中的表现（\blueref{tab:multiomics}{}）。
+
+总体来看，T2T基因组在多组学数据比对和信号识别方面表现出一致优势。首先，在ATAC-seq分析中，T2T基因组通常获得更高的reads比对率，并识别到更多开放染色质区域。其中，大豆和拟南芥的提升最为明显，不仅比对率（mapping rate）差值整体偏正，peak数量也显著增加；这一趋势在水稻和玉米中同样存在，尽管提升相对较小（\blueref{fig:Figure42}{A}）。说明T2T基因组补全了端粒、着丝粒邻近区以及其他复杂重复区域后，能够减少reads在参考缺失区域中的丢失，从而提高开放染色质信号的检出能力。
+
+在RNA-seq分析中，与非T2T基因组相比，T2T参考通常带来更高的唯一比对率（unique mapping rate），并检测到更多表达基因。尤其是在大豆和玉米中，表达基因数量的提升最为显著（\blueref{fig:Figure42}{B}），说明在基因组更完整的背景下，一些原先因参考缺失、局部断裂或错误折叠而难以被准确比对和定量的转录本得到了更好的解析。一个比较典型的例子是水稻着丝粒中新发现的\textit{OsMAB}基因可以正向调节水稻分蘖数\cite{lv2024centromere}。相比之下，水稻和拟南芥中的提升幅度较小，但整体趋势仍然一致。这表明，T2T基因组对转录组分析的程度与基因组复杂性及原始参考的完整性密切相关。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Figure42}
+    \caption[T2T基因组与非T2T基因组在多组学分析中的比较]{
+    \textbf{T2T基因组与非T2T基因组在多组学分析中的比较。}
+    \textbf{(A)} ATAC-seq分析中T2T与非T2T基因组在比对率和peak数量上的差异。
+    \textbf{(B)} RNA-seq分析中T2T与非T2T基因组在唯一比对率和表达基因数（FPKM$>$1）上的差异。
+    \textbf{(C)} BS-seq分析中T2T与非T2T基因组在CHG、CHH和CpG三种甲基化背景下信号数量的比较。横坐标表示T2T相对于非T2T基因组的差值或对数比值，虚线表示无差异基线。
+    }
+    \label{fig:Figure42}
+\end{figure}
+
+在DNA甲基化分析中，无论是CHG、CHH还是CpG，T2T基因组检测到的甲基化水平均高于非T2T基因组，其中CpG背景下的提升最为明显（\blueref{fig:Figure42}{C}）。特别是在水稻中，三种类型的甲基化数量增幅均最大；大豆和拟南芥中也表现出一致的正向偏移。这说明传统非T2T参考由于缺失了大量富含重复序列和异染色质特征的区域（如着丝粒区域），往往会低估真实的甲基化水平，而T2T基因组则能够更完整地恢复这些区域中的甲基化信号，从而为表观基因组研究提供更接近真实状态的结果。
+
+综合来看，T2T基因组在开放染色质识别、转录本检测和DNA甲基化解析三个层面均表现出优于非T2T基因组的分析能力。其优势主要体现在完整的基因组序列提高了测序数据的可比对性、唯一定位能力、揭示更多调控和表观遗传信息等。因此，T2T基因组不仅是结构基因组学研究的重要终点，也为转录组学和表观基因组学研究提供了更高分辨率的参考基础。
+
+\section{本章小结}
+
+本章围绕植物T2T基因组的组装策略与应用价值进行了系统分析。首先，基于5个代表性植物基因组的benchmark结果表明，HiFi数据是获得高碱基精度和较高结构可信度的基础，ONT长读长有助于跨越复杂重复区域（其中ONT R10技术将在未来的T2T基因组组装中扮演重要角色），而Hi-C数据则主要提升染色体级挂载和多倍体物种中的同源染色体区分能力。综合比较不同组装软件后发现，Hifiasm在不同复杂度植物基因组中表现出最稳定的综合优势，Verkko在整合多类测序数据后也具有较强竞争力。对于挂载步骤，HapHiC在连续性、结构正确性和热图一致性方面整体表现最佳；在补洞阶段，TGS-GapCloser显示出最强的gap消除能力。上述结果共同构成了植物T2T基因组构建的一套较优技术路线。
+
+在此基础上，本章进一步以同源六倍体落地生根为例，成功构建了单倍体和单倍型解析的六倍体 T2T基因组，实现了102条染色体的端粒到端粒组装，并较好解析了其同源群结构、端粒重复、候选着丝粒区域以及亚基因组间的共线性关系，验证了前述组装策略在复杂多倍体植物中的可行性和有效性。
+
+最后，本章从ATAC-seq、RNA-seq和BS-seq三个层面对T2T与非T2T参考基因组进行了比较。结果表明，T2T基因组在开放染色质识别、转录本解析和DNA甲基化检测中均表现出更高的信号检出能力和更完整的信息恢复能力，说明T2T基因组不仅提升了植物复杂基因组的组装质量，也为下游多组学研究提供了更高分辨率和更可靠的参考框架。
+
+\chapter{总结与展望}
+
+\section{全文总结}
+
+本论文以植物T2T基因组为核心研究对象，围绕“资源构建—平台建设—结构解析—演化规律—方法评估—应用拓展”这一主线，系统开展了跨物种、大尺度、多层次的比较基因组学研究，力图以传统基因组为背景更好地回答植物T2T基因组“有什么”，“如何演化”，“如何高质量获得”，“如何高效解析”以及“能解决什么问题”五个层面的问题。
+
+首先，在资源层面，本论文系统收集并整理了230个植物T2T基因组，对缺失编码基因注释信息的基因组进行了从头注释和质量评估，统一汇总了物种分类、测序策略、组装质量、基因组大小、GC含量、基因数量等基础信息，构建了当前较为系统的植物T2T基因组数据集。整体分析表明，现有植物T2T基因组资源主要集中于被子植物，尤其是核心蔷薇类及重要农作物，而早期分化植物和非模式植物仍明显不足；与此同时，多平台联合测序策略已经成为高质量植物T2T基因组构建的主流技术路线。这一部分工作为后续所有比较分析奠定了统一的数据基础，也为植物T2T基因组资源的持续积累提供了参考框架。
+
+其次，在基因组序列特征与调控元件演化层面，本论文基于230个植物T2T基因组，系统分析了不同植物类群在基因组大小、GC含量、重复序列比例及功能基因分布等方面的差异，揭示了植物基因组在序列组成上的显著谱系特异性。研究表明，植物基因组大小的扩展与重复序列积累密切相关，而不同基因组区域对整体GC含量的贡献并不一致，其中外显子区域普遍保持较高GC水平。进一步地，本论文提出了启动子与转录因子在长期演化中发生双向适配的协同演化假说，并在121个高质量T2T基因组及1354个扩展植物基因组中验证了该模式的广泛存在。此外，本论文还系统分析了NLR免疫基因家族在不同植物谱系和不同生态习性中的分布差异，揭示了其在植物适应性演化中的动态扩张与收缩规律。上述结果从基因组序列组成、调控元件适配和免疫基因家族演化三个层面，深化了对植物基因组多样性和适应性演化的理解。
+
+第三，在比较基因组学与多倍化演化层面，本论文基于116个被子植物T2T基因组构建了时间校准的系统发育树，明确了樟目、单子叶和真双子叶植物等主要类群的关键分歧节点，并在系统发育框架下定位了多个重要的WGD事件，包括核心真双子叶的$\gamma$事件、木兰类的$\lambda$事件、单子叶的$\tau$事件以及部分谱系中的近期$\sigma$事件。进一步结合基因家族的聚类，扩张与收缩发现，WGD发生时间与扩张型orthogroup（OG）的保留比例呈显著正相关，说明古老WGD事件的扩张痕迹会在长期分化和基因丢失过程中被逐步削弱，而较新的WGD更容易保留清晰的家族扩张信号。功能层面上，共享扩张OG更多集中于细胞周期、蛋白质合成、能量代谢等基础生命过程，而时期特异的扩张OG则更多涉及干旱、热胁迫、生物胁迫和光响应等环境适应过程，表明WGD后基因家族的保留同时受到基础功能约束与环境选择驱动。进一步扩展到1354个植物及绿色植物相关物种后，本论文从更宏观尺度揭示了近4亿年来WGD事件的时空分布格局，除了新发现3亿年前种子植物共享的古老WGD外，还发现K-Pg界线附近的WGD高频窗口与地外撞击及大气成分剧变在时间上存在重叠，提示环境扰动可能促进多倍体类群的保留与扩张。该部分工作从百种到千种尺度系统刻画了植物WGD的发生规律及其与基因家族演化、环境变化之间的关系。
+
+第四，在重复序列演化层面，本论文基于230个植物T2T基因组对非编码区进行了系统的\textit{de novo}重复序列注释，发现重复序列是植物T2T基因组中最主要的非编码成分，且LTR反转录转座子，尤其是Gypsy和Copia，是驱动植物基因组扩张的核心因素。研究表明，随着基因组大小增大，重复序列比例整体上升，而编码序列比例相对下降；不同植物谱系在TE组成和近期扩张模式上具有显著差异，其中Gypsy与基因组扩张关系最为密切，且是导致基因组序列多样性下降的主要原因。进一步结合代表性物种的功能组学数据，本论文发现调控元件主要富集于非重复序列区域，而TE更倾向于插入基因体内部并伴随较高DNA甲基化水平，说明植物基因组通过表观遗传机制对TE进行沉默，以维持基因组稳定。典型实例和泛T2T比较结果进一步表明，TE插入可通过改变基因结构、局部调控元件组成及单倍型间结构状态，参与重要性状的形成与分化。该部分工作强调了重复序列不仅是植物基因组扩张的重要驱动力，也是塑造调控网络和性状变异的重要来源。
+
+第五，在着丝粒结构与演化层面，本论文围绕100个植物T2T基因组中的1493条染色体，系统构建了实验信号驱动与序列特征驱动相结合的着丝粒识别流程，对植物着丝粒区域进行了较统一的界定。结果表明，植物着丝粒在长度、空间位置和序列组成上都表现出显著多样性；虽然单着丝粒是主导类型，中着丝粒最为常见，但其主要序列基础并不局限于传统串联重复，TE型着丝粒在总体样本中甚至略高于TR型着丝粒，说明转座元件在着丝粒形成和维持中具有重要作用。进一步的比较表明，尽管不同物种着丝粒的主要重复背景差异很大，但CENH3富集区通常伴随CpG和CHG甲基化的局部下降，提示功能性着丝粒染色质在表观层面具有一定保守性。基于近缘物种共线性比较，本论文总结了植物着丝粒的三类主要演化模式，并提出了TE-TR循环演化模型，认为TR扩张、TE定植及二者之间的竞争和清除共同推动了植物着丝粒的长期动态重塑。该部分工作表明，植物着丝粒不是单一序列长期稳定维持的静态区域，而是重复序列与表观遗传状态共同作用下形成的动态功能单元。
+
+第六，在T2T基因组组装策略评估与方法学建立层面，本论文系统比较了5个代表性植物基因组在不同survey策略、不同组装软件、不同挂载工具和不同补洞工具下的表现，构建了一套针对植物复杂基因组的较优T2T组装技术路线。结果表明，HiFi数据虽仍是获得高碱基精度和较高结构可信度的基础，但以ONT R10为代表的测序技术即有助于跨越复杂重复区域，又能保持和HiFi相近的准确性，而Hi-C主要提升染色体级挂载和多倍体背景下同源染色体的区分能力。综合比较后发现，Hifiasm在不同复杂度植物基因组中具有最稳定的综合优势，Verkko在整合多类测序数据后也表现出较强竞争力；挂载阶段HapHiC在结构正确性和热图一致性方面表现最好，补洞阶段TGS-GapCloser具有最强的缺口消除能力。基于这一benchmark结果，本论文进一步成功构建了同源六倍体落地生根的单倍体（monoploid）T2T基因组和单倍型解析六倍体（hexaploid）T2T基因组，实现了102条染色体的端粒到端粒组装，并较好解析了其同源群结构、端粒重复、候选着丝粒区域和亚基因组间的共线性关系。该部分工作不仅验证了前述技术路线在复杂多倍体植物中的可行性，也为今后高倍体植物T2T组装提供了实践范式。
+
+第七，在T2T基因组的多组学应用层面，本论文进一步比较了T2T与非T2T参考基因组在ATAC-seq、RNA-seq和BS-seq分析中的表现。结果表明，T2T基因组在开放染色质信号识别、转录本比对与定量以及DNA甲基化检测中均表现出更高的信号检出能力和更完整的信息恢复能力。其本质原因在于，T2T基因组补全了传统参考中缺失的端粒、着丝粒邻近区及其他复杂重复区域，提高了测序数据的可比对性和唯一定位能力，也使原先被遗漏的真实调控和表观遗传信号得以重新识别。这说明T2T基因组不仅是结构基因组学研究的终点，更是功能基因组学和表观基因组学研究的重要高分辨率参考框架。
+
+最后，在工具与资源平台建设层面，本论文围绕T2T基因组数据获取、标准化分析、结果共享和在线服务，构建了较完整的基础设施体系。开发的iSeq工具实现了对GSA、SRA、ENA和DDBJ等公共数据库中多种accession和多类测序数据的统一高效下载；iOmics整合了ATAC-seq、ChIP-seq、RNA-seq和BS-seq等标准化分析流程，为T2T基因组的功能解析提供了通用工具链；PlanT2T数据库对230个植物T2T基因组进行了集中管理、统一分析和可视化展示；T2T-Hub则进一步实现了用户上传基因组和注释文件后自动完成质量评估、结构识别、功能注释及可交互网页生成的全流程分析。上述工具与平台不仅支撑了本论文各章节的系统研究，也为后续植物T2T基因组的开放共享和持续利用提供了实用基础。
+
+综上所述，本论文从植物T2T基因组资源构建出发，系统揭示了植物基因组在序列组成、调控元件适配、基因家族演化、重复序列扩张和着丝粒动态重塑等方面的规律，建立了适用于复杂植物基因组的T2T组装策略，并验证了T2T参考在多组学研究中的显著优势。同时，围绕数据获取、分析与共享构建了一套较完整的工具和平台体系。整体上，本论文不仅拓展了对植物基因组结构特征和演化动态的认识，也为未来植物T2T基因组的大规模构建、比较和应用奠定了数据基础、方法基础和资源基础。
+
+\section{本文局限与未来展望}
+
+尽管本论文围绕植物T2T基因组开展了较为系统的分析，并取得了一系列结果，但仍然存在一些局限性，有待在后续研究中进一步完善和拓展。
+
+首先，从数据覆盖范围来看，虽然本论文已收集230个植物T2T基因组，并在部分分析中扩展到更大规模的传统基因组数据，但当前植物T2T资源在系统发育分布上仍明显不均衡。现有样本主要集中于被子植物、经济作物和模式物种，而绿藻、苔藓、蕨类、裸子植物以及许多生态和系统发育位置关键的非模式植物仍显著不足。这种采样偏差可能影响某些宏观演化结论的普适性，尤其是在早期陆地植物演化、着丝粒起源及重复序列长期演替等问题上，当前数据仍不足以形成完全稳健的结论。未来随着更多非模式植物、极端生态植物和早期分化谱系的T2T基因组发布，植物T2T比较基因组学有望从“以被子植物为中心”逐步扩展到更完整的绿色植物演化框架。
+
+第二，从基因组质量和标准化程度来看，尽管本论文尽可能统一了注释和评估流程，但不同来源T2T基因组之间在测序深度、组装算法、注释策略及质量控制标准上仍然存在客观差异。特别是在重复序列注释、着丝粒边界界定、基因家族聚类和表观组学数据整合等分析中，这种异质性可能会在一定程度上引入系统偏差。未来需要进一步建立更加统一、可复现的植物T2T基因组分析标准，包括更严格的结构完整性评估、统一的重复序列分类体系、更稳健的着丝粒识别标准以及跨物种可比较的多组学注释流程，从而提升大规模整合分析的可靠性。
+
+第三，从演化推断本身来看，部分结论仍然主要建立在统计相关和比较模式基础之上，而缺少更直接的功能验证。例如，启动子GC含量与转录因子理化性质之间的协同演化关系，目前更多体现为跨谱系的一致模式，尚需结合转录因子DNA结合实验、人工启动子设计和体内功能验证进一步检验其因果机制；WGD与环境事件之间的时间对应关系也提示二者可能存在关联，但尚不能简单视为直接因果，需要更精细的时间校准、生态背景重建和群体遗传证据来支持；着丝粒TE-TR循环演化模型虽然能够较好解释当前观察到的多样结构，但不同类型重复序列在着丝粒竞争、替换和稳定维持中的具体分子机制仍不清楚。未来需要更多遗传学、细胞生物学和功能基因组学实验，与比较基因组分析相结合，才能将这些宏观规律进一步推进到机制层面的解释。
+
+第四，从重复序列和着丝粒研究来看，本论文虽然依托T2T基因组实现了以往难以开展的大尺度比较，但这些区域本身仍然具有极高复杂性。重复序列的分类边界、家族划分、插入时间估计以及活性判定仍受数据库完备性和算法精度限制；着丝粒的功能性边界也并不总能由单一序列特征或单一表观标记准确界定。尤其是在TE型着丝粒、混合型着丝粒以及多倍体背景下的同源着丝粒分化问题上，当前仍然缺乏足够多的高质量CENH3 ChIP-seq、长读长甲基化和超长读长组装证据。未来如果能将T2T基因组与高分辨率染色质构象、单分子甲基化、CENH3定位及活细胞成像等技术联合，将更有可能揭示着丝粒的功能单元构成及其动态演化机制。
+
+第五，从组装方法学角度看，本论文提出的benchmark路线主要基于当前主流HiFi、ONT和Hi-C技术条件，并在5个代表性植物基因组和一个复杂六倍体案例中进行了验证，但其适用性仍需在更广泛的植物基因组背景中继续检验。特别是对于超大基因组、极高杂合基因组、极端重复富集基因组以及异源多倍体植物，目前的组装、挂载和补洞策略仍可能面临准确区分同源与旁系、避免错误折叠和维持亚基因组完整性的挑战。随着ONT R10及后续更高精度超长读长技术的发展，未来植物T2T组装很可能进一步从“HiFi主导”走向“高精度长读长多技术融合”阶段。同时，面向多倍体的组装算法、Hi-C辅助同源染色体分型方法以及自动化误组装检测与修正流程，也将是未来方法学优化的重要方向。
+
+第六，从多组学应用层面看，本论文证明了T2T参考相较于非T2T参考具有更高的信号检出能力，但目前分析主要聚焦于ATAC-seq、RNA-seq和BS-seq三个层面，对T2T参考在三维基因组、长读长转录组、单细胞组学、空间转录组和表观遗传互作分析中的潜在价值仍然挖掘不足。事实上，端粒、着丝粒、大片段重复区和复杂结构变异区很可能承载着大量重要但长期被忽略的调控信息。未来若能将T2T基因组与单细胞多组学、空间组学及群体遗传学相结合，将有望从更高分辨率揭示复杂区域在发育调控、环境响应和性状形成中的作用。
+
+第七，从资源平台建设角度看，虽然本论文已构建PlanT2T和T2T-Hub，并开发了iSeq和iOmics工具，但平台当前仍以数据整合、标准分析和结果展示为主，在自动注释精度、在线比较能力、群体数据支持、跨物种同源分析和AI辅助解释等方面仍有较大提升空间。未来可进一步加强平台对泛基因组、单细胞组学、群体变异和多时空表达数据的整合能力，并引入更智能的注释、检索和可视化模块，使其从“资源展示平台”进一步发展为“植物T2T基因组知识发现平台”。
+
+总体而言，植物T2T基因组研究仍处于快速发展阶段。可以预见，随着测序技术持续进步、算法不断优化以及T2T基因组资源快速积累，未来植物基因组学将从“解析基因区”为主，逐步迈向“完整理解复杂基因组结构与功能”的新阶段。T2T基因组将不仅服务于基因组学本身，也将深刻推动植物演化生物学、功能基因组学、作物遗传改良和合成生物学的发展。就本论文而言，所建立的数据资源、分析框架和技术平台为这一方向提供了初步基础；而围绕复杂重复序列、着丝粒功能、多倍体亚基因组演化及复杂区域调控机制的深入研究，将构成未来持续推进的重要方向。
+
+
